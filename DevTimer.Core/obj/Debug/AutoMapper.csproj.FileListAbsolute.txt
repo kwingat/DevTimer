@@ -1,0 +1,5 @@
+C:\Users\kyle.wingate\Desktop\DevTimer\AutoMapper\bin\Debug\AutoMapper.dll
+C:\Users\kyle.wingate\Desktop\DevTimer\AutoMapper\bin\Debug\AutoMapper.pdb
+C:\Users\kyle.wingate\Desktop\DevTimer\AutoMapper\bin\Debug\AutoMapper.xml
+C:\Users\kyle.wingate\Desktop\DevTimer\AutoMapper\obj\Debug\AutoMapper.dll
+C:\Users\kyle.wingate\Desktop\DevTimer\AutoMapper\obj\Debug\AutoMapper.pdb

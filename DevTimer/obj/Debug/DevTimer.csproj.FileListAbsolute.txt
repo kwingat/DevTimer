@@ -1,0 +1,160 @@
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\DevTimer.dll.config
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\DevTimer.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\DevTimer.pdb
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Antlr3.Runtime.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\EntityFramework.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\EntityFramework.SqlServer.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.AspNet.Identity.Core.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.AspNet.Identity.Owin.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.Host.SystemWeb.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.Security.Cookies.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.Security.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.Security.Facebook.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.Security.Google.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.Security.OAuth.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.Security.Twitter.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Web.Infrastructure.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Newtonsoft.Json.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Owin.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.Helpers.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.Mvc.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.Optimization.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.Razor.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.WebPages.Deployment.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.WebPages.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.WebPages.Razor.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\WebGrease.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.Helpers.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.Mvc.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.Optimization.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.Razor.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.WebPages.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.WebPages.Deployment.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.WebPages.Razor.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Antlr3.Runtime.pdb
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Newtonsoft.Json.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\EntityFramework.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\EntityFramework.SqlServer.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.AspNet.Identity.Core.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.AspNet.Identity.Owin.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.Host.SystemWeb.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.Security.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.Security.Facebook.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.Security.Cookies.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.Security.OAuth.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.Security.Google.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.Security.Twitter.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\obj\Debug\DevTimer.csprojResolveAssemblyReference.cache
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\obj\Debug\DevTimer.dll
+c:\users\kyle.wingate\documents\visual studio 2013\Projects\DevTimer\DevTimer\obj\Debug\DevTimer.pdb
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\AutoMapper.dll
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\DevTimer.Core.dll
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\DevTimer.Domain.dll
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\Ninject.dll
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\Ninject.Web.Common.dll
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\Ninject.Web.Mvc.dll
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\Ninject.Web.WebApi.dll
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\Ninject.Web.WebApi.WebHost.dll
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\System.Net.Http.Formatting.dll
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.Http.dll
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.Http.WebHost.dll
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\WebActivatorEx.dll
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\DevTimer.Core.pdb
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\DevTimer.Domain.pdb
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\AutoMapper.xml
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\Ninject.xml
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\Ninject.Web.Common.xml
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\Ninject.Web.Mvc.xml
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\Ninject.Web.WebApi.xml
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\Ninject.Web.WebApi.WebHost.xml
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\System.Net.Http.Formatting.xml
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.Http.xml
+C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer\bin\System.Web.Http.WebHost.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\DevTimer.dll.config
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\DevTimer.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\DevTimer.pdb
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Antlr3.Runtime.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\AutoMapper.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\DevTimer.Core.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\DevTimer.Domain.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\EntityFramework.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\EntityFramework.SqlServer.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.Security.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Newtonsoft.Json.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Ninject.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Ninject.Web.Common.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Ninject.Web.Mvc.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Ninject.Web.WebApi.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Ninject.Web.WebApi.WebHost.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Owin.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Net.Http.Formatting.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.Helpers.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.Http.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.Http.WebHost.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.Mvc.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.Optimization.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.Razor.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.WebPages.Deployment.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.WebPages.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.WebPages.Razor.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\WebActivatorEx.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\WebGrease.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\DevTimer.Core.pdb
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\DevTimer.Domain.pdb
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\AutoMapper.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Ninject.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Ninject.Web.Common.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Ninject.Web.Mvc.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Ninject.Web.WebApi.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Ninject.Web.WebApi.WebHost.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Net.Http.Formatting.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.Http.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.Http.WebHost.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.Helpers.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.Mvc.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.Optimization.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.Razor.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.WebPages.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.WebPages.Deployment.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\System.Web.WebPages.Razor.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Antlr3.Runtime.pdb
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Newtonsoft.Json.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\EntityFramework.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\EntityFramework.SqlServer.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.Security.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\obj\Debug\DevTimer.csprojResolveAssemblyReference.cache
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\obj\Debug\DevTimer.dll
+C:\Users\kyle.wingate\Dropbox\WebSites\DevTimer\DevTimer\obj\Debug\DevTimer.pdb
