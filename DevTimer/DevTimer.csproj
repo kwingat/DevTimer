@@ -214,7 +214,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Alerts\Alert.cs" />
+    <Compile Include="Infrastructure\Alerts\AlertDecoratorResult.cs" />
+    <Compile Include="Infrastructure\Alerts\AlertExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ClientEditViewModel.cs" />
     <Compile Include="Models\ClientListViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -266,6 +270,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\App\alert.js" />
     <Content Include="Scripts\bootstrap-table.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -322,6 +327,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -360,6 +366,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Site.Mobile.Master" />
     <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Scripts\underscore.string.js" />
+    <None Include="Views\Client\Edit.cshtml" />
+    <Content Include="Views\Shared\_AlertsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Plugins\" />

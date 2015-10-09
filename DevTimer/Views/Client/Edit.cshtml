@@ -1,0 +1,52 @@
+﻿@model DevTimer.Models.ClientEditViewModel
+
+@{
+    ViewBag.Title = "Edit Client";
+}
+
+<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+<ul class="breadcrumb">
+    <li>
+        <i class="fa fa-home"></i>
+        <a href="/">Home</a>
+    </li>
+    <li>
+        <i class="fa fa-briefcase"></i>
+        <a href="/Clients">Clients</a>
+    </li>
+    <li>
+        <i class="fa fa-home"></i>
+        <a href="/Clients">Edit Clients</a>
+    </li>
+</ul>
+<!-- END PAGE TITLE & BREADCRUMB-->
+
+<!-- BEGIN PAGE CONTENT-->
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>
+            New Client
+        </div>
+        <div class="tools">
+            <a href="/" data-toggle="modal" class="config"></a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        @using (Html.BeginForm("Edit", "Client", FormMethod.Post, new {@class="form-horizontal"}))
+        {
+            @Html.AntiForgeryToken()
+            <div class="control-group">
+                @Html.LabelFor(m => m.Name, new {@class="control-label"})
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Name, new {type = "text", @class = "span6 m-wrap", placeholder = "The name of the client"})
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn blue">Submit</button>
+                <button type="button" class="btn" onclick="window.location.href='/Client'">Cancel</button>
+            </div>
+         }
+    </div>
+</div>
+<!-- END PAGE CONTENT-->

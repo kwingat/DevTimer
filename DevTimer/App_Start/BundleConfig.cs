@@ -25,8 +25,13 @@ namespace DevTimer
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-table").Include(
                 "~/Scripts/bootstrap-table.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/site").Include(
+                "~/Scripts/underscore.js",
+                "~/Scripts/underscore.string.js",
+                "~/Scripts/App/alert.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/CSS/bootstrap.css",
+                      "~/Content/CSS/bootstrap.min.css",
                       "~/Content/CSS/bootstrap-responsive.min.css",
                       "~/Content/bootstrap-table.css",
                       "~/Content/CSS/font-awesome.min.css",

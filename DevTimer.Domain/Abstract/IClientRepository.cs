@@ -9,5 +9,10 @@ namespace DevTimer.Domain.Abstract
     {
         Task<IEnumerable<Client>> GetAllAsync();
         Task<IPagedEnumerable<Client>> GetAllAsync(int pageSize, int pageNumber);
+
+        Task<Client> GetByIdForEditAsync(int clientId);
+
+        void Add(Client client);
+        void Update(Client client);
     }
 }

@@ -92,6 +92,8 @@
     <!-- END FOOTER -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/site")
+    @Html.Partial("_AlertsPartial")
     @RenderSection("scripts", required: false)
 </body>
 </html>

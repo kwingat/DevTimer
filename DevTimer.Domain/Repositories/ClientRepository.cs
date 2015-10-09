@@ -28,6 +28,21 @@ namespace DevTimer.Domain.Repositories
             return result.AsPagedEnumerable(pageNumber, pageSize, totalRowCount);
         }
 
+        public async Task<Client> GetByIdForEditAsync(int clientId)
+        {
+            return await Set.FindAsync(clientId);
+        }
+
+        public void Add(Client client)
+        {
+            AddEntity(client);
+        }
+
+        public void Update(Client client)
+        {
+            UpdateEntity(client);
+        }
+
         private IQueryable<Client> GetAllQuery()
         {
             return Set
