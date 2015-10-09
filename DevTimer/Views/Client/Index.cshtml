@@ -1,0 +1,86 @@
+﻿@model DevTimer.Domain.Entities.Client
+
+@{
+    ViewBag.Title = "Clients";
+}
+
+<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+<ul class="breadcrumb">
+    <li>
+        <i class="fa fa-home"></i>
+        <a href="/">Home</a>
+    </li>
+    <li>
+        <i class="fa fa-briefcase"></i>
+        <a href="/Clients">Clients</a>
+    </li>
+    <li>
+        <i class="fa fa-home"></i>
+        <a href="/Clients">Active Clients</a>
+    </li>
+</ul>
+<!-- END PAGE TITLE & BREADCRUMB-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="caption">
+    <i class="fa fa-briefcase"></i>
+    Active Clients
+</div>
+<div class="btn-group"></div>
+<div class="btn-group pull-right">
+    <button onclick="" id="newClient" class="btn green">
+        Add New
+        <i class="fa fa-plus"></i>
+    </button>
+    <button class="btn dropdown-toggle" data-toggle="dropdown">
+        Options
+        <i class="fa fa-angle-down"></i>
+    </button>
+    <ul class="dropdown-menu pull-right">
+        <li><a href="/Clients">Export to Excel</a></li>
+    </ul>
+</div>
+<div>
+    <table id="ClientList"
+           class="table table-striped table-hover table-condensed"
+           data-classes="table table-striped table-hover table-condensed"
+           data-striped="true"
+           data-toggle="table"
+           data-url="/api/clients"
+           data-side-pagination="server"
+           data-pagination="true"
+           data-pagination-v-align="top"
+           data-query-params-type="Else"
+           data-page-list="[5, 10, 20, 50, 100, 200]"
+           data-id-field="id">
+        <thead>
+            <tr>
+                <th data-field="id">@Html.DisplayNameFor(m => m.ID)</th>
+                <th data-field="name">@Html.DisplayNameFor(model => model.Name)</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<!-- END PAGE CONTENT-->
+@section scripts
+{
+    @Scripts.Render("~/bundles/bootstrap-table")
+
+    <script language="javascript">
+
+        $(function () {
+            'use strict';
+            var $list = $('#ClientList');
+
+            var tableOptions = $list.bootstrapTable('getOptions');
+
+            tableOptions.queryParams = function (params) {
+                return $.extend(params,
+				{
+
+				});
+            };
+
+            $list.bootstrapTable('refresh');
+        });
+    </script>
+}

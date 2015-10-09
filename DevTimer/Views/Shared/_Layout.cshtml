@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <title>DevTime</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="page-header-fixed page-footer-fixed">
+    <!-- BEGIN HEADER -->
+    <div class="header navbar navbar-inverse navbar-fixed-top">
+        <!-- BEGIN TOP NAVIGATION BAR -->
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <!-- BEGIN LOGO -->
+                <a class="navbar-brand"></a>
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                @Html.Partial("_LoginPartial");
+            </div>
+        </div>
+        <!-- END TOP NAVIGATION BAR -->
+    </div>
+    <!-- END HEADER -->
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <!-- BEGIN SIDEBAR -->
+        <div class="page-sidebar">
+            <!-- BEGIN SIDEBAR MENU -->
+            <ul class="page-sidebar-menu">
+                <li>
+                    <div class="sidebar-toggler hidden-phone"></div>
+                </li>
+                <li class="start">
+                    <a href="/">
+                        <i class="fa fa-home fa-lg"></i>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="start">
+                    <a href="/Time">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="title">Time</span>
+                    </a>
+                </li>
+                <li class="start">
+                    <a href="/Project">
+                        <i class="fa fa-plane"></i>
+                        <span class="title">Projects</span>
+                    </a>
+                </li>
+                <li class="start">
+                    <a href="/Client">
+                        <i class="fa fa-briefcase"></i>
+                        <span class="title">Clients</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- END SIDEBAR -->
+        <!-- BEGIN PAGE -->
+        <div class="page-content">
+            <!-- BEGIN PAGE CONTAINER -->
+            <div class="container-fluid">
+                <!-- BEGIN PAGE HEADER-->
+                <div class="row-fluid">
+                    <div class="span12">
+                        @RenderBody()
+                    </div>
+                </div>
+                <!-- END PAGE HEADER-->
+            </div>
+            <!-- END PAGE CONTAINER -->
+        </div>
+        <!-- END PAGE -->
+
+
+    </div>
+    <!-- END CONTAINER -->
+    <!-- BEGIN FOOTER -->
+    @*<div class="footer">
+            <div class="container body-content">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p></p>
+                </footer>
+            </div>
+        </div>*@
+    <!-- END FOOTER -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

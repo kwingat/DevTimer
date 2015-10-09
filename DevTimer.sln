@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTimer", "DevTimer\DevTimer.csproj", "{45CE5285-E5C1-4DD6-8807-ACC891FF07C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTimer.Core", "DevTimer.Core\DevTimer.Core.csproj", "{80F3527C-4BAC-4104-B42A-4685FE1F1308}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTimer.Domain", "DevTimer.Domain\DevTimer.Domain.csproj", "{1A48CC5A-F26E-4055-A2BE-44EE0630DA7E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45CE5285-E5C1-4DD6-8807-ACC891FF07C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45CE5285-E5C1-4DD6-8807-ACC891FF07C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45CE5285-E5C1-4DD6-8807-ACC891FF07C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45CE5285-E5C1-4DD6-8807-ACC891FF07C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F3527C-4BAC-4104-B42A-4685FE1F1308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F3527C-4BAC-4104-B42A-4685FE1F1308}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F3527C-4BAC-4104-B42A-4685FE1F1308}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F3527C-4BAC-4104-B42A-4685FE1F1308}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A48CC5A-F26E-4055-A2BE-44EE0630DA7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A48CC5A-F26E-4055-A2BE-44EE0630DA7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A48CC5A-F26E-4055-A2BE-44EE0630DA7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A48CC5A-F26E-4055-A2BE-44EE0630DA7E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
