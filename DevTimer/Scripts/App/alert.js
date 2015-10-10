@@ -1,7 +1,7 @@
 ﻿var DEVTIMER = DEVTIMER || {};
 
 DEVTIMER.alerts = (function () {
-
+    debugger;
     // [ private variables ]
     var alertContainer = $(".alert-container"),
 		template = _.template(

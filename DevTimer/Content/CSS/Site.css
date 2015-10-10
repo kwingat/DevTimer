@@ -22,3 +22,16 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.alert-container {
+    z-index: 9999;
+    width: 350px;
+    top: 56px;
+    right: 6px;
+    position: fixed;
+}
+
+.margin-top-bottom {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
