@@ -23,11 +23,13 @@ namespace DevTimer
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-table").Include(
-                "~/Scripts/bootstrap-table.js"));
+                "~/Scripts/bootstrap-table.js",
+                "~/Scripts/App/formatColumn.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/site").Include(
                 "~/Scripts/underscore.js",
                 "~/Scripts/underscore.string.js",
+                "~/Scripts/App/_mixins.js",
                 "~/Scripts/App/alert.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -39,7 +41,8 @@ namespace DevTimer
                       "~/Content/CSS/style.css",
                       "~/Content/CSS/style-responsive.css",
                       "~/Content/CSS/light.css",
-                      "~/Content/CSS/site.css"));
+                      "~/Content/CSS/site.css",
+                      "~/Content/site.css"));
         }
     }
 }

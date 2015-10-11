@@ -238,3 +238,7 @@ C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer\bin\Microsoft.Owin.Security.Mi
 C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer\obj\Debug\DevTimer.csprojResolveAssemblyReference.cache
 C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer\obj\Debug\DevTimer.dll
 C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer\obj\Debug\DevTimer.pdb
+C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer\bin\MvcSiteMapProvider.dll
+C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer\bin\MvcSiteMapProvider.WebActivator.dll
+C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer\bin\MvcSiteMapProvider.xml
+C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer\bin\MvcSiteMapProvider.WebActivator.xml

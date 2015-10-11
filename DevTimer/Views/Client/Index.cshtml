@@ -5,7 +5,7 @@
 }
 
 <!-- BEGIN PAGE TITLE & BREADCRUMB-->
-<ul class="breadcrumb">
+@*<ul class="breadcrumb">
     <li>
         <i class="fa fa-home"></i>
         <a href="/">Home</a>
@@ -18,7 +18,7 @@
         <i class="fa fa-home"></i>
         <a href="/Clients">Active Clients</a>
     </li>
-</ul>
+</ul>*@
 <!-- END PAGE TITLE & BREADCRUMB-->
 <!-- BEGIN PAGE CONTENT-->
 <div class="caption">
@@ -51,11 +51,13 @@
            data-pagination-v-align="top"
            data-query-params-type="Else"
            data-page-list="[5, 10, 20, 50, 100, 200]"
-           data-id-field="id">
+           data-id-field="id"
+           data-action-edit-url="/Client/Edit/%(id)d">
         <thead>
             <tr>
                 <th data-field="id">@Html.DisplayNameFor(m => m.ID)</th>
                 <th data-field="name">@Html.DisplayNameFor(model => model.Name)</th>
+                <th data-formatter="DEVTIMER.formatColumn.editActions" data-events="DEVTIMER.columnEvents.actions">Actions</th>
             </tr>
         </thead>
     </table>
