@@ -11,7 +11,6 @@ namespace DevTimer.Controllers
 {
     public class ClientController : Controller
     {
-        // GET: Client
         private readonly IClientRepository _clientRepository;
 
         public ClientController(IClientRepository clientRepository)

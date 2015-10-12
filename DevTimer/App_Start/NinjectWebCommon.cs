@@ -70,7 +70,10 @@ namespace DevTimer
             kernel.Bind<RouteCollection>().ToConstant(RouteTable.Routes);
             kernel.Bind<IIdentity>().ToMethod(context => HttpContext.Current.User.Identity);
             kernel.Bind<DbContextBase>().To<GlobalDbContext>();
+            
+            
             kernel.Bind<IClientRepository>().To<ClientRepository>();
+            kernel.Bind<IProjectRepository>().To<ProjectRepository>();
         }        
     }
 }

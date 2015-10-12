@@ -42,13 +42,17 @@
   <ItemGroup>
     <Compile Include="Abstract\DbContextBase.cs" />
     <Compile Include="Abstract\IClientRepository.cs" />
+    <Compile Include="Abstract\IProjectRepository.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\Repository.cs" />
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\Mappings\ClientMap.cs" />
+    <Compile Include="Entities\Mappings\ProjectMap.cs" />
+    <Compile Include="Entities\Project.cs" />
     <Compile Include="GlobalDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
+    <Compile Include="Repositories\ProjectRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DevTimer.Core\DevTimer.Core.csproj">

@@ -9,6 +9,7 @@ namespace DevTimer.Domain
     public class GlobalDbContext : DbContextBase
     {
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Project> Projects { get; set; }
 
         static GlobalDbContext()
         {
@@ -20,6 +21,7 @@ namespace DevTimer.Domain
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new ClientMap());
+            modelBuilder.Configurations.Add(new ProjectMap());
         }
 
 

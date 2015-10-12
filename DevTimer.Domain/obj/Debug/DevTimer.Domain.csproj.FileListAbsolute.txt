@@ -24,19 +24,6 @@ C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer.Do
 C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer.Domain\obj\Debug\DevTimer.Domain.csprojResolveAssemblyReference.cache
 C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer.Domain\obj\Debug\DevTimer.Domain.dll
 C:\Users\kyle.wingate\Documents\Visual Studio 2013\Projects\DevTimer\DevTimer.Domain\obj\Debug\DevTimer.Domain.pdb
-C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\DevTimer.Domain.dll.config
-C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\DevTimer.Domain.dll
-C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\DevTimer.Domain.pdb
-C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\DevTimer.Core.dll
-C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\EntityFramework.dll
-C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\AutoMapper.dll
-C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\DevTimer.Core.pdb
-C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\EntityFramework.xml
-C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\AutoMapper.pdb
-C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\AutoMapper.xml
-C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\obj\Debug\DevTimer.Domain.csprojResolveAssemblyReference.cache
-C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\obj\Debug\DevTimer.Domain.dll
-C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\obj\Debug\DevTimer.Domain.pdb
 C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\DevTimer.Domain.dll.config
 C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\DevTimer.Domain.dll
 C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\DevTimer.Domain.pdb
@@ -50,3 +37,16 @@ C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\AutoMapper.xm
 C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer.Domain\obj\Debug\DevTimer.Domain.csprojResolveAssemblyReference.cache
 C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer.Domain\obj\Debug\DevTimer.Domain.dll
 C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer.Domain\obj\Debug\DevTimer.Domain.pdb
+C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\obj\Debug\DevTimer.Domain.csprojResolveAssemblyReference.cache
+C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\DevTimer.Domain.dll.config
+C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\DevTimer.Domain.dll
+C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\DevTimer.Domain.pdb
+C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\DevTimer.Core.dll
+C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\EntityFramework.dll
+C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\AutoMapper.dll
+C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\DevTimer.Core.pdb
+C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\EntityFramework.xml
+C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\AutoMapper.pdb
+C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\bin\Debug\AutoMapper.xml
+C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\obj\Debug\DevTimer.Domain.dll
+C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer.Domain\obj\Debug\DevTimer.Domain.pdb
