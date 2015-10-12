@@ -1,15 +1,13 @@
 ﻿@model SiteMapPathHelperModel
 @using System.Linq
 
-@if (Model.Nodes.Count != null)
-{
-    @:<ul class="breadcrumb">
-        foreach (var node in Model.Nodes)
+    <ul class="breadcrumb">
+        @foreach (var node in Model.Nodes)
         {
-            if (node == Model.Nodes.First())
-            {
-                continue;
-            }
+            //if (node == Model.Nodes.First())
+            //{
+            //    continue;
+            //}
 
             if (node != Model.Nodes.Last())
             {
@@ -22,5 +20,4 @@
                 @:<li class="active">@node.Title</li>
             }
         }
-    @:</ul>
-}
+    </ul>
