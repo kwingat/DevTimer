@@ -2,20 +2,11 @@
 <mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
-
   <mvcSiteMapNode title="Home" controller="Home" action="Index">
     <mvcSiteMapNode title="About" controller="Home" action="About" />
     <mvcSiteMapNode title="Contact" controller="Home" action="Contact" />
-    <mvcSiteMapNode title="Administration" clickable="false">
-      <mvcSiteMapNode title="User Mgmt" controller="Home" action="UserMgmt" />
-      <mvcSiteMapNode title="Role Mgmt" controller="Home" action="RoleMgmt" />
-    </mvcSiteMapNode>
-    <mvcSiteMapNode title="Profile" clickable="false">
-      <mvcSiteMapNode title="Change Password" controller="Home" action="ChangePassword" />
-      <mvcSiteMapNode title="Separator" clickable="false" />
-      <mvcSiteMapNode title="Sign Off" controller="Home" action="SignOff" />
+    <mvcSiteMapNode title="Clients" controller="Client" action="Index">
+      <mvcSiteMapNode title="Edit Client" controller="Client" action="Edit"></mvcSiteMapNode>
     </mvcSiteMapNode>
   </mvcSiteMapNode>
-  
-
 </mvcSiteMap>

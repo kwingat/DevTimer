@@ -242,3 +242,7 @@ C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer\bin\MvcSiteMapProvider.dll
 C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer\bin\MvcSiteMapProvider.WebActivator.dll
 C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer\bin\MvcSiteMapProvider.xml
 C:\Users\kwing\Documents\GitHub\DevTimer\DevTimer\bin\MvcSiteMapProvider.WebActivator.xml
+C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer\bin\MvcSiteMapProvider.dll
+C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer\bin\MvcSiteMapProvider.WebActivator.dll
+C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer\bin\MvcSiteMapProvider.xml
+C:\Users\kyle.wingate\Documents\GitHub\DevTimer\DevTimer\bin\MvcSiteMapProvider.WebActivator.xml
