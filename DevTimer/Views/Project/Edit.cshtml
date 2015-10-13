@@ -5,3 +5,42 @@
 }
 
 
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i clas="fa fa-reorder"></i>
+            New Project
+        </div>
+        <div class="tools">
+            <a href="/" data-toggle="modal" class="config"></a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        @using (Html.BeginForm("Edit", "Project", FormMethod.Post, new {@class="form-horizontal"}))
+        {
+            @Html.AntiForgeryToken()
+            <div class="control-group">
+                @Html.LabelFor(m => m.ClientID, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownListFor(m => m.ClientID, Model.Clients, new { type = "text", @class = "span6 m-wrap", placeholder = "Choose a Client" })
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.Name, new {@class = "control-label"})
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Name, new {type = "text", @class = "span6 m-wrap", placeholder = "The name of the Project"})
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.Description, new {@class = "control-label"})
+                <div class="controls">
+                    @Html.TextAreaFor(m => m.Description, new {@class = "span6 m-wrap", rows = "3"})
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn blue">Submit</button>
+                <button type="button" class="btn" onclick="window.location.href='/Project'">Cancel</button>
+            </div>
+        }
+    </div>
+</div>

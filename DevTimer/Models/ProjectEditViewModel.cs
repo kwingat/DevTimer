@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using AutoMapper;
 using DevTimer.Core;
@@ -11,6 +13,8 @@ namespace DevTimer.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+        [DisplayName("Client")]
         public int ClientID { get; set; }
 
         public IEnumerable<SelectListItem> Clients { get; set; }
@@ -27,11 +31,12 @@ namespace DevTimer.Models
 
             configuration.CreateMap<IEnumerable<Client>, ProjectEditViewModel>()
                 .IgnoreAllUnmapped()
-                .ForMember(d => d.Clients, opt => opt.MapFrom(s => s));
+                .ForMember(d => d.Clients, opt => opt.MapFrom(d => d));
 
 
             // From Model
             configuration.CreateMap<ProjectEditViewModel, Project>()
+                .IgnoreAllUnmapped()
                 .ForMember(d => d.ID, opt => opt.MapFrom(s => s.ID))
                 .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
                 .ForMember(d => d.Description, opt => opt.MapFrom(s => s.Description))

@@ -13,11 +13,13 @@ namespace DevTimer.Models
         {
             // To Model
             configuration.CreateMap<Client, ClientEditViewModel>()
+                .IgnoreAllUnmapped()
                 .ForMember(d => d.ID, opt => opt.MapFrom(s => s.ID))
                 .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name));
 
             // From Model
             configuration.CreateMap<ClientEditViewModel, Client>()
+                .IgnoreAllUnmapped()
                 .ForMember(d => d.ID, opt => opt.MapFrom(s => s.ID))
                 .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name));
         }

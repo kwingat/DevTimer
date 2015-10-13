@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using AutoMapper;
+using DevTimer.Core;
 using DevTimer.Domain.Abstract;
 using DevTimer.Domain.Entities;
 using DevTimer.Infrastructure.Alerts;
@@ -10,10 +12,14 @@ namespace DevTimer.Controllers
 {
     public class ProjectController : Controller
     {
+        private readonly IClientRepository _clientRepository;
         private readonly IProjectRepository _projectRepository;
 
-        public ProjectController(IProjectRepository projectRepository)
+        public ProjectController(
+            IClientRepository clientRepository,
+            IProjectRepository projectRepository)
         {
+            _clientRepository = clientRepository;
             _projectRepository = projectRepository;
         }
 
@@ -26,7 +32,7 @@ namespace DevTimer.Controllers
         //Get: /Project/Edit/0
         public async Task<ActionResult> Edit(int id)
         {
-            ProjectEditViewModel viewModel;
+            IEnumerable<Client> clients = await _clientRepository.GetAllAsync();
 
             if (id > 0) // Existing Project
             {
@@ -37,14 +43,22 @@ namespace DevTimer.Controllers
                     return HttpNotFound();
                 }
 
-                viewModel = Mapper.Map<Project, ProjectEditViewModel>(project);
+                ProjectEditViewModel viewModel = Mapper
+                    .Map<Project, ProjectEditViewModel>(project)
+                    .Map(clients);
+
+                return View(viewModel);
+
             }
-            else
+            else // New Project
             {
-                viewModel = new ProjectEditViewModel();
+                ProjectEditViewModel viewModel = Mapper
+                    .Map<IEnumerable<Client>, ProjectEditViewModel>(clients);
+
+                return View(viewModel);
             }
 
-            return View(viewModel);
+            
 
         }
 

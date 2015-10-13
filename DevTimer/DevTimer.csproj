@@ -235,7 +235,7 @@
     <Compile Include="Models\PageResult.cs" />
     <Compile Include="Models\ProjectEditViewModel.cs" />
     <Compile Include="Models\ProjectListViewModel.cs" />
-    <Compile Include="Models\SelectListItemMappings.cs" />
+    <Compile Include="Models\SelectListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>

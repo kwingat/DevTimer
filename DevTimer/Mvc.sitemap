@@ -13,8 +13,8 @@
     </mvcSiteMapNode>
 
     <mvcSiteMapNode title="Projects" controller="Project" action="Index">
-      <mvcSiteMapNode title="New Client" action="Edit" id="0" />
-      <mvcSiteMapNode title="Edit Client" action="Edit" preservedRouteParameters="id"/>
+      <mvcSiteMapNode title="New Project" action="Edit" id="0" />
+      <mvcSiteMapNode title="Edit Project" action="Edit" preservedRouteParameters="id"/>
     </mvcSiteMapNode>
   </mvcSiteMapNode>
 </mvcSiteMap>

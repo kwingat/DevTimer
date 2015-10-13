@@ -45,8 +45,11 @@ namespace DevTimer.Domain.Repositories
 
         private IQueryable<Project> GetAllQuery()
         {
-            return Set
+            var query = Set
+                .Include(e => e.Client)
                 .OrderBy(e => e.Name);
+
+            return query;
         }
     }
 }

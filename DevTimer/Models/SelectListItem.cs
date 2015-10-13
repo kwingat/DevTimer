@@ -5,7 +5,7 @@ using DevTimer.Domain.Entities;
 
 namespace DevTimer.Models
 {
-    public class SelectListItemMappings : IHasCustomMapping
+    public class SelectListItemMapping : IHasCustomMapping
     {
         public void CreateMapping(IConfiguration configuration)
         {
