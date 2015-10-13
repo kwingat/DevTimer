@@ -270,12 +270,17 @@
     <Content Include="Content\CSS\font-awesome.css" />
     <Content Include="Content\CSS\font-awesome.min.css" />
     <Content Include="Content\CSS\light.css" />
+    <Content Include="Content\CSS\Login-soft.css" />
     <Content Include="Content\CSS\Site.css" />
     <Content Include="Content\CSS\style-metro.css" />
     <Content Include="Content\CSS\style-responsive.css" />
     <Content Include="Content\CSS\style.css" />
     <Content Include="Content\Fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Img\bg-white-lock.png" />
+    <Content Include="Content\Img\remove-icon-small.png" />
     <Content Include="Content\Img\sidebar-toggler-light.jpg" />
+    <Content Include="Content\Img\syncfusion-icons-white.png" />
+    <Content Include="Content\Img\syncfusion-icons.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -400,6 +405,7 @@
     <Content Include="Views\Shared\DisplayTemplates\BootstrapSiteMapPathHelperModel.cshtml" />
     <None Include="Views\Project\Edit.cshtml" />
     <None Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Plugins\" />

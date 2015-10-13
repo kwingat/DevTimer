@@ -9,6 +9,7 @@ using DevTimer.Models;
 
 namespace DevTimer.Controllers
 {
+    [Authorize]
     public class ClientController : Controller
     {
         private readonly IClientRepository _clientRepository;

@@ -13,6 +13,10 @@ namespace DevTimer.Domain.Entities.Mappings
 
             // Properties
             Property(e => e.Name).IsUnicode(false);
+
+            HasMany(e => e.Projects)
+                .WithRequired(e => e.Client)
+                .WillCascadeOnDelete(false);
         }
     }
 }

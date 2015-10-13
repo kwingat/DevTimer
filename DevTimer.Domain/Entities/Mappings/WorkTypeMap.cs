@@ -2,21 +2,18 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace DevTimer.Domain.Entities.Mappings
 {
-    public class ProjectMap : EntityTypeConfiguration<Project>
+    public class WorkTypeMap : EntityTypeConfiguration<WorkType>
     {
-        public ProjectMap()
+        public WorkTypeMap()
         {
-            ToTable("Project");
+            ToTable("WorkType");
 
-            // Primary Key
             HasKey(t => t.ID);
 
-            // Properties
             Property(e => e.Name).IsUnicode(false);
-            Property(e => e.Description).IsUnicode(false);
 
             HasMany(e => e.Works)
-                .WithRequired(e => e.Project)
+                .WithRequired(e => e.WorkType)
                 .WillCascadeOnDelete(false);
         }
     }

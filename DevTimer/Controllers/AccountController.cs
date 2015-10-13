@@ -58,7 +58,7 @@ namespace DevTimer.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return View("_LayoutLogin");
         }
 
         //
@@ -70,7 +70,7 @@ namespace DevTimer.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View("_LayoutLogin", model);
             }
 
             // This doesn't count login failures towards account lockout
@@ -87,7 +87,7 @@ namespace DevTimer.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    return View("_LayoutLogin", model);
             }
         }
 

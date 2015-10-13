@@ -211,7 +211,6 @@ input[type="submit"].btn.mini {
 a.btn.big.btn-block {
  height: 54px;
 }
-
 /***
 Metro icons
 ***/
@@ -222,7 +221,7 @@ Metro icons
   margin-top: 4px;
   line-height: 14px;  
   vertical-align: top;
-  background-image: url(../img/syncfusion-icons.png);
+  background-image: url(../Img/syncfusion-icons.png);
   background-position: 0 0;
   background-repeat: no-repeat; 
 }
@@ -233,13 +232,13 @@ Metro icons
   height: 30px; 
   margin: 6px;
   vertical-align: top;
-  background-image: url(../img/syncfusion-icons.png);
+  background-image: url(../Img/syncfusion-icons.png);
   background-position: 0 0px;
   background-repeat: no-repeat; 
 }
 
 .m-icon-white {
-  background-image: url(../img/syncfusion-icons-white.png);
+  background-image: url(../Img/syncfusion-icons-white.png);
 }
 
 /*  Misc */

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity.Core.Metadata.Edm;
 
 namespace DevTimer.Domain.Entities
 {
@@ -7,16 +8,15 @@ namespace DevTimer.Domain.Entities
     {
         public Client()
         {
-            Projects = new HashSet<Project>();    
+            Projects = new HashSet<Project>();
         }
 
         public int ID { get; set; }
 
         [Required]
+        [StringLength(50)]
         public string Name { get; set; }
-
+            
         public virtual ICollection<Project> Projects { get; set; }
-
-
     }
 }

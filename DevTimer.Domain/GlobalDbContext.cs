@@ -8,8 +8,11 @@ namespace DevTimer.Domain
 {
     public class GlobalDbContext : DbContextBase
     {
+        public DbSet<AspNetUser> AspNetUsers { get; set; } 
         public DbSet<Client> Clients { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<Work> Works { get; set; }
+        public DbSet<WorkType> WorkTypes { get; set; }
 
         static GlobalDbContext()
         {
@@ -20,10 +23,11 @@ namespace DevTimer.Domain
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Configurations.Add(new AspNetUserMap());
             modelBuilder.Configurations.Add(new ClientMap());
             modelBuilder.Configurations.Add(new ProjectMap());
+            modelBuilder.Configurations.Add(new WorkMap());
+            modelBuilder.Configurations.Add(new WorkTypeMap());
         }
-
-
     }
 }
