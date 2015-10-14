@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using DevTimer.Domain.Entities;
 
 namespace DevTimer.Domain.Abstract
@@ -6,5 +8,6 @@ namespace DevTimer.Domain.Abstract
     {
         void Add(Work work);
         void Update(Work work);
+        Task<IEnumerable<Work>> GetAllByUserAsync(string currentUserId);
     }
 }

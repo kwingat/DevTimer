@@ -15,9 +15,9 @@ namespace DevTimer.Domain.Entities
         [StringLength(128)]
         public string UserID { get; set; }
 
-        public TimeSpan? StartTime { get; set; }
+        public DateTime? StartTime { get; set; }
 
-        public TimeSpan? EndTime { get; set; }
+        public DateTime? EndTime { get; set; }
 
         public decimal? Hours { get; set; }
 
