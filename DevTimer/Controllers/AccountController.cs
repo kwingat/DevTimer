@@ -77,6 +77,7 @@ namespace DevTimer.Controllers
             {
                 case SignInStatus.Success:
                     var x = 0;
+                    var y = 2;
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
