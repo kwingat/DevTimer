@@ -1,27 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace DevTimer.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly string _currentUserId;
-
-        public HomeController()
-        {
-            try
-            {
-                _currentUserId = User.Identity.GetUserId();
-            }
-            catch (Exception)
-            {
-
-            }
-            
-        }
-
         public ActionResult Index()
         {
             return View();

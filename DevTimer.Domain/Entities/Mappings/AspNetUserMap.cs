@@ -6,7 +6,7 @@ namespace DevTimer.Domain.Entities.Mappings
     {
         public AspNetUserMap()
         {
-            ToTable("AspNetUser");
+            ToTable("AspNetUsers");
 
             HasKey(t => t.Id);
 

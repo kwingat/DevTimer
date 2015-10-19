@@ -1,12 +1,16 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Security;
+using AutoMapper;
 using DevTimer.Domain.Abstract;
+using DevTimer.Domain.Entities;
+using DevTimer.Models;
 using Microsoft.AspNet.Identity;
 
 namespace DevTimer.Controllers
 {
-    public class WorkController : Controller
+    public class TimeController : Controller
     {
         private readonly IAspNetUserRepository _aspNetUserRepository;
         private readonly IClientRepository _clientRepository;
@@ -14,9 +18,7 @@ namespace DevTimer.Controllers
         private readonly IWorkRepository _workRepository;
         private readonly IWorkTypeRepository _workTypeRepository;
 
-        private readonly string _currentUserId; 
-
-        public WorkController(
+        public TimeController(
             IAspNetUserRepository aspNetUserRepository,
             IClientRepository clientRepository,
             IProjectRepository projectRepository,
@@ -28,26 +30,19 @@ namespace DevTimer.Controllers
             _projectRepository = projectRepository;
             _workRepository = workRepository;
             _workTypeRepository = workTypeRepository;
-
-            var _currentUserId = Membership.GetUser(User.Identity.Name);
-
         }
 
         // GET: Work
         public async Task<ActionResult> Index()
         {
-            var aspNetUser = await _aspNetUserRepository.GetByIdAsync(_currentUserId);
+            var aspNetUser = await _aspNetUserRepository.GetByIdAsync(User.Identity.GetUserId());
             
-            if (aspNetUser == null) return HttpNotFound();
+            if (aspNetUser == null) 
+                return HttpNotFound();
 
-            var clients = await _clientRepository.GetAllAsync();
-            var projects = await _projectRepository.GetAllAsync();
-            var works = await _workRepository.GetAllByUserAsync(_currentUserId);
-            var workTypes = await _workTypeRepository.GetAllAsync();
+            var works = await _workRepository.GetAllByUserAsync(User.Identity.GetUserId());
 
-            
-
-            return View();
+            return View(works.OrderByDescending(w => w.StartTime));
         }
     }
 }
