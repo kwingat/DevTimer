@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using AutoMapper;
-using DevTimer.Core;
+using System.Web.Security;
 using DevTimer.Domain.Abstract;
-using DevTimer.Domain.Entities;
-using DevTimer.Models;
 using Microsoft.AspNet.Identity;
 
 namespace DevTimer.Controllers
@@ -34,7 +29,7 @@ namespace DevTimer.Controllers
             _workRepository = workRepository;
             _workTypeRepository = workTypeRepository;
 
-            _currentUserId = HttpContext.User.Identity.GetUserId();
+            var _currentUserId = Membership.GetUser(User.Identity.Name);
 
         }
 

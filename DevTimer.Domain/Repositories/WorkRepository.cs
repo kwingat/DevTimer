@@ -30,7 +30,15 @@ namespace DevTimer.Domain.Repositories
 
         private IQueryable<Work> GetAllByUserQuery(string currentUserId)
         {
-            return Set.OrderByDescending(e => e.StartTime);
+            var query = Set
+                .Include(e => e.AspNetUser)
+                .Include(e => e.Project)
+                .Include(e => e.Project.Client)
+                .Include(e => e.WorkType)
+                .Where(e => e.UserID == currentUserId)
+                .OrderByDescending(e => e.StartTime);
+
+            return query;
         }
     }
 }
