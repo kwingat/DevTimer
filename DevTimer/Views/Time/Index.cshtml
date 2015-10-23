@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DevTimer.Domain.Entities.Work>
+﻿@model DevTimer.Models.WorkListViewModel
 @{
     ViewBag.Title = "Time";
     int hours = 0;
@@ -10,7 +10,7 @@
 </div>
 <div class="btn-group"></div>
 <div class="btn-group pull-right margin-top-bottom">
-    <button onclick="window.location.href = '/Time/Edit/0'" id="newTime" class="btn green">
+    <button id="newTime" class="btn green" data-toggle="modal" data-target="#newTime">
         Add New
         <i class="fa fa-plus"></i>
     </button>
@@ -23,8 +23,7 @@
     </ul>
 </div>
 <div>
-
-    @foreach (var workday in Model.GroupBy(item => item.StartTime.Value.ToString("MM/dd/yyyy")))
+    @foreach (var workday in Model.Works.GroupBy(item => item.StartTime.Value.ToString("MM/dd/yyyy")))
     {
         <div class="margin-top-bottom">
             <table class="table table-advance table-hover">
@@ -37,26 +36,72 @@
                 </thead>
                 <tbody>
 
-                    @foreach (var work in workday)
-                    {
-                        <tr>
-                            <td>
-                                @work.Project.Name
-                            </td>
-                            <td>
-                                @work.StartTime.Value.ToString("h:mm tt") - @work.EndTime.Value.ToString("h:mm tt")
-                            </td>
-                            <td>
-                                @work.Hours
-                            </td>
-                        </tr>
-                    }
+                @foreach (var work in workday)
+                {
+                    <tr>
+                        <td>
+                            @work.Project.Name
+                        </td>
+                        <td>
+                            @work.StartTime.Value.ToString("h:mm tt") - @work.EndTime.Value.ToString("h:mm tt")
+                        </td>
+                        <td>
+                            @work.Hours
+                        </td>
+                    </tr>
+                }
 
                 </tbody>
             </table>
         </div>
     }
-
-
 </div>
+<div id="newTime" class="modal hide fade in" role="dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h3>New Time Entry</h3>
+        </div>
+        <div class="modal-body">
+            <div class="row-fluid">
+                <div class="span12">
+                    @using (Html.BeginForm("Create", "Time", FormMethod.Post, new{id="newEntry"}))
+                    {
+                        <div>
+                            @Html.LabelFor(m => m.Projects, new {@class="control-label"})
+                            <div class="controls">
+                                
+                            </div>
+                            
+                            <b>Comments:</b>
+                            <textarea rows="3" name="Description" id="Description" style="width: 95%"></textarea>
+                            <div class="control-group">
+                                Date:
+                                <input class="m-wrap date-picker" readonly="readonly" size="16" type="text" style="width: 90px; margin-right: 50px" name="date"/>
+                                <input type="text" value="value" data-format="HH:mm" class="m-wrap small" name="start"/>
+                                <b><i class="fa fa-arrow-right"></i></b>
+                                <input type="text" value="value" data-format="HH:mm" class="m-wrap small" name="stop" />
+                            </div>
+                        </div>
+                        
+                        
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn blue" onclick="return submitEntry();">
+                <i class="fa fa-clock-o"></i>
+                &nbsp;Start
+            </button>
+        </div>
+    </div>
+</div>
+<div ng-app="workApp" data-ng-controller></div>
+
+@section scripts{
+    <script language="javascript">
+        
+    </script>
+}
 

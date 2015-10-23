@@ -26,6 +26,9 @@ namespace DevTimer
                 "~/Scripts/bootstrap-table.js",
                 "~/Scripts/App/formatColumn.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                "~/Scripts/angular.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/site").Include(
                 "~/Scripts/underscore.js",
                 "~/Scripts/underscore.string.js",

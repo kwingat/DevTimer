@@ -22,6 +22,8 @@ namespace DevTimer
             // so that all mappings can be automatically configured based on the assemblies
             // loaded in to the AppDomain.
             Mapper.Initialize(AutoMapperConfig.Register);
+
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
     }
 }

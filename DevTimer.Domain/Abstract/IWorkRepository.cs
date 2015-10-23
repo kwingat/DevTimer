@@ -9,5 +9,6 @@ namespace DevTimer.Domain.Abstract
         void Add(Work work);
         void Update(Work work);
         Task<IEnumerable<Work>> GetAllByUserAsync(string currentUserId);
+        Task<Work> GetByIdAsync(int id);
     }
 }

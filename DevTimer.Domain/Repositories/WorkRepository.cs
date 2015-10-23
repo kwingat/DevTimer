@@ -28,6 +28,11 @@ namespace DevTimer.Domain.Repositories
             return await GetAllByUserQuery(currentUserId).ToListAsync();
         }
 
+        public async Task<Work> GetByIdAsync(int id)
+        {
+            return await Set.FindAsync(id);
+        }
+
         private IQueryable<Work> GetAllByUserQuery(string currentUserId)
         {
             var query = Set

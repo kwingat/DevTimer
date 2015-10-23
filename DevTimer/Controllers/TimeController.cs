@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Security;
 using AutoMapper;
+using DevTimer.Core;
 using DevTimer.Domain.Abstract;
 using DevTimer.Domain.Entities;
 using DevTimer.Models;
@@ -41,8 +43,12 @@ namespace DevTimer.Controllers
                 return HttpNotFound();
 
             var works = await _workRepository.GetAllByUserAsync(User.Identity.GetUserId());
+            var projects = await _projectRepository.GetAllAsync();
 
-            return View(works.OrderByDescending(w => w.StartTime));
+            WorkListViewModel viewModel = Mapper.Map<IEnumerable<Work>, WorkListViewModel>(works)
+                .Map(projects);
+
+            return View(viewModel);
         }
     }
 }
