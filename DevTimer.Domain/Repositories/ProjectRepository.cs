@@ -17,6 +17,11 @@ namespace DevTimer.Domain.Repositories
             return await GetAllQuery().ToListAsync();
         }
 
+        public IEnumerable<Project> GetAll()
+        {
+            return GetAllQuery().ToList();
+        }
+
         public async Task<IPagedEnumerable<Project>> GetAllAsync(int pageSize, int pageNumber)
         {
             var query = GetAllQuery();

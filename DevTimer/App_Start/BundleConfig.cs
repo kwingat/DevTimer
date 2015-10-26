@@ -26,8 +26,12 @@ namespace DevTimer
                 "~/Scripts/bootstrap-table.js",
                 "~/Scripts/App/formatColumn.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                "~/Scripts/angular.js"));
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap-datepicker").Include(
+                "~/Scripts/bootstrap-datepicker.js",
+                "~/Scripts/clockface.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/modalform").Include(
+                "~/Scripts/modalform.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/site").Include(
                 "~/Scripts/underscore.js",
@@ -40,7 +44,9 @@ namespace DevTimer
                       "~/Content/CSS/bootstrap-responsive.min.css",
                       "~/Content/bootstrap-table.css",
                       "~/Content/CSS/font-awesome.min.css",
-                      "~/Content/CSS/style-metro.css",
+                      "~/Content/CSS/bootstrap-datepicker.css",
+                      "~/Content/CSS/clockface.css",
+                      //"~/Content/CSS/style-metro.css",
                       "~/Content/CSS/style.css",
                       "~/Content/CSS/style-responsive.css",
                       "~/Content/CSS/light.css",

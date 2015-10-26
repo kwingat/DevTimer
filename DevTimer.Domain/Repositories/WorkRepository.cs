@@ -33,6 +33,11 @@ namespace DevTimer.Domain.Repositories
             return await Set.FindAsync(id);
         }
 
+        public Work GetById(int id)
+        {
+            return Set.Find(id);
+        }
+
         private IQueryable<Work> GetAllByUserQuery(string currentUserId)
         {
             var query = Set

@@ -1,4 +1,5 @@
-﻿@model DevTimer.Models.WorkListViewModel
+﻿@using DevTimer.Helpers
+@model DevTimer.Models.WorkListViewModel
 @{
     ViewBag.Title = "Time";
     int hours = 0;
@@ -10,10 +11,7 @@
 </div>
 <div class="btn-group"></div>
 <div class="btn-group pull-right margin-top-bottom">
-    <button id="newTime" class="btn green" data-toggle="modal" data-target="#newTime">
-        Add New
-        <i class="fa fa-plus"></i>
-    </button>
+    @Html.NoEncodeActionLink("Add New <i class='fa fa-plus'></i>", "Add New", "Create", "Time", null, new { data_modal = "", @class = "btn green" })
     <button class="btn dropdown-toggle" data-toggle="dropdown">
         Options
         <i class="fa fa-angle-down"></i>
@@ -43,65 +41,116 @@
                             @work.Project.Name
                         </td>
                         <td>
-                            @work.StartTime.Value.ToString("h:mm tt") - @work.EndTime.Value.ToString("h:mm tt")
+                            @if (work.StartTime != null)
+                            {
+                                @work.StartTime.Value.ToString("h:mm tt")
+                            } - @if (work.EndTime != null)
+                                                                        {
+                                                                            @work.EndTime.Value.ToString("h:mm tt")
+                                                                        }
                         </td>
                         <td>
                             @work.Hours
                         </td>
                     </tr>
-                }
+                } 
 
                 </tbody>
             </table>
         </div>
     }
 </div>
-<div id="newTime" class="modal hide fade in" role="dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-            <h3>New Time Entry</h3>
-        </div>
-        <div class="modal-body">
-            <div class="row-fluid">
-                <div class="span12">
-                    @using (Html.BeginForm("Create", "Time", FormMethod.Post, new{id="newEntry"}))
-                    {
-                        <div>
-                            @Html.LabelFor(m => m.Projects, new {@class="control-label"})
-                            <div class="controls">
-                                
-                            </div>
-                            
-                            <b>Comments:</b>
-                            <textarea rows="3" name="Description" id="Description" style="width: 95%"></textarea>
-                            <div class="control-group">
-                                Date:
-                                <input class="m-wrap date-picker" readonly="readonly" size="16" type="text" style="width: 90px; margin-right: 50px" name="date"/>
-                                <input type="text" value="value" data-format="HH:mm" class="m-wrap small" name="start"/>
-                                <b><i class="fa fa-arrow-right"></i></b>
-                                <input type="text" value="value" data-format="HH:mm" class="m-wrap small" name="stop" />
-                            </div>
-                        </div>
-                        
-                        
-                    }
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn blue" onclick="return submitEntry();">
-                <i class="fa fa-clock-o"></i>
-                &nbsp;Start
-            </button>
+
+<!-- modal placeholder-->
+<div id="myModal" class='modal fade' aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
         </div>
     </div>
 </div>
-<div ng-app="workApp" data-ng-controller></div>
 
-@section scripts{
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap-datepicker")
+
     <script language="javascript">
-        
+        $(document).ready(function() {
+            $(function () {
+                var d = new Date();
+
+                var currDate = d.getDate();
+                var currMonth = d.getMonth();
+                var currYear = d.getFullYear();
+
+                var dateStr = currDate + "-" + currMonth + "-" + currYear;
+
+                $.ajaxSetup({ cache: false });
+
+                $("a[data-modal]").on("click", function (e) {
+                    // hide dropdown if any (this is used wehen invoking modal from link in bootstrap dropdown )
+                    //$(e.target).closest('.btn-group').children('.dropdown-toggle').dropdown('toggle');
+
+                    $('#myModalContent').load(this.href, function () {
+                        $('#myModal').modal({
+                            /*backdrop: 'static',*/
+                            keyboard: true
+                        }, 'show');
+
+                        bindForm(this);
+
+                        $('#date').datepicker({
+                            "setDate": dateStr,
+                            autoclose: true,
+                            todayHighlight: true
+                            
+                        });
+
+                        $('#startTime').clockface({
+                            format: 'HH:mm',
+                            trigger: 'manual'
+                        });
+
+                        $('#toggle-btnStart').click(function (e) {
+                            e.stopPropagation();
+                            $('#startTime').clockface('toggle');
+                        });
+
+                        $('#endTime').clockface({
+                            format: 'HH:mm',
+                            trigger: 'manual'
+                        });
+
+                        $('#toggle-btnEnd').click(function (e) {
+                            e.stopPropagation();
+                            $('#endTime').clockface('toggle');
+                        });
+                    });
+                    return false;
+                });
+            });
+
+            function bindForm(dialog) {
+                $('form', dialog).submit(function () {
+                    $.ajax({
+                        url: this.action,
+                        type: this.method,
+                        data: $(this).serialize(),
+                        success: function (result) {
+                            if (result.success) {
+                                $('#myModal').modal('hide');
+                                $('#replacetarget').load(result.url); //  Load data from the server and place the returned HTML into the matched element
+                            } else {
+                                $('#myModalContent').html(result);
+                                bindForm(dialog);
+                            }
+                        }
+                    });
+                    return false;
+                });
+            }
+        });
     </script>
 }
 

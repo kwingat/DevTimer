@@ -99,14 +99,14 @@ General backgrounds
 
 /***
 Apply fix for font awesome icons.
-***/
+
 [class^="icon-"], 
 [class*=" icon-"],
 [class^="icon-"]:hover, 
 [class*=" icon-"]:hover { 
   background: none !important;
 }
-
+***/
 /***
 Make font awesome icons fixed width(latest version issue)
 ***/

@@ -50,5 +50,35 @@ namespace DevTimer.Controllers
 
             return View(viewModel);
         }
+
+        public ActionResult Create()
+        {
+            Work work = new Work();
+            var projects = _projectRepository.GetAll();
+            var workTypes = _workTypeRepository.GetAll();
+
+            WorkEditViewModel viewModel = Mapper.Map<Work, WorkEditViewModel>(work)
+                .Map(projects)
+                .Map(workTypes);
+
+            return PartialView("_Create", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(WorkEditViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Work work = Mapper.Map<WorkEditViewModel, Work>(viewModel);
+                work.UserID = User.Identity.GetUserId();
+                _workRepository.Add(work);
+                _workRepository.Save();
+
+                return Json(new {success = true});
+            }
+
+            return PartialView("_Create");
+        }
     }
 }

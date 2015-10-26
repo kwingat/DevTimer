@@ -18,6 +18,11 @@ namespace DevTimer.Domain.Repositories
             return await GetAllQuery().ToListAsync();
         }
 
+        public IEnumerable<WorkType> GetAll()
+        {
+            return GetAllQuery().ToList();
+        }
+
         private IQueryable<WorkType> GetAllQuery()
         {
             return Set.OrderBy(e => e.Name);

@@ -7,5 +7,6 @@ namespace DevTimer.Domain.Abstract
     public interface IWorkTypeRepository : IRepository
     {
         Task<IEnumerable<WorkType>> GetAllAsync();
+        IEnumerable<WorkType> GetAll();
     }
 }
