@@ -296,10 +296,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
-    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
-    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
-    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\App\alert.js" />
     <Content Include="Scripts\App\formatColumn.js" />
@@ -339,6 +335,8 @@
     <None Include="MvcSiteMapSchema.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\PublishProfiles\kdub - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\kdub - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Extensions\angular\bootstrap-table-angular.js" />
     <Content Include="Scripts\Extensions\cookie\bootstrap-table-cookie.js" />
