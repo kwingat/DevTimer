@@ -428,6 +428,7 @@
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <None Include="Views\Time\Index.cshtml" />
     <Content Include="Views\Time\_Create.cshtml" />
+    <None Include="Views\Time\_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Plugins\" />

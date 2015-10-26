@@ -21,7 +21,7 @@ namespace DevTimer.Domain.Entities
 
         public DateTime? EndTime { get; set; }
 
-        public decimal? Hours { get; set; }
+        public double? Hours { get; set; }
 
         public virtual AspNetUser AspNetUser { get; set; }
 

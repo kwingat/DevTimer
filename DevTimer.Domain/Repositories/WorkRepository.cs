@@ -20,7 +20,7 @@ namespace DevTimer.Domain.Repositories
 
         public void Update(Work work)
         {
-            AddEntity(work);
+            UpdateEntity(work);
         }
 
         public async Task<IEnumerable<Work>> GetAllByUserAsync(string currentUserId)

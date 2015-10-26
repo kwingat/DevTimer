@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -54,8 +55,8 @@ namespace DevTimer.Controllers
         public ActionResult Create()
         {
             Work work = new Work();
-            var projects = _projectRepository.GetAll();
-            var workTypes = _workTypeRepository.GetAll();
+            IEnumerable<Project> projects = _projectRepository.GetAll();
+            IEnumerable<WorkType> workTypes = _workTypeRepository.GetAll();
 
             WorkEditViewModel viewModel = Mapper.Map<Work, WorkEditViewModel>(work)
                 .Map(projects)
@@ -79,6 +80,45 @@ namespace DevTimer.Controllers
             }
 
             return PartialView("_Create");
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            Work work = _workRepository.GetById((int) id);
+
+            if (work == null)
+                return HttpNotFound();
+
+            IEnumerable<Project> projects = _projectRepository.GetAll();
+            IEnumerable<WorkType> workTypes = _workTypeRepository.GetAll();
+
+            WorkEditViewModel viewModel = Mapper.Map<Work, WorkEditViewModel>(work)
+                .Map(projects)
+                .Map(workTypes);
+
+            return PartialView("_Edit", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(WorkEditViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Work work = Mapper.Map(viewModel, _workRepository.GetById(viewModel.ID));
+                //work.UserID = User.Identity.GetUserId();
+                _workRepository.Update(work);
+                _workRepository.Save();
+
+                string url = Url.Action("Index", "Time");
+
+                return Json(new { success = true, url });
+            }
+
+            return PartialView("_Edit", viewModel);
         }
     }
 }

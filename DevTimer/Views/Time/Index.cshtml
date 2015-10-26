@@ -28,8 +28,14 @@
                 <thead>
                 <tr>
                     <th></th>
+                    <th></th>
                     <th>@workday.First().StartTime.Value.ToString("MM/dd/yyyy ddd")</th>
-                    <th>@workday.Sum(e => e.Hours) Hours</th>
+                    <th>
+                        @if (@workday.Sum(e => e.Hours) > 0)
+                        {
+                            @workday.Sum(e => e.Hours)<text> Hours</text>
+                        }
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,19 +44,23 @@
                 {
                     <tr>
                         <td>
+                            @work.ID
+                        </td>
+                        <td>
                             @work.Project.Name
                         </td>
                         <td>
-                            @if (work.StartTime != null)
-                            {
-                                @work.StartTime.Value.ToString("h:mm tt")
-                            } - @if (work.EndTime != null)
-                                                                        {
-                                                                            @work.EndTime.Value.ToString("h:mm tt")
-                                                                        }
+                            @(work.StartTime.HasValue ? work.StartTime.Value.ToShortTimeString() : "")
+                            - 
+                            @(work.EndTime.HasValue ? work.EndTime.Value.ToShortTimeString() : "")
                         </td>
                         <td>
                             @work.Hours
+                        </td>
+                        <td>
+                            <div class="pull-right">
+                                @Html.NoEncodeActionLink("<span>Edit</span>", "Edit", "Edit", "Time", new { id = @work.ID }, new { data_modal = "", @class = "btn btn-default" })
+                            </div>
                         </td>
                     </tr>
                 } 
@@ -78,13 +88,6 @@
     <script language="javascript">
         $(document).ready(function() {
             $(function () {
-                var d = new Date();
-
-                var currDate = d.getDate();
-                var currMonth = d.getMonth();
-                var currYear = d.getFullYear();
-
-                var dateStr = currDate + "-" + currMonth + "-" + currYear;
 
                 $.ajaxSetup({ cache: false });
 
@@ -101,9 +104,9 @@
                         bindForm(this);
 
                         $('#date').datepicker({
-                            "setDate": dateStr,
                             autoclose: true,
-                            todayHighlight: true
+                            todayHighlight: true,
+                            format: 'mm/dd/yyyy'
                             
                         });
 
@@ -140,7 +143,11 @@
                         success: function (result) {
                             if (result.success) {
                                 $('#myModal').modal('hide');
-                                $('#replacetarget').load(result.url); //  Load data from the server and place the returned HTML into the matched element
+
+                                // TODO: This line needs to reload the page asyncronously 
+                                //$('#replacetarget').load(result.url); //  Load data from the server and place the returned HTML into the matched element
+
+                                location.reload(true);
                             } else {
                                 $('#myModalContent').html(result);
                                 bindForm(dialog);
@@ -150,6 +157,8 @@
                     return false;
                 });
             }
+
+            
         });
     </script>
 }

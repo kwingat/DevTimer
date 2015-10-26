@@ -13,7 +13,6 @@ namespace DevTimer.Domain.Entities.Mappings
             Property(e => e.Description).IsUnicode(false);
             Property(e => e.StartTime).HasPrecision(0);
             Property(e => e.EndTime).HasPrecision(0);
-            Property(e => e.Hours).HasPrecision(2, 0);
         }
     }
 }
