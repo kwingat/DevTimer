@@ -260,9 +260,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\DevTimer.mdf" />
-    <Content Include="App_Data\DevTimer_log.ldf">
+    <None Include="App_Data\DevTimer_log.ldf">
       <DependentUpon>DevTimer.mdf</DependentUpon>
-    </Content>
+    </None>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
