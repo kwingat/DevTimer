@@ -78,8 +78,11 @@ namespace DevTimer.Controllers
 
                 return Json(new {success = true});
             }
+            IEnumerable<Project> projects = _projectRepository.GetAll();
+            IEnumerable<WorkType> workTypes = _workTypeRepository.GetAll();
+            viewModel.Map(projects).Map(workTypes);
 
-            return PartialView("_Create");
+            return PartialView("_Create", viewModel);
         }
 
         public ActionResult Edit(int? id)
