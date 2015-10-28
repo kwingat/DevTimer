@@ -11,7 +11,7 @@
 </div>
 <div class="btn-group"></div>
 <div class="btn-group pull-right margin-top-bottom">
-    @Html.NoEncodeActionLink("Add New <i class='fa fa-plus'></i>", "Add New", "Create", "Time", null, new { data_modal = "", @class = "btn green" })
+    @Html.NoEncodeActionLink("Add New <i class='fa fa-plus'></i>", "Add New", "Create", "Time", null, new { data_modal = "", @class = "btn btn-info" })
     <button class="btn dropdown-toggle" data-toggle="dropdown">
         Options
         <i class="fa fa-angle-down"></i>
@@ -45,14 +45,20 @@
                             <td class="span4">
                                 @(work.StartTime.HasValue ? work.StartTime.Value.ToShortTimeString() : "")
                                 -
-                                @(work.EndTime.HasValue ? work.EndTime.Value.ToShortTimeString() : "")
+                                @if (work.EndTime.HasValue)
+                                {
+                                    @work.EndTime.Value.ToShortTimeString()<text> </text>
+                                    @Html.NoEncodeActionLink("<span class='fa fa-clock-o' > Continue</span>", "Continue", "Continue", "Time", new { id = work.ID }, new { data_modal = "", @class = "btn btn-success" })
+                                }
+                                else
+                                {
+                                    @Html.NoEncodeActionLink("<span class='fa fa-clock-o' > Close</span>", "Close", "Close", "Time", new { id = work.ID }, new { @class = "btn btn-warning" })
+                                }
                             </td>
                             <td class="span4">
                                 <div class="pull-right">
-                                    @* <a class="btn mini purple new_entry" rel="?edit=92849"><i class="icon-edit"></i>&nbsp;Edit</a> *@
-                                    @Html.NoEncodeActionLink("<span>Edit</span>", "Edit", "Edit", "Time", new { id = @work.ID }, new { data_modal = "", @class = "btn btn-default" })
-                                    @Html.NoEncodeActionLink("<span class='fa fa-trash'>Delete</span>", "Delete", "Delete", "Time", new { id = @work.ID }, new { @class = "btn btn-danger" })
-                                    @* <a href="/Time/Delete/92849" class="btn mini red" onclick="return confirm('are you sure?');"><i class="icon-trash"></i>&nbsp;Delete</a> *@
+                                    @Html.NoEncodeActionLink("<span class='fa fa-edit' > Edit</span>", "Edit", "Edit", "Time", new { id = @work.ID }, new { data_modal = "", @class = "btn btn-primary" })
+                                    @Html.NoEncodeActionLink("<span class='fa fa-trash'> Delete</span>", "Delete", "Delete", "Time", new { id = @work.ID }, new { @class = "btn btn-danger" })
                                 </div>
                             </td>
                         </tr>

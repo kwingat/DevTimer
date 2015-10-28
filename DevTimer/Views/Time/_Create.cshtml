@@ -5,7 +5,7 @@
     <h3 class="modal-title" id="myModalLabel">New Time Entry</h3>
 </div>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Time", FormMethod.Post))
 {
     <div class="modal-body">
         @Html.AntiForgeryToken()
