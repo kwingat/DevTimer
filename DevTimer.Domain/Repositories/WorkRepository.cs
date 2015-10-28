@@ -23,6 +23,12 @@ namespace DevTimer.Domain.Repositories
             UpdateEntity(work);
         }
 
+        public void Delete(Work work)
+        {
+            DeleteEntity(work);
+        }
+
+
         public async Task<IEnumerable<Work>> GetAllByUserAsync(string currentUserId)
         {
             return await GetAllByUserQuery(currentUserId).ToListAsync();

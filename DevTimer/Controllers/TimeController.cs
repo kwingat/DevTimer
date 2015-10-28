@@ -8,6 +8,7 @@ using AutoMapper;
 using DevTimer.Core;
 using DevTimer.Domain.Abstract;
 using DevTimer.Domain.Entities;
+using DevTimer.Infrastructure.Alerts;
 using DevTimer.Models;
 using Microsoft.AspNet.Identity;
 
@@ -122,6 +123,43 @@ namespace DevTimer.Controllers
             }
 
             return PartialView("_Edit", viewModel);
+        }
+        
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            IEnumerable<Work> works;
+            IEnumerable<Project> projects;
+            WorkListViewModel viewModel;
+
+            
+
+            Work work = await _workRepository.GetByIdAsync((int) id);
+
+            if (work == null || work.UserID != User.Identity.GetUserId())
+            {
+                works = await _workRepository.GetAllByUserAsync(User.Identity.GetUserId());
+                projects = await _projectRepository.GetAllAsync();
+                viewModel = Mapper.Map<IEnumerable<Work>, WorkListViewModel>(works).Map(projects);
+
+                return View("Index", viewModel).WithError("Could not delete.");
+            }
+
+            _workRepository.Delete(work);
+            await _workRepository.SaveAsync();
+
+            works = await _workRepository.GetAllByUserAsync(User.Identity.GetUserId());
+            projects = await _projectRepository.GetAllAsync();
+
+            viewModel = Mapper.Map<IEnumerable<Work>, WorkListViewModel>(works)
+                .Map(projects);
+
+            return View("Index", viewModel).WithSuccess("Time successfully deleted.");
+
         }
     }
 }

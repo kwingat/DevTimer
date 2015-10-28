@@ -14,17 +14,21 @@
                 @Html.ValidationSummary(true, "", new {@class = "text-danger"})
                 @Html.HiddenFor(m => m.ID)
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Projects, new {@class = "control-label"})
-                    @Html.DropDownListFor(m => m.ProjectID, Model.Projects, new {type = "text", @class = "span6 m-wrap", placeholder = "Choose a Project"})
-
-                    @Html.LabelFor(m => m.WorkTypes, new {@class = "control-label"})
-                    @Html.DropDownListFor(m => m.WorkTypeID, Model.WorkTypes, new {type = "text", @class = "span6 m-wrap", placeholder = "Choose a Work Type"})
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Comment, new {@class = "control-label"})
+                    @Html.LabelFor(m => m.Projects, new { @class = "control-label" })
                     <div class="controls">
-                        @Html.TextAreaFor(m => m.Comment, new {@class = "span6 m-wrap", rows = "3", style = "width:95%"})
+                        @Html.DropDownListFor(m => m.ProjectID, Model.Projects, new { type = "text", @class = "span6 m-wrap", placeholder = "Choose a Project" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.WorkTypes, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.DropDownListFor(m => m.WorkTypeID, Model.WorkTypes, new { type = "text", @class = "span6 m-wrap", placeholder = "Choose a Work Type" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Comment, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextAreaFor(m => m.Comment, new { @class = "span6 m-wrap", rows = "3", style = "width: 95%" })
                     </div>
                 </div>
 
