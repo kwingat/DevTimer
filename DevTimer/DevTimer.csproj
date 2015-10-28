@@ -259,7 +259,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\DevTimer.mdf" />
+    <None Include="App_Data\DevTimer.mdf" />
     <Content Include="App_Data\DevTimer_log.ldf">
       <DependentUpon>DevTimer.mdf</DependentUpon>
     </Content>
@@ -337,7 +337,7 @@
     </None>
     <None Include="Properties\PublishProfiles\kdub - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\kdub - Web Deploy.pubxml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Extensions\angular\bootstrap-table-angular.js" />
     <Content Include="Scripts\Extensions\cookie\bootstrap-table-cookie.js" />
     <Content Include="Scripts\Extensions\editable\bootstrap-table-editable.js" />
@@ -357,8 +357,8 @@
     <Content Include="Scripts\Extensions\resizable\bootstrap-table-resizable.js" />
     <Content Include="Scripts\Extensions\toolbar\bootstrap-table-toolbar.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -409,7 +409,7 @@
     <Content Include="Site.Mobile.Master" />
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Scripts\underscore.string.js" />
-    <None Include="Views\Client\Edit.cshtml" />
+    <Content Include="Views\Client\Edit.cshtml" />
     <Content Include="Views\Shared\_AlertsPartial.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
@@ -421,12 +421,12 @@
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\BootstrapMenuHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\BootstrapSiteMapPathHelperModel.cshtml" />
-    <None Include="Views\Project\Edit.cshtml" />
-    <None Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\Project\Edit.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
-    <None Include="Views\Time\Index.cshtml" />
+    <Content Include="Views\Time\Index.cshtml" />
     <Content Include="Views\Time\_Create.cshtml" />
-    <None Include="Views\Time\_Edit.cshtml" />
+    <Content Include="Views\Time\_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Plugins\" />
