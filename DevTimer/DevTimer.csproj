@@ -216,11 +216,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\ClientsApiController.cs" />
     <Compile Include="Controllers\API\ProjectsApiController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\TimeController.cs" />
+    <Compile Include="Helpers\TimeHelper.cs" />
     <Compile Include="Filters\ValidationHttpFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -312,6 +314,7 @@
     <Content Include="Content\Fonts\FontAwesome.otf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Scripts\clockface.js" />
+    <Content Include="Scripts\collapse.js" />
     <Content Include="Scripts\Extensions\cookie\README.md" />
     <Content Include="Scripts\Extensions\editable\README.md" />
     <Content Include="Scripts\Extensions\export\README.md" />
@@ -357,6 +360,7 @@
     <Content Include="Scripts\Extensions\resizable\bootstrap-table-resizable.js" />
     <Content Include="Scripts\Extensions\toolbar\bootstrap-table-toolbar.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
@@ -369,6 +373,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\transition.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="ViewSwitcher.ascx" />
@@ -430,6 +435,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Plugins\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\ClientsApi\" />
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,7 @@ using DevTimer.Models;
 namespace DevTimer.Controllers
 {
     [Authorize]
-    public class ProjectController : Controller
+    public class ProjectController : BaseController
     {
         private readonly IClientRepository _clientRepository;
         private readonly IProjectRepository _projectRepository;

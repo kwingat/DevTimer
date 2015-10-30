@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Web.Security;
 using AutoMapper;
 using DevTimer.Core;
 using DevTimer.Domain.Abstract;
 using DevTimer.Domain.Entities;
+using DevTimer.Helpers;
 using DevTimer.Infrastructure.Alerts;
 using DevTimer.Models;
 using Microsoft.AspNet.Identity;
 
 namespace DevTimer.Controllers
 {
-    public class TimeController : Controller
+    public class TimeController : BaseController
     {
         private readonly IAspNetUserRepository _aspNetUserRepository;
         private readonly IClientRepository _clientRepository;
@@ -214,7 +213,7 @@ namespace DevTimer.Controllers
 
             var toModel = Mapper.Map<Work, WorkEditViewModel>(work);
 
-            toModel.EndTime = DateTime.Now.ToLocalTime();
+            toModel.EndTime = DateTime.Now.ToClientTime();
 
             var toDomain = Mapper.Map(toModel, await _workRepository.GetByIdAsync(toModel.ID));
 
@@ -230,6 +229,6 @@ namespace DevTimer.Controllers
 
             // Refresh view
             return View("Index", viewModel).WithSuccess("Time successfully Closed.");
-        } 
+        }
     }
 }
