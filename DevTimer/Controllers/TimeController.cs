@@ -212,11 +212,14 @@ namespace DevTimer.Controllers
             if (work == null)
                 return HttpNotFound();
 
-            // set the end time to now
-            work.EndTime = DateTime.Now;
+            var toModel = Mapper.Map<Work, WorkEditViewModel>(work);
+
+            toModel.EndTime = DateTime.Now.ToLocalTime();
+
+            var toDomain = Mapper.Map(toModel, await _workRepository.GetByIdAsync(toModel.ID));
 
             //update and save time object
-            _workRepository.Update(work);
+            _workRepository.Update(toDomain);
             await _workRepository.SaveAsync();
 
             var works = await _workRepository.GetAllByUserAsync(User.Identity.GetUserId());
