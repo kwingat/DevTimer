@@ -29,7 +29,8 @@
                     <tr style="padding-top: 10px;">
                         <th style="border-top: none; background-color:white;"></th>
                         <th style="font-weight: bold; border-top: none; background-color: white; font-size:18px;">@workday.First().StartTime.Value.ToString("MM/dd/yyyy ddd")</th>
-                        <th style="border-top:none; background-color:white; font-size:15px">@workday.Sum(e => e.Hours)<text> Hours</text></th>
+                        <th style="border-top: none; background-color: white; font-size: 15px">@workday.Sum(e => e.Hours).Value.ToString("N") <text> Hours</text></th>
+                        <th style="border-top: none; background-color: white; font-size: 15px"></th>
                         <th style="border-top:none; background-color:white;"></th>
                     </tr>
                 </thead>
@@ -42,17 +43,22 @@
                                 @work.Project.Name
                             </td>
                             <td class="hidden-phone span8"></td>
-                            <td class="span4">
+                            <td class="span3">
                                 @(work.StartTime.HasValue ? work.StartTime.Value.ToShortTimeString() : "")
                                 -
                                 @if (work.EndTime.HasValue)
                                 {
                                     @work.EndTime.Value.ToShortTimeString()<text> </text>
-                                    @Html.NoEncodeActionLink("<span class='fa fa-clock-o' > Continue</span>", "Continue", "Continue", "Time", new { id = work.ID }, new { data_modal = "", @class = "btn btn-success" })
                                 }
                                 else
                                 {
-                                    @Html.NoEncodeActionLink("<span class='fa fa-clock-o' > Close</span>", "Close", "Close", "Time", new { id = work.ID }, new { @class = "btn btn-warning" })
+                                    @Html.NoEncodeActionLink("<span class='fa fa-clock-o' > Close</span>", "Close", "Close", "Time", new {id = work.ID}, new {@class = "btn btn-warning"})
+                                }
+                            </td>
+                            <td class="span2">
+                                @if (work.EndTime.HasValue)
+                                {
+                                    @Html.NoEncodeActionLink("<span class='fa fa-clock-o' > Continue</span>", "Continue", "Continue", "Time", new {id = work.ID}, new {data_modal = "", @class = "btn btn-success"})
                                 }
                             </td>
                             <td class="span4">
@@ -124,8 +130,8 @@
 
                             // TODO: This line needs to reload the page asyncronously 
                             //$('#replacetarget').load(result.url); //  Load data from the server and place the returned HTML into the matched element
-
-                            location.reload(true);
+                            
+                            window.location.replace(result.url);
                         } else {
                             $('#myModalContent').html(result);
                             bindForm(dialog);

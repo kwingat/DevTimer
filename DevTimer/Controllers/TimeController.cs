@@ -77,13 +77,16 @@ namespace DevTimer.Controllers
                 _workRepository.Add(work);
                 _workRepository.Save();
 
-                return Json(new {success = true});
+                string url = Url.Action("Index", "Time");
+
+                // hide modal
+                return Json(new { success = true, url });
             }
             IEnumerable<Project> projects = _projectRepository.GetAll();
             IEnumerable<WorkType> workTypes = _workTypeRepository.GetAll();
             viewModel.Map(projects).Map(workTypes);
 
-            return PartialView("_Create", viewModel);
+            return RedirectToAction("Index", "Time").WithError("Time unsuccessfully created.");
         }
 
         public ActionResult Edit(int? id)
@@ -127,7 +130,7 @@ namespace DevTimer.Controllers
             }
 
             // return invalid state to modal
-            return PartialView("_Edit", viewModel);
+            return RedirectToAction("Index", "Time").WithError("Time unsuccessfully edited.");
         }
         
         public async Task<ActionResult> Delete(int? id)
@@ -164,7 +167,8 @@ namespace DevTimer.Controllers
                 .Map(projects);
 
             // refresh the page to reflect the deletion
-            return View("Index", viewModel).WithSuccess("Time successfully deleted.");
+            return RedirectToAction("Index", "Time").WithSuccess("Time Successfully deleted.");
+                // View("Index", viewModel).WithSuccess("Time successfully deleted.");
 
         }
 
@@ -223,12 +227,9 @@ namespace DevTimer.Controllers
 
             var works = await _workRepository.GetAllByUserAsync(User.Identity.GetUserId());
             var projects = await _projectRepository.GetAllAsync();
-
-            var viewModel = Mapper.Map<IEnumerable<Work>, WorkListViewModel>(works)
-                .Map(projects);
-
+            
             // Refresh view
-            return View("Index", viewModel).WithSuccess("Time successfully Closed.");
+            return RedirectToAction("Index", "Time").WithSuccess("Time successfully Closed.");
         }
     }
 }
