@@ -42,7 +42,11 @@
                             <td class="span3">
                                 @work.Project.Name
                             </td>
-                            <td class="hidden-phone span8"></td>
+                            <td class="span8">
+                                <div style="overflow: hidden; -moz-text-overflow: ellipsis; text-overflow: ellipsis; white-space: nowrap; max-width: 400px" >
+                                    <span>@work.Description</span>
+                                </div>
+                            </td>
                             <td class="span3">
                                 @(work.StartTime.HasValue ? work.StartTime.Value.ToShortTimeString() : "")
                                 -
