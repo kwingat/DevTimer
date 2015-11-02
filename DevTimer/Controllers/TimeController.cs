@@ -213,7 +213,7 @@ namespace DevTimer.Controllers
 
             var toModel = Mapper.Map<Work, WorkEditViewModel>(work);
 
-            toModel.EndTime = DateTime.Now.ToClientTime();
+            toModel.EndTime = DateTime.Now.ToUniversalTime().ToClientTime();
 
             var toDomain = Mapper.Map(toModel, await _workRepository.GetByIdAsync(toModel.ID));
 
