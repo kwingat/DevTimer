@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using AutoMapper;
 using DevTimer.Core;
 using DevTimer.Domain.Abstract;
@@ -230,6 +232,17 @@ namespace DevTimer.Controllers
             
             // Refresh view
             return RedirectToAction("Index", "Time").WithSuccess("Time successfully Closed.");
+        }
+
+        public async Task<ActionResult> ExportToExcel() //int startDate, int endDate
+        {
+            List<Work> works = (await _workRepository.GetAllByUserAsync(User.Identity.GetUserId())).ToList();
+
+            GridView gv = new GridView();
+            gv.DataSource = works;
+            gv.DataBind();
+
+            return new DownloadFileActionResult(gv, "IT Time Tracker.xls");
         }
     }
 }
