@@ -81,8 +81,9 @@
             autoclose: true,
             todayHighlight: true,
             format: 'mm/dd/yyyy'
-
         });
+
+        $('#date').datepicker("setDate", new Date());
 
         $('#startTime').clockface({
             format: 'HH:mm',
@@ -103,7 +104,19 @@
             e.stopPropagation();
             $('#endTime').clockface('toggle');
         });
+
+        var time = new Date();
+
+
+        $('#startTime').val(timeNow());
     });
+
+    function timeNow() {
+        var d = new Date(),
+            h = (d.getHours() < 10 ? '0' : '') + d.getHours(),
+            m = (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+        return value = h + ':' + m;
+    }
 </script>
 
 

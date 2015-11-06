@@ -29,6 +29,9 @@ namespace DevTimer
                 "~/Scripts/bootstrap-table.js",
                 "~/Scripts/App/formatColumn.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/chart").Include(
+                "~/Scripts/chart.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-datepicker").Include(
                 "~/Scripts/bootstrap-datepicker.js",
                 "~/Scripts/clockface.js"));
@@ -40,7 +43,8 @@ namespace DevTimer
                 "~/Scripts/underscore.js",
                 "~/Scripts/underscore.string.js",
                 "~/Scripts/App/_mixins.js",
-                "~/Scripts/App/alert.js"));
+                "~/Scripts/App/alert.js",
+                "~/Scripts/App/moment.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/CSS/bootstrap.min.css",

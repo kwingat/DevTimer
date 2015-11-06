@@ -14,6 +14,9 @@ namespace DevTimer.Controllers
     {
         public ActionResult Index()
         {
+            int[] test = {3, 5, 6, 7, 3, 8, 9};
+            ViewBag.intArray = test;
+
             return View();
         }
 
