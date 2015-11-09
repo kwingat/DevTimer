@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Reflection;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using AutoMapper;
@@ -46,14 +44,14 @@ namespace DevTimer.Controllers
         public async Task<ActionResult> Index()
         {
             var aspNetUser = await _aspNetUserRepository.GetByIdAsync(User.Identity.GetUserId());
-            
-            if (aspNetUser == null) 
+
+            if (aspNetUser == null)
                 return HttpNotFound();
 
             var works = await _workRepository.GetAllByUserAsync(User.Identity.GetUserId());
             var projects = await _projectRepository.GetAllAsync();
 
-            WorkListViewModel viewModel = Mapper.Map<IEnumerable<Work>, WorkListViewModel>(works)
+            var viewModel = Mapper.Map<IEnumerable<Work>, WorkListViewModel>(works)
                 .Map(projects);
 
             return View(viewModel);
@@ -61,14 +59,14 @@ namespace DevTimer.Controllers
 
         public ActionResult Create()
         {
-            Work work = new Work();
-            IEnumerable<Project> projects = _projectRepository.GetAll();
-            IEnumerable<WorkType> workTypes = _workTypeRepository.GetAll();
+            var work = new Work();
+            var projects = _projectRepository.GetAll();
+            var workTypes = _workTypeRepository.GetAll();
 
-            WorkEditViewModel viewModel = Mapper.Map<Work, WorkEditViewModel>(work)
+            var viewModel = Mapper.Map<Work, WorkEditViewModel>(work)
                 .Map(projects)
                 .Map(workTypes);
-            
+
             return PartialView("_Create", viewModel);
         }
 
@@ -78,18 +76,18 @@ namespace DevTimer.Controllers
         {
             if (ModelState.IsValid)
             {
-                Work work = Mapper.Map<WorkEditViewModel, Work>(viewModel);
+                var work = Mapper.Map<WorkEditViewModel, Work>(viewModel);
                 work.UserID = User.Identity.GetUserId();
                 _workRepository.Add(work);
                 _workRepository.Save();
 
-                string url = Url.Action("Index", "Time");
+                var url = Url.Action("Index", "Time");
 
                 // hide modal
-                return Json(new { success = true, url });
+                return Json(new {success = true, url});
             }
-            IEnumerable<Project> projects = _projectRepository.GetAll();
-            IEnumerable<WorkType> workTypes = _workTypeRepository.GetAll();
+            var projects = _projectRepository.GetAll();
+            var workTypes = _workTypeRepository.GetAll();
             viewModel.Map(projects).Map(workTypes);
 
             return RedirectToAction("Index", "Time").WithError("Time unsuccessfully created.");
@@ -100,15 +98,15 @@ namespace DevTimer.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            Work work = _workRepository.GetById((int) id);
+            var work = _workRepository.GetById((int) id);
 
             if (work == null)
                 return HttpNotFound();
 
-            IEnumerable<Project> projects = _projectRepository.GetAll();
-            IEnumerable<WorkType> workTypes = _workTypeRepository.GetAll();
+            var projects = _projectRepository.GetAll();
+            var workTypes = _workTypeRepository.GetAll();
 
-            WorkEditViewModel viewModel = Mapper.Map<Work, WorkEditViewModel>(work)
+            var viewModel = Mapper.Map<Work, WorkEditViewModel>(work)
                 .Map(projects)
                 .Map(workTypes);
 
@@ -123,34 +121,34 @@ namespace DevTimer.Controllers
             if (ModelState.IsValid)
             {
                 // map viewmodel to entity
-                Work work = Mapper.Map(viewModel, _workRepository.GetById(viewModel.ID));
+                var work = Mapper.Map(viewModel, _workRepository.GetById(viewModel.ID));
 
                 // save
                 _workRepository.Update(work);
                 _workRepository.Save();
-                
-                string url = Url.Action("Index", "Time");
+
+                var url = Url.Action("Index", "Time");
 
                 // hide modal
-                return Json(new { success = true, url });
+                return Json(new {success = true, url});
             }
 
             // return invalid state to modal
             return RedirectToAction("Index", "Time").WithError("Time unsuccessfully edited.");
         }
-        
+
         public async Task<ActionResult> Delete(int? id)
         {
             // check id for null
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            
+
             IEnumerable<Work> works;
             IEnumerable<Project> projects;
             WorkListViewModel viewModel;
 
             // get object associated with id
-            Work work = await _workRepository.GetByIdAsync((int) id);
+            var work = await _workRepository.GetByIdAsync((int) id);
 
             // if the object is null or the object doesn't belong to use, show an error
             if (work == null || work.UserID != User.Identity.GetUserId())
@@ -174,8 +172,7 @@ namespace DevTimer.Controllers
 
             // refresh the page to reflect the deletion
             return RedirectToAction("Index", "Time").WithSuccess("Time Successfully deleted.");
-                // View("Index", viewModel).WithSuccess("Time successfully deleted.");
-
+            // View("Index", viewModel).WithSuccess("Time successfully deleted.");
         }
 
         public async Task<ActionResult> Continue(int? id)
@@ -185,25 +182,25 @@ namespace DevTimer.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             // get object associated with id
-            Work work = await _workRepository.GetByIdAsync((int)id);
+            var work = await _workRepository.GetByIdAsync((int) id);
 
             // check if object is null
             if (work == null)
                 return HttpNotFound();
-            Work newWork = new Work()
+            var newWork = new Work
             {
                 ProjectID = work.ProjectID,
                 WorkTypeID = work.WorkTypeID,
-                Description = work.Description,
+                Description = work.Description
             };
 
-            IEnumerable<Project> projects = await _projectRepository.GetAllAsync();
-            IEnumerable<WorkType> workTypes = await _workTypeRepository.GetAllAsync();
+            var projects = await _projectRepository.GetAllAsync();
+            var workTypes = await _workTypeRepository.GetAllAsync();
 
-            WorkEditViewModel viewModel = Mapper.Map<Work, WorkEditViewModel>(newWork)
+            var viewModel = Mapper.Map<Work, WorkEditViewModel>(newWork)
                 .Map(projects)
                 .Map(workTypes);
-            
+
             // Display modal
             return PartialView("_Create", viewModel);
         }
@@ -215,7 +212,7 @@ namespace DevTimer.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             // get object associated with id
-            Work work = await _workRepository.GetByIdAsync((int)id);
+            var work = await _workRepository.GetByIdAsync((int) id);
 
             // check if object is null
             if (work == null)
@@ -233,19 +230,20 @@ namespace DevTimer.Controllers
 
             var works = await _workRepository.GetAllByUserAsync(User.Identity.GetUserId());
             var projects = await _projectRepository.GetAllAsync();
-            
+
             // Refresh view
             return RedirectToAction("Index", "Time").WithSuccess("Time successfully Closed.");
         }
 
         public async Task<ActionResult> ExportToExcel(DateTime startDate, DateTime endDate) //
         {
-            List<Work> works = (await _workRepository.GetByUserAndDatesAsync(User.Identity.GetUserId(), startDate, endDate)).ToList();
-            List<TimeTracker> timeTrackers = CreateTimeTracker(startDate, endDate);
+            var works =
+                (await _workRepository.GetByUserAndDatesAsync(User.Identity.GetUserId(), startDate, endDate)).ToList();
+            var timeTrackers = CreateTimeTracker(startDate, endDate);
             timeTrackers = CountWorkEachDay(works, timeTrackers);
-            string file = Guid.NewGuid() + ".xlsx";
+            var file = Guid.NewGuid() + ".xlsx";
             var package = GenerateReport(timeTrackers, startDate, endDate);
-            
+
             return new DownloadFileActionResult(package, file);
         }
 
@@ -255,7 +253,7 @@ namespace DevTimer.Controllers
             {
                 if (work.StartTime != null && work.Hours != null)
                 {
-                    DateTime workDate = work.StartTime.Value.Date;
+                    var workDate = work.StartTime.Value.Date;
                     var newData = timeTrackers.FirstOrDefault(tt => tt.Date.Equals(workDate));
 
                     switch (work.WorkTypeID)
@@ -286,13 +284,13 @@ namespace DevTimer.Controllers
 
         private List<TimeTracker> CreateTimeTracker(DateTime startDate, DateTime endDate)
         {
-            List<TimeTracker> timeTrackers = new List<TimeTracker>();
+            var timeTrackers = new List<TimeTracker>();
 
             // Create each day between startdate and enddate
             var date = startDate;
             while (date != endDate.AddDays(1))
             {
-                TimeTracker tt = new TimeTracker
+                var tt = new TimeTracker
                 {
                     Date = date
                 };
@@ -307,10 +305,10 @@ namespace DevTimer.Controllers
 
         private ExcelPackage GenerateReport(List<TimeTracker> timeTrackers, DateTime startDate, DateTime endDate)
         {
-            ExcelPackage p = new ExcelPackage();
-            
+            var p = new ExcelPackage();
+
             SetWorkbookProperties(p);
-            ExcelWorksheet ws = CreateSheet(p, "Sheet1");
+            var ws = CreateSheet(p, "Sheet1");
 
             //Merge Header
             ws.Cells[1, 1].Value = "Ingenios Health IT Time Tracker";
@@ -332,60 +330,57 @@ namespace DevTimer.Controllers
             ws.Cells[4, 2].Value = startDate.ToShortDateString();
             ws.Cells[4, 2].AutoFitColumns();
 
-            int rowIndex = 6;
+            var rowIndex = 6;
 
             CreateDisplayDataHeader(ws, ref rowIndex, timeTrackers);
             CreateDisplayData(ws, ref rowIndex, timeTrackers);
             CreateDisplayDataFooter(ws, ref rowIndex, timeTrackers);
 
             return p;
-            
         }
 
         private void CreateDisplayDataFooter(ExcelWorksheet ws, ref int rowIndex, List<TimeTracker> timeTrackers)
         {
-            int colIndex = 1;
-            Type type = timeTrackers[1].GetType();
-            PropertyInfo[] properties = type.GetProperties();
+            var colIndex = 1;
+            var type = timeTrackers[1].GetType();
+            var properties = type.GetProperties();
 
             foreach (var propertyInfo in properties)
             {
                 var cell = ws.Cells[rowIndex, colIndex];
 
-                TypeCode typeCode = Type.GetTypeCode(propertyInfo.PropertyType);
+                var typeCode = Type.GetTypeCode(propertyInfo.PropertyType);
 
                 switch (typeCode)
                 {
-                        case TypeCode.DateTime:
-                            cell.Value = "Totals";
-                            break;
+                    case TypeCode.DateTime:
+                        cell.Value = "Totals";
+                        break;
 
-                        case TypeCode.Double:
-                            cell.Formula = string.Format("SUM({0}:{1})",
-                                ws.Cells[(rowIndex - 1) - timeTrackers.Count(), colIndex].Address,
-                                ws.Cells[rowIndex - 1, colIndex].Address);
-                            break;
+                    case TypeCode.Double:
+                        cell.Formula = string.Format("SUM({0}:{1})",
+                            ws.Cells[(rowIndex - 1) - timeTrackers.Count(), colIndex].Address,
+                            ws.Cells[rowIndex - 1, colIndex].Address);
+                        break;
                 }
 
                 colIndex++;
             }
 
             rowIndex++;
-            
-
         }
 
         private void CreateDisplayData(ExcelWorksheet ws, ref int rowIndex, List<TimeTracker> timeTrackers)
         {
             foreach (var timeTracker in timeTrackers)
             {
-                int colIndex = 1;
+                var colIndex = 1;
                 foreach (var propertyInfo in timeTracker.GetType().GetProperties())
                 {
                     var cell = ws.Cells[rowIndex, colIndex];
                     var value = propertyInfo.GetValue(timeTracker, null);
 
-                    TypeCode typeCode = Type.GetTypeCode(propertyInfo.PropertyType);
+                    var typeCode = Type.GetTypeCode(propertyInfo.PropertyType);
 
                     switch (typeCode)
                     {
@@ -395,7 +390,7 @@ namespace DevTimer.Controllers
                             cell.AutoFitColumns();
                             break;
                         case TypeCode.Double:
-                            double val =  (double) (value ?? string.Empty);
+                            var val = (double) (value ?? string.Empty);
                             cell.Value = Math.Round(val, 1);
                             break;
                         case TypeCode.String:
@@ -412,9 +407,9 @@ namespace DevTimer.Controllers
 
         private void CreateDisplayDataHeader(ExcelWorksheet ws, ref int rowIndex, List<TimeTracker> timeTrackers)
         {
-            int colIndex = 1;
-            Type type = timeTrackers[1].GetType();
-            PropertyInfo[] properties = type.GetProperties();
+            var colIndex = 1;
+            var type = timeTrackers[1].GetType();
+            var properties = type.GetProperties();
 
             foreach (var propertyInfo in properties)
             {
@@ -435,13 +430,10 @@ namespace DevTimer.Controllers
         private static ExcelWorksheet CreateSheet(ExcelPackage p, string sheetName)
         {
             p.Workbook.Worksheets.Add(sheetName);
-            ExcelWorksheet ws = p.Workbook.Worksheets[1];
+            var ws = p.Workbook.Worksheets[1];
             ws.Name = sheetName;
             ws.Cells.Style.Font.Size = 11;
             ws.Cells.Style.Font.Name = "Calibri";
-
-            
-
 
             return ws;
         }
