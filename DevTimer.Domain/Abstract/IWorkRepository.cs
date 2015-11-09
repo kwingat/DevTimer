@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DevTimer.Domain.Entities;
@@ -12,5 +13,6 @@ namespace DevTimer.Domain.Abstract
         Task<IEnumerable<Work>> GetAllByUserAsync(string currentUserId);
         Task<Work> GetByIdAsync(int id);
         Work GetById(int id);
+        Task<IEnumerable<Work>> GetByUserAndDatesAsync(string currentUserId, DateTime startDate, DateTime endDate);
     }
 }

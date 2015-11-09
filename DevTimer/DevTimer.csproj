@@ -246,6 +246,7 @@
     <Compile Include="Models\ProjectEditViewModel.cs" />
     <Compile Include="Models\ProjectListViewModel.cs" />
     <Compile Include="Models\SelectListItem.cs" />
+    <Compile Include="Models\TimeTracker.cs" />
     <Compile Include="Models\WorkEditViewModel.cs" />
     <Compile Include="Models\WorkListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

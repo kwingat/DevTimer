@@ -1,21 +1,23 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using OfficeOpenXml;
 
 namespace DevTimer.Helpers
 {
     public class DownloadFileActionResult : ActionResult
     {
-        public GridView ExcelGridView { get; set; }
-        public string fileName { get; set; }
+        public ExcelPackage Package { get; set; }
+        public string FileName { get; set; }
 
-        public DownloadFileActionResult(GridView gv, string pFileName)
+        public DownloadFileActionResult(ExcelPackage package, string pFileName)
         {
-            ExcelGridView = gv;
-            fileName = pFileName;
+            Package = package;
+            FileName = pFileName;
         }
 
         public override void ExecuteResult(ControllerContext context)
@@ -23,24 +25,26 @@ namespace DevTimer.Helpers
             // Create a response stream to create and write the excel file
             HttpContext curContext = HttpContext.Current;
             curContext.Response.Clear();
-            curContext.Response.AddHeader("content-disposition", "attachment;filename=" + fileName);
+            curContext.Response.AddHeader("content-disposition", string.Format("attachment;  filename={0}", FileName));
             curContext.Response.Charset = "";
             curContext.Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            curContext.Response.ContentType = "application/vnd.ms-excel";
+            curContext.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            curContext.Response.BinaryWrite(Package.GetAsByteArray());
+            curContext.Response.End();
 
             // Convert the rendering of the gridview to a string representation
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            ExcelGridView.RenderControl(htw);
+            //StringWriter sw = new StringWriter();
+            //HtmlTextWriter htw = new HtmlTextWriter(sw);
+            //ExcelGridView.RenderControl(htw);
 
             // Open a memory stream that you can use to write back to the response
-            byte[] byteArray = Encoding.ASCII.GetBytes(sw.ToString());
-            MemoryStream ms = new MemoryStream(byteArray);
-            StreamReader sr = new StreamReader(ms, Encoding.ASCII);
+            //Byte[] byteArray = Package.GetAsByteArray();
+            //MemoryStream ms = new MemoryStream(byteArray);
+            //StreamReader sr = new StreamReader(ms, Encoding.ASCII);
 
-            // Write the stream back ot the response
-            curContext.Response.Write(sr.ReadToEnd());
-            curContext.Response.End();
+            //// Write the stream back ot the response
+            //curContext.Response.Write(sr.ReadToEnd());
+            //curContext.Response.End();
         }
     }
 }

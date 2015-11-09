@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -42,6 +44,18 @@ namespace DevTimer.Domain.Repositories
         public Work GetById(int id)
         {
             return Set.Find(id);
+        }
+
+        public async Task<IEnumerable<Work>> GetByUserAndDatesAsync(string currentUserId, DateTime startDate, DateTime endDate)
+        {
+            return await GetByUserAndDatesQuery(currentUserId, startDate, endDate).ToListAsync();
+        }
+
+        private IQueryable<Work> GetByUserAndDatesQuery(string currentUserId, DateTime startDate, DateTime endDate)
+        {
+            var query = Set
+                .Where(e => e.UserID == currentUserId && e.StartTime >= startDate && e.EndTime != endDate);
+            return query;
         }
 
         private IQueryable<Work> GetAllByUserQuery(string currentUserId)

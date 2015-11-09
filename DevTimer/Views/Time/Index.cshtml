@@ -10,16 +10,34 @@
     Time
 </div>
 <div class="btn-group"></div>
-<div class="btn-group pull-right margin-top-bottom">
-    @Html.NoEncodeActionLink("Add New <i class='fa fa-plus'></i>", "Add New", "Create", "Time", null, new { data_modal = "", @class = "btn btn-info" })
-    <button class="btn dropdown-toggle" data-toggle="dropdown">
-        Options
-        <i class="fa fa-angle-down"></i>
-    </button>
-    <ul class="dropdown-menu pull-right">
-        <li>@Html.ActionLink("Export to Excel", "ExportToExcel", "Time")</li>   @*<a href="/Time/ExportToExcel">Export to Excel</a>*@
-    </ul>
-</div>
+@using (Html.BeginForm("ExportToExcel", "Time", FormMethod.Post))
+    {
+        <div class="btn-group pull-right margin-top-bottom">
+            @Html.NoEncodeActionLink("Add New <i class='fa fa-plus'></i>", "Add New", "Create", "Time", null, new {data_modal = "", @class = "btn btn-info"})
+            <button class="btn dropdown-toggle" data-toggle="dropdown">
+                Options
+                <i class="fa fa-angle-down"></i>
+            </button>
+
+            <ul class="dropdown-menu pull-right">
+                <li>
+                    @*@Html.ActionLink("Export to Excel", "ExportToExcel", "Time")*@
+                    <div class="range_inputs">
+                        <div>
+                            <label>From</label>
+                            @Html.TextBoxFor(m => m.StartDate, new {@readonly="readonly", @class="form-control"})
+                        </div>
+                        <div>
+                            <label>TO</label>
+                            @Html.TextBoxFor(m => m.EndDate, new {@readonly="readonly", @class="form-control"})
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                </li> @*<a href="/Time/ExportToExcel">Export to Excel</a>*@
+            </ul>
+
+        </div>
+    }
 <div>
     @foreach (var workday in Model.Works.GroupBy(item => item.StartTime.Value.ToString("MM/dd/yyyy")))
     {
@@ -101,6 +119,18 @@
 
         $(function() {
             $.ajaxSetup({ cache: false });
+            
+            $('#StartDate').datepicker({
+                autoclose: true,
+                todayHighlight: true,
+                format: 'mm/dd/yyyy'
+            });
+
+            $('#EndDate').datepicker({
+                autoclose: true,
+                todayHighlight: true,
+                format: 'mm/dd/yyyy'
+            });
 
             $("a[data-modal]").on("click", function(e) {
                 // hide dropdown if any (this is used wehen invoking modal from link in bootstrap dropdown )
