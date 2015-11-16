@@ -256,20 +256,23 @@ namespace DevTimer.Controllers
                     var workDate = work.StartTime.Value.Date;
                     var newData = timeTrackers.FirstOrDefault(tt => tt.Date.Equals(workDate));
 
-                    switch (work.WorkTypeID)
+                    if (newData != null)
                     {
-                        case 1: //R & D
-                            newData.NewDev += work.Hours.Value;
-                            break;
-                        case 2: //Maintenance
-                            newData.Maint += work.Hours.Value;
-                            break;
-                        case 3: //Admin
-                            newData.Admin += work.Hours.Value;
-                            break;
-                        case 4: //PTO
-                            newData.PTO += work.Hours.Value;
-                            break;
+                        switch (work.WorkTypeID)
+                        {
+                            case 1: //R & D
+                                newData.NewDev += work.Hours ?? work.Hours.Value;
+                                break;
+                            case 2: //Maintenance
+                                newData.Maint += work.Hours ?? work.Hours.Value;
+                                break;
+                            case 3: //Admin
+                                newData.Admin += work.Hours ?? work.Hours.Value;
+                                break;
+                            case 4: //PTO
+                                newData.PTO += work.Hours ?? work.Hours.Value;
+                                break;
+                        }
                     }
                 }
             }
