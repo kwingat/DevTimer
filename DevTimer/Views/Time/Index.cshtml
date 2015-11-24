@@ -100,13 +100,20 @@
 
     @section scripts
 {
-        @*@Scripts.Render("~/bundles/jqueryval")*@
+        @Scripts.Render("~/bundles/jqueryval")
         @Scripts.Render("~/bundles/site")
         @Scripts.Render("~/bundles/daterangepicker")
+        @Scripts.Render("~/bundles/bootstrap-datepicker")
 
         <script language="javascript">
 
             $(document).ready(function () {
+                
+            });
+
+            $(function () {
+                $.ajaxSetup({ cache: false });
+
                 $('#reportrange').daterangepicker({
                     "ranges": {
                         "Today": [
@@ -139,10 +146,6 @@
                 }, function (start, end, label) {
                     //console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
                 });
-            });
-
-            $(function () {
-                $.ajaxSetup({ cache: false });
 
                 $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
                     var drp = $('#reportrange').data('daterangepicker');
@@ -154,6 +157,7 @@
                 });
 
                 $("a[data-modal]").on("click", function (e) {
+                    debugger;
                     // hide dropdown if any (this is used wehen invoking modal from link in bootstrap dropdown )
                     //$(e.target).closest('.btn-group').children('.dropdown-toggle').dropdown('toggle');
 
