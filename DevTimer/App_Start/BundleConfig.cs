@@ -44,7 +44,10 @@ namespace DevTimer
                 "~/Scripts/underscore.string.js",
                 "~/Scripts/App/_mixins.js",
                 "~/Scripts/App/alert.js",
-                "~/Scripts/App/moment.js"));
+                "~/Scripts/moment.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/daterangepicker").Include(
+                "~/Scripts/daterangepicker.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/CSS/bootstrap.min.css",
@@ -59,6 +62,9 @@ namespace DevTimer
                       "~/Content/CSS/light.css",
                       "~/Content/CSS/site.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/daterangepicker-bs3").Include(
+                "~/Content/CSS/daterangepicker-bs3.css"));
         }
     }
 }

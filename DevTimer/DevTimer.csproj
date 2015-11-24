@@ -283,6 +283,7 @@
     <Content Include="Content\CSS\bootstrap.css" />
     <Content Include="Content\CSS\bootstrap.min.css" />
     <Content Include="Content\CSS\clockface.css" />
+    <Content Include="Content\CSS\daterangepicker-bs3.css" />
     <Content Include="Content\CSS\font-awesome.css" />
     <Content Include="Content\CSS\font-awesome.min.css" />
     <Content Include="Content\CSS\light.css" />
@@ -322,6 +323,7 @@
     <Content Include="Scripts\chart.js" />
     <Content Include="Scripts\clockface.js" />
     <Content Include="Scripts\collapse.js" />
+    <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\Extensions\cookie\README.md" />
     <Content Include="Scripts\Extensions\editable\README.md" />
     <Content Include="Scripts\Extensions\export\README.md" />

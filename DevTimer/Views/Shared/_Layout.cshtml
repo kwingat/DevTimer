@@ -8,93 +8,94 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="page-header-fixed page-footer-fixed">
-    <!-- BEGIN HEADER -->
-    <div class="header navbar navbar-inverse navbar-fixed-top">
-        <!-- BEGIN TOP NAVIGATION BAR -->
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <!-- BEGIN LOGO -->
-                <a class="navbar-brand"></a>
-                <!-- END LOGO -->
-                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-                <!-- END RESPONSIVE MENU TOGGLER -->
-                @Html.Partial("_LoginPartial");
-            </div>
+@RenderSection("styles", required: false)
+<!-- BEGIN HEADER -->
+<div class="header navbar navbar-inverse navbar-fixed-top">
+    <!-- BEGIN TOP NAVIGATION BAR -->
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <!-- BEGIN LOGO -->
+            <a class="navbar-brand"></a>
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            @Html.Partial("_LoginPartial");
         </div>
-        <!-- END TOP NAVIGATION BAR -->
     </div>
-    <!-- END HEADER -->
-    <!-- BEGIN CONTAINER -->
-    <div class="page-container">
-        <!-- BEGIN SIDEBAR -->
-        <div class="page-sidebar nav-collapse collapse">
-            <!-- BEGIN SIDEBAR MENU -->
-            <ul class="page-sidebar-menu">
-                <li>
-                    <div class="sidebar-toggler hidden-phone"></div>
-                </li>
-                <li class="start hidden-md hidden-lg">
-                    <a href="/">
-                        <i class="hidden-md hidden-lg fa fa-home fa-lg"></i>
-                        <span class="title">Dashboard</span>
-                    </a>
-                </li>
-                <li class="start">
-                    <a href="/Time">
-                        <i class="fa fa-clock-o"></i>
-                        <span class="title">Time</span>
-                    </a>
-                </li>
-                <li class="start">
-                    <a href="/Project">
-                        <i class="fa fa-plane"></i>
-                        <span class="title">Projects</span>
-                    </a>
-                </li>
-                <li class="start">
-                    <a href="/Client">
-                        <i class="fa fa-briefcase"></i>
-                        <span class="title">Clients</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- END SIDEBAR -->
-        <!-- BEGIN PAGE -->
-        <div class="page-content">
-            <!-- BEGIN PAGE CONTAINER -->
-            <div class="container-fluid">
-                <!-- BEGIN PAGE HEADER-->
-                <div class="row-fluid">
+    <!-- END TOP NAVIGATION BAR -->
+</div>
+<!-- END HEADER -->
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar nav-collapse collapse">
+        <!-- BEGIN SIDEBAR MENU -->
+        <ul class="page-sidebar-menu">
+            <li>
+                <div class="sidebar-toggler hidden-phone"></div>
+            </li>
+            <li class="start hidden-md hidden-lg">
+                <a href="/">
+                    <i class="hidden-md hidden-lg fa fa-home fa-lg"></i>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+            <li class="start">
+                <a href="/Time">
+                    <i class="fa fa-clock-o"></i>
+                    <span class="title">Time</span>
+                </a>
+            </li>
+            <li class="start">
+                <a href="/Project">
+                    <i class="fa fa-plane"></i>
+                    <span class="title">Projects</span>
+                </a>
+            </li>
+            <li class="start">
+                <a href="/Client">
+                    <i class="fa fa-briefcase"></i>
+                    <span class="title">Clients</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- END SIDEBAR -->
+    <!-- BEGIN PAGE -->
+    <div class="page-content">
+        <!-- BEGIN PAGE CONTAINER -->
+        <div class="container-fluid">
+            <!-- BEGIN PAGE HEADER-->
+            <div class="row-fluid">
+                <div class="span12">
                     <div class="span12">
-                        <div class="span12">
-                            <!-- BEGIN BreadCrumbs-->
-                            @Html.MvcSiteMap().SiteMapPath("BootstrapSiteMapPathHelperModel")
-                            <!-- END BreadCrumbs-->
-                        </div>
-                        <div class="alert-container"></div>
-                        <!-- BEGIN PAGE CONTENT-->
-                        @RenderBody()
-                        <!-- END PAGE CONTENT-->
+                        <!-- BEGIN BreadCrumbs-->
+                        @Html.MvcSiteMap().SiteMapPath("BootstrapSiteMapPathHelperModel")
+                        <!-- END BreadCrumbs-->
                     </div>
+                    <div class="alert-container"></div>
+                    <!-- BEGIN PAGE CONTENT-->
+                    @RenderBody()
+                    <!-- END PAGE CONTENT-->
                 </div>
-                <!-- END PAGE HEADER-->
             </div>
-            <!-- END PAGE CONTAINER -->
+            <!-- END PAGE HEADER-->
         </div>
-        <!-- END PAGE -->
-
-
+        <!-- END PAGE CONTAINER -->
     </div>
+    <!-- END PAGE -->
+
+
+</div>
 <!-- END CONTAINER -->
 
-    <!-- BEGIN FOOTER -->
+<!-- BEGIN FOOTER -->
 <!-- END FOOTER -->
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/site")
-    @Html.Partial("_AlertsPartial")
-    @RenderSection("scripts", required: false)
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/site")
+@Html.Partial("_AlertsPartial")
+@RenderSection("scripts", required: false)
 </body>
 </html>
