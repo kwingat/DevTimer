@@ -14,17 +14,18 @@
     Time
 </div>
 <div class="btn-group"></div>
-@using (Html.BeginForm("ExportToExcel", "Time", FormMethod.Post))
-{
+    @using (Html.BeginForm("ExportToExcel", "Time", FormMethod.Post, new{id="export"}))
+    {
         <div class="btn-group pull-right margin-top-bottom">
             @Html.NoEncodeActionLink("Add New <i class='fa fa-plus'></i>", "Add New", "Create", "Time", null, new {data_modal = "", @class = "btn btn-info"})
-            <button id="reportrange" class="btn dropdown-toggle">
+            <button id="reportrange" type="button" class="btn dropdown-toggle">
                 Export
                 <i class="fa fa-angle-down"></i>
             </button>
+            <input type="hidden" name="to" id="to" value="">
+            <input type="hidden" name="from" id="from" value="">
         </div>
     }
-
     <div>
         @foreach (var workday in Model.Works.GroupBy(item => item.StartTime.Value.ToString("MM/dd/yyyy")))
         {
@@ -109,96 +110,48 @@
                 $('#reportrange').daterangepicker({
                     "ranges": {
                         "Today": [
-                            "2015-11-23T18:58:57.722Z",
-                            "2015-11-23T18:58:57.723Z"
+                            moment(),
+                            moment()
                         ],
                         "Yesterday": [
-                            "2015-11-22T18:58:57.723Z",
-                            "2015-11-22T18:58:57.723Z"
+                            moment().add(-1, 'days'),
+                            moment().add(-1, 'days')
                         ],
                         "Last 7 Days": [
-                            "2015-11-17T18:58:57.723Z",
-                            "2015-11-23T18:58:57.723Z"
+                            moment().add(-1, 'days'),
+                            moment().add(-8, 'days')
                         ],
                         "Last 30 Days": [
-                            "2015-10-25T17:58:57.723Z",
-                            "2015-11-23T18:58:57.723Z"
+                            moment().add(-1, 'days'),
+                            moment().add(-31, 'days')
                         ],
                         "This Month": [
-                            "2015-11-01T04:00:00.000Z",
-                            "2015-12-01T04:59:59.999Z"
+                            moment().startOf('month'),
+                            moment().endOf('month')
                         ],
                         "Last Month": [
-                            "2015-10-01T04:00:00.000Z",
-                            "2015-11-01T03:59:59.999Z"
+                            moment().subtract(1, 'months').startOf('month'),
+                            moment().subtract(1, 'months').endOf('month')
                         ]
                     },
-                    "startDate": "11/17/2015",
-                    "endDate": "11/23/2015"
+                    "startDate": moment(),
+                    "endDate": moment()
                 }, function (start, end, label) {
-                    console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+                    //console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
                 });
             });
 
             $(function () {
                 $.ajaxSetup({ cache: false });
 
-                //$('#reportrange').daterangepicker({
-                //    startDate: moment().subtract('days', 29),
-                //    endDate: moment(),
-                //    minDate: '01/01/2015',
-                //    //maxDate: '12/31/2014',
-                //    dateLimit: { days: 60 },
-                //    showDropdowns: true,
-                //    showWeekNumbers: true,
-                //    timePicker: false,
-                //    timePickerIncrement: 1,
-                //    timePicker12Hour: true,
-                //    ranges: {
-                //        'Today': [moment(), moment()],
-                //        'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
-                //        'Last 7 Days': [moment().subtract('days', 6), moment()],
-                //        'Last 30 Days': [moment().subtract('days', 29), moment()],
-                //        'This Month': [moment().startOf('month'), moment().endOf('month')],
-                //        'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
-                //    },
-                //    opens: 'left',
-                //    buttonClasses: ['btn btn-default'],
-                //    applyClass: 'btn-small btn-primary',
-                //    cancelClass: 'btn-small',
-                //    format: 'MM/DD/YYYY',
-                //    separator: ' to ',
-                //    locale: {
-                //        applyLabel: 'Submit',
-                //        fromLabel: 'From',
-                //        toLabel: 'To',
-                //        customRangeLabel: 'Custom Range',
-                //        daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
-                //        monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                //        firstDay: 1
-                //    }
-                //},
-                //function(start, end) {
-                //    console.log("Callback has been called!");
-                //    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-                //    $('#to').val(start.format('MMMM D, YYYY'));
-                //    $('#from').val(end.format('MMMM D, YYYY'));
-                //});
-
-                ////Set the initial state of the picker label
-                //$('#reportrange span').html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-
-                //$('#StartDate').datepicker({
-                //    autoclose: true,
-                //    todayHighlight: true,
-                //    format: 'mm/dd/yyyy'
-                //});
-
-                //$('#EndDate').datepicker({
-                //    autoclose: true,
-                //    todayHighlight: true,
-                //    format: 'mm/dd/yyyy'
-                //});
+                $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+                    var drp = $('#reportrange').data('daterangepicker');
+                    var start = drp.startDate._d.toLocaleDateString();
+                    var end = drp.endDate._d.toLocaleDateString();
+                    $('#to').val(start);
+                    $('#from').val(end);
+                    $('#export').submit();
+                });
 
                 $("a[data-modal]").on("click", function (e) {
                     // hide dropdown if any (this is used wehen invoking modal from link in bootstrap dropdown )

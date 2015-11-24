@@ -235,14 +235,14 @@ namespace DevTimer.Controllers
             return RedirectToAction("Index", "Time").WithSuccess("Time successfully Closed.");
         }
 
-        public async Task<ActionResult> ExportToExcel(DateTime startDate, DateTime endDate) //
+        public async Task<ActionResult> ExportToExcel(DateTime to, DateTime from) //
         {
             var works =
-                (await _workRepository.GetByUserAndDatesAsync(User.Identity.GetUserId(), startDate, endDate)).ToList();
-            var timeTrackers = CreateTimeTracker(startDate, endDate);
+                (await _workRepository.GetByUserAndDatesAsync(User.Identity.GetUserId(), to, from)).ToList();
+            var timeTrackers = CreateTimeTracker(to, from);
             timeTrackers = CountWorkEachDay(works, timeTrackers);
             var file = Guid.NewGuid() + ".xlsx";
-            var package = GenerateReport(timeTrackers, startDate, endDate);
+            var package = GenerateReport(timeTrackers, to, from);
 
             return new DownloadFileActionResult(package, file);
         }
