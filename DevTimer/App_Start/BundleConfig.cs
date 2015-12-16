@@ -52,15 +52,14 @@ namespace DevTimer
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/bootstrap-theme.min.css",
-                      "~/Content/CSS/bootstrap-responsive.min.css",
-                      "~/Content/CSS/bootstrap-table.css",
-                      "~/Content/CSS/font-awesome.min.css",
-                      "~/Content/CSS/bootstrap-datepicker.css",
-                      "~/Content/CSS/clockface.css",
-                      //"~/Content/CSS/style-metro.css",
-                      "~/Content/CSS/style.css",
-                      "~/Content/CSS/style-responsive.css",
-                      "~/Content/CSS/light.css",
+                      "~/Content/bootstrap-responsive.min.css",
+                      "~/Content/bootstrap-table.css",
+                      "~/Content/font-awesome.min.css",
+                      "~/Content/bootstrap-datepicker.css",
+                      "~/Content/clockface.css",
+                      "~/Content/style.css",
+                      "~/Content/style-responsive.css",
+                      "~/Content/light.css",
                       "~/Content/CSS/site.css",
                       "~/Content/site.css"));
 
