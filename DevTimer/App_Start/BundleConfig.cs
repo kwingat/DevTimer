@@ -50,9 +50,10 @@ namespace DevTimer
                 "~/Scripts/daterangepicker.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/CSS/bootstrap.min.css",
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/bootstrap-theme.min.css",
                       "~/Content/CSS/bootstrap-responsive.min.css",
-                      "~/Content/bootstrap-table.css",
+                      "~/Content/CSS/bootstrap-table.css",
                       "~/Content/CSS/font-awesome.min.css",
                       "~/Content/CSS/bootstrap-datepicker.css",
                       "~/Content/CSS/clockface.css",
