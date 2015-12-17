@@ -10,17 +10,17 @@
 <body class="page-header-fixed page-footer-fixed">
 @RenderSection("styles", required: false)
 <!-- BEGIN HEADER -->
-<div class="header navbar navbar-inverse navbar-fixed-top">
+<div class="header navbar navbar-fixed-top">
     <!-- BEGIN TOP NAVIGATION BAR -->
     <div class="navbar-inner">
-        <div class="container-fluid">
+        @*<div class="container-fluid">*@
             <!-- BEGIN LOGO -->
             <a class="navbar-brand"></a>
             <!-- END LOGO -->
             <!-- BEGIN RESPONSIVE MENU TOGGLER -->
             <!-- END RESPONSIVE MENU TOGGLER -->
             @Html.Partial("_LoginPartial");
-        </div>
+        @*</div>*@
     </div>
     <!-- END TOP NAVIGATION BAR -->
 </div>

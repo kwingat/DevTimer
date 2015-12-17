@@ -145,7 +145,7 @@ namespace DevTimer.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            return View("_LayoutRegister");
         }
 
         //
@@ -175,7 +175,7 @@ namespace DevTimer.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View("_LayoutRegister",model);
         }
 
         //

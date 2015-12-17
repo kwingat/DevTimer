@@ -64,6 +64,7 @@ namespace DevTimer
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/daterangepicker-bs3").Include(
+                "~/Content/CSS/bootstrap2-3-1.min.css",
                 "~/Content/CSS/daterangepicker-bs3.css"));
         }
     }

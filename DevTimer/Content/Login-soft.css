@@ -13,18 +13,18 @@ Login page
   margin-top:60px;
   padding: 15px;
   text-align: center;
-}  
-
-
-.login .content {
-  background: url(../Img/bg-white-lock.png) repeat;
-  width: 291px;
-  margin: 0 auto; 
-  margin-bottom: 0px;
-  padding: 30px;  
-  padding-top: 20px;  
-  padding-bottom: 15px;  
 }
+
+
+    .login .content {
+        background: url('Img/bg-white-lock.png') repeat;
+        width: 291px;
+        margin: 0 auto;
+        margin-bottom: 0px;
+        padding: 30px;
+        padding-top: 20px;
+        padding-bottom: 15px;
+    }
 
 .login .content h3 {
   color: #eee;

@@ -126,13 +126,13 @@ li [class*=" icon-"].icon-large {
 Close icon used for modal dialog and other UI element close buttons
 ***/
 .close {
-  display: inline-block;
-  margin-top: 0px;
-  margin-right: 0px;
-  width: 9px;
-  height: 9px;
-  background-repeat: no-repeat !important;
-  background-image: url("../Img/remove-icon-small.png") !important;
+    display: inline-block;
+    margin-top: 0px;
+    margin-right: 0px;
+    width: 9px;
+    height: 9px;
+    background-repeat: no-repeat !important;
+    background-image: url("Img/remove-icon-small.png") !important;
 }
 
 /***
