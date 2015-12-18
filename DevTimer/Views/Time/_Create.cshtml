@@ -1,5 +1,9 @@
 ﻿@model DevTimer.Models.WorkEditViewModel
 
+@section styles {
+    @Styles.Render("~/content/daterangepicker-bs3")
+}
+
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
     <h3 class="modal-title" id="myModalLabel">New Time Entry</h3>
@@ -32,47 +36,49 @@
                     </div>
                 </div>
 
-                <div class="control-group">
+                <div class="navbar-form">
                     Date:
-                    <div class="input-append">
-                        @Html.TextBoxFor(m => m.Date, new { id = "date", @class="form-control", @readonly="readonly", style="width: 90px"})
-                        @*<input id="date" type="text" class="form-control" readonly="readonly" style="width: 90px;"/>*@
-                        <button class="btn" type="button">
-                            <i class="icon-calendar"></i>
-                        </button>
-                        @Html.ValidationMessageFor(m => m.Date, "*", new {@class = "text-danger"})
+                    <div class="input-group">
+
+                        @Html.TextBoxFor(m => m.Date, "{0:MM/dd/yyyy}", new { id = "date", @class = "form-control", @readonly = "readonly", style = "width:100px" })
+
+                        <span class="input-group-addon btn btn-success"><i class="icon-calendar"></i></span>
+
+                        @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
                     </div>
-                    <div class="input-append">
-                        @Html.TextBoxFor(m => m.StartTime, new { id = "startTime", @class="input-small", @readonly="readonly"})
-                        @*<input type="text" id="startTime" class="input-small" readonly="">*@
-                        <button class="btn" type="button" id="toggle-btnStart">
+                    Time:
+                    <div class="input-group">
+                        @Html.TextBoxFor(m => m.StartTime, "{0:HH:mm}", new { id = "startTime", @class = "form-control", @readonly = "readonly", style = "width:100px" })
+                        <span class="input-group-addon btn btn-success" type="button" id="toggle-btnStart">
                             <i class="icon-time"></i>
-                        </button>
-                        @Html.ValidationMessageFor(m => m.StartTime, "*", new {@class = "text-danger"})
+                        </span>
+                        @Html.ValidationMessageFor(m => m.StartTime, "", new { @class = "text-danger" })
                     </div>
-                    <b><i class="fa fa-arrow-right"></i></b>
-                    <div class="input-append">
-                        @Html.TextBoxFor(m => m.EndTime, new {id="endTime", @class="input-small", @readonly="readonly"})
-                        @*<input type="text" id="endTime" class="input-small" readonly="">*@
-                        <button class="btn" type="button" id="toggle-btnEnd">
+                    <b>
+                        <i class="fa fa-arrow-right"></i>
+                    </b>
+
+                    <div class="input-group">
+                        @Html.TextBoxFor(m => m.EndTime, "{0:HH:mm}", new { id = "endTime", @class = "form-control", @readonly = "readonly", style = "width:100px" })
+                        <span class="input-group-addon btn btn-success" type="button" id="toggle-btnEnd">
                             <i class="icon-time"></i>
-                        </button>
-                        @Html.ValidationMessageFor(m => m.EndTime, "*", new {@class = "text-danger"})
+                        </span>
+                        @Html.ValidationMessageFor(m => m.EndTime, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn" type="button" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn blue">
+        <button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-success">
             <i class="fa fa-clock-o"></i>
             &nbsp;Start
         </button>
 
         @*<input class="btn btn-primary" type="submit" value="Add" />*@
     </div>
-    
+
 }
 
 <script>
