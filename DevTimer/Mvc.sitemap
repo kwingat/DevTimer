@@ -21,6 +21,10 @@
       <mvcSiteMapNode title="New Time" action="Edit" id="0" />
       <mvcSiteMapNode title="Edit Time" action="Edit" preservedRouteParameters="id"/>
     </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Profile" controller="Worker" action="Index">
+      <mvcSiteMapNode title="Edit Profile" action="Edit" />
+    </mvcSiteMapNode>
     
   </mvcSiteMapNode>
 </mvcSiteMap>

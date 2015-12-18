@@ -249,6 +249,7 @@
     <Compile Include="Models\SelectListItem.cs" />
     <Compile Include="Models\TimeTracker.cs" />
     <Compile Include="Models\WorkEditViewModel.cs" />
+    <Compile Include="Models\WorkerEditViewModel.cs" />
     <Compile Include="Models\WorkerListViewModel.cs" />
     <Compile Include="Models\WorkListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -453,6 +454,7 @@
     <Content Include="Views\Time\_Edit.cshtml" />
     <Content Include="Views\Shared\_LayoutRegister.cshtml" />
     <Content Include="Views\Worker\Index.cshtml" />
+    <Content Include="Views\Worker\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Plugins\" />

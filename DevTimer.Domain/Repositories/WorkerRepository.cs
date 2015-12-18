@@ -29,6 +29,12 @@ namespace DevTimer.Domain.Repositories
             return await Set.FindAsync(id);
         }
 
+        public async Task<Worker> GetByUserIdAsync(string userId)
+        {
+            return await GetByUserIdQuery(userId).FirstOrDefaultAsync();
+
+        }
+
         public async Task<IPagedEnumerable<Worker>> GetAllAsync(int pageSize, int pageNumber)
         {
             IQueryable<Worker> query = GetAllQuery();
@@ -41,6 +47,14 @@ namespace DevTimer.Domain.Repositories
             return result.AsPagedEnumerable(pageNumber, pageSize, totalRowCount);
         }
 
+        private IQueryable<Worker> GetByUserIdQuery(string userId)
+        {
+            return Set
+                .Include(e => e.State)
+                .Include(e => e.AspNetUser)
+                .Where(e => e.UserID == userId);
+        } 
+
         private IQueryable<Worker> GetAllQuery()
         {
             return Set
@@ -48,5 +62,23 @@ namespace DevTimer.Domain.Repositories
                 .Include(e => e.AspNetUser)
                 .OrderBy(e => e.Name);
         } 
+    }
+
+    public class StateRepository:Repository<State>, IStateRepository
+    {
+        public StateRepository(DbContextBase context) : base(context)
+        {
+        }
+
+        public async Task<IEnumerable<State>> GetAllAsync()
+        {
+            return await GetAllQuery().ToListAsync();
+        }
+
+        private IQueryable<State> GetAllQuery()
+        {
+            return Set
+                .OrderBy(e => e.StateName);
+        }
     }
 }
