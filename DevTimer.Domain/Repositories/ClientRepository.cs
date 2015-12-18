@@ -19,11 +19,11 @@ namespace DevTimer.Domain.Repositories
 
         public async Task<IPagedEnumerable<Client>> GetAllAsync(int pageSize, int pageNumber)
         {
-            var query = GetAllQuery();
+            IQueryable<Client> query = GetAllQuery();
 
             int totalRowCount = await query.CountAsync();
 
-            var result = await query.OrderBy(c => c.Name).ForPage(pageNumber, pageSize).ToListAsync();
+            List<Client> result = await query.OrderBy(c => c.Name).ForPage(pageNumber, pageSize).ToListAsync();
 
             return result.AsPagedEnumerable(pageNumber, pageSize, totalRowCount);
         }

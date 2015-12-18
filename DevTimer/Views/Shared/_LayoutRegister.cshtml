@@ -26,7 +26,7 @@
         <h2 style="font-weight: bold; color: #fff">kdub</h2>
     </div>
     <div class="content">
-        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form", role = "form" }))
+        @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "", role = "form" }))
         {
             @Html.AntiForgeryToken()
             <h3 class="form-title">Register your account</h3>
@@ -80,7 +80,7 @@
             </div>
             <div class="alert fade in login_alert"></div>
             <div class="form-actions">
-                <button type="submit" id="loginButton" class="btn btn-success pull-right">
+                <button type="submit" value="Register" class="btn btn-success pull-right">
                     Register
                     <i class="m-icon-swapright m-icon-white"></i>
                 </button>
