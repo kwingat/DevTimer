@@ -22,6 +22,8 @@ namespace DevTimer.Controllers
         private IWorkerRepository _workerRepository;
         //private IAspNetUserRepository _aspNetUserRepository;
 
+        public AccountController() { }
+
         public AccountController(IWorkerRepository workerRepository)
         {
             _workerRepository = workerRepository;
