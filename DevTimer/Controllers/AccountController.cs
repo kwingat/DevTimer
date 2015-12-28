@@ -18,7 +18,6 @@ namespace DevTimer.Controllers
     public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
         private IWorkerRepository _workerRepository;
         //private IAspNetUserRepository _aspNetUserRepository;
 
@@ -30,11 +29,11 @@ namespace DevTimer.Controllers
             //_aspNetUserRepository = aspNetUserRepository;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
+        //public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        //{
+        //    UserManager = userManager;
+        //    SignInManager = signInManager;
+        //}
 
         public ApplicationSignInManager SignInManager
         {
@@ -45,18 +44,6 @@ namespace DevTimer.Controllers
             private set 
             { 
                 _signInManager = value; 
-            }
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
             }
         }
 
@@ -425,11 +412,11 @@ namespace DevTimer.Controllers
         {
             if (disposing)
             {
-                if (_userManager != null)
-                {
-                    _userManager.Dispose();
-                    _userManager = null;
-                }
+                //if (_userManager != null)
+                //{
+                //    _userManager.Dispose();
+                //    _userManager = null;
+                //}
 
                 if (_signInManager != null)
                 {

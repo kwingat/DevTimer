@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using DevTimer.Core;
 using DevTimer.Infrastructure.Alerts;
 using DevTimer.Models;
 using Microsoft.AspNet.Identity;
@@ -10,6 +11,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DevTimer.Controllers
 {
+    [AuthorizeRoles(Role.Administrator)]
     public class RolesController : BaseController
     {
         readonly ApplicationDbContext _context = new ApplicationDbContext();
@@ -48,7 +50,7 @@ namespace DevTimer.Controllers
                 return View(collection);
             }
         }
-
+        
         // GET: /Roles/Edit/5
         public async Task<ActionResult> Edit(string roleName)
         {
@@ -104,8 +106,7 @@ namespace DevTimer.Controllers
         public async Task<ActionResult> RoleAddToUser(string userName, string roleName)
         {
             ApplicationUser user = await _context.Users.FirstOrDefaultAsync(u => u.UserName.Equals(userName, StringComparison.CurrentCultureIgnoreCase));
-            var account = new AccountController();
-            await account.UserManager.AddToRolesAsync(user.Id, roleName);
+            await UserManager.AddToRolesAsync(user.Id, roleName);
 
             var list = _context.Roles.OrderBy(r => r.Name)
                 .ToList()
@@ -124,16 +125,17 @@ namespace DevTimer.Controllers
             if (!string.IsNullOrWhiteSpace(userName))
             {
                 ApplicationUser user = await _context.Users.FirstOrDefaultAsync(u => u.UserName.Equals(userName, StringComparison.CurrentCultureIgnoreCase));
-                var account = new AccountController();
+                //var account = new AccountController();
 
-                ViewBag.RolesForThisUser = await account.UserManager.GetRolesAsync(user.Id);
+                ViewBag.RolesForThisUser = await UserManager.GetRolesAsync(user.Id);
 
                 var list = _context.Roles.OrderBy(r => r.Name)
                     .ToList()
                     .Select(rr => new SelectListItem {Value = rr.Name.ToString(), Text = rr.Name})
                     .ToList();
 
-                ViewBag.RolesForThisUser = list;
+                ViewBag.Roles = list;
+                //ViewBag.RolesForThisUser = list;
             }
 
             return View("ManageUserRoles");
@@ -141,15 +143,15 @@ namespace DevTimer.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteRoleForUser(string userName, string ro leName)
+        public async Task<ActionResult> DeleteRoleForUser(string userName, string roleName)
         {
             var message = "";
-            var account = new AccountController();
+            
             ApplicationUser user = await _context.Users.FirstOrDefaultAsync(u => u.UserName.Equals(userName, StringComparison.CurrentCultureIgnoreCase));
 
-            if (await account.UserManager.IsInRoleAsync(user.Id, roleName))
+            if (await UserManager.IsInRoleAsync(user.Id, roleName))
             {
-                await account.UserManager.RemoveFromRoleAsync(user.Id, roleName);
+                await UserManager.RemoveFromRoleAsync(user.Id, roleName);
                 message = "Role removed from this user successfully!";
             }
             else
@@ -162,5 +164,5 @@ namespace DevTimer.Controllers
 
             return View("ManageUserRoles");
         } 
-         }
-} 0cv
+    }
+} 

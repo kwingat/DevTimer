@@ -240,6 +240,7 @@
     <Compile Include="Infrastructure\Alerts\AlertExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetUserViewModel.cs" />
+    <Compile Include="Models\AuthorizeRoleAttribute.cs" />
     <Compile Include="Models\ClientEditViewModel.cs" />
     <Compile Include="Models\ClientListViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
