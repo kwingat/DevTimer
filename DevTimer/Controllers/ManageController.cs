@@ -10,7 +10,7 @@ using DevTimer.Models;
 
 namespace DevTimer.Controllers
 {
-    [Authorize]
+    [AuthorizeRoles(Role.Administrator)]
     public class ManageController : BaseController
     {
         private ApplicationSignInManager _signInManager;
@@ -38,7 +38,7 @@ namespace DevTimer.Controllers
             }
         }
 
-        public ApplicationUserManager UserManager
+        public new ApplicationUserManager UserManager
         {
             get
             {

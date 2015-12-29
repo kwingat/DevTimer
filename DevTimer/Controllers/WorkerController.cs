@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity;
 
 namespace DevTimer.Controllers
 {
-    [Authorize]
+    [AuthorizeRoles(Role.Administrator)]
     public class WorkerController : BaseController
     {
         private readonly IWorkerRepository _workerRepository;
