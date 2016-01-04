@@ -498,14 +498,14 @@
     <Content Include="Views\Shared\_LayoutRegister.cshtml" />
     <Content Include="Views\Worker\Index.cshtml" />
     <Content Include="Views\Worker\Edit.cshtml" />
-    <None Include="Views\HourlyTime\Index.cshtml" />
+    <Content Include="Views\HourlyTime\Index.cshtml" />
     <Content Include="Views\HourlyTime\_Create.cshtml" />
     <Content Include="Views\HourlyTime\_Edit.cshtml" />
-    <None Include="Views\Roles\AssignRoles.cshtml" />
-    <None Include="Views\Roles\Create.cshtml" />
-    <None Include="Views\Roles\Edit.cshtml" />
-    <None Include="Views\Roles\Index.cshtml" />
-    <None Include="Views\Roles\ManageUserRoles.cshtml" />
+    <Content Include="Views\Roles\AssignRoles.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\ManageUserRoles.cshtml" />
     <Content Include="Views\Shared\_AccessDenied.cshtml" />
   </ItemGroup>
   <ItemGroup>
