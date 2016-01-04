@@ -9,6 +9,7 @@ namespace DevTimer
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-ui-{version}.js",
                         "~/Scripts/jquery.cookie.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -62,6 +63,8 @@ namespace DevTimer
                       "~/Content/light.css",
                       "~/Content/CSS/site.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/themes/base/all.css"));
 
             bundles.Add(new StyleBundle("~/Content/daterangepicker-bs3").Include(
                 "~/Content/CSS/bootstrap2-3-2.css",

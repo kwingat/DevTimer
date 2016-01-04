@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.Security;
 using DevTimer.Core;
 using DevTimer.Infrastructure.Alerts;
 using DevTimer.Models;
@@ -163,6 +166,61 @@ namespace DevTimer.Controllers
             ViewBag.Roles = list;
 
             return View("ManageUserRoles");
+        }
+
+        public async Task<ActionResult> AssignRoles(string id)
+        {
+            ApplicationUser user = await _context.Users.FirstOrDefaultAsync(u => u.Id.Equals(id, StringComparison.CurrentCultureIgnoreCase));
+
+            if (user == null) HttpNotFound();
+
+            ViewBag.ID = id;
+            ViewBag.AllRoles = _context.Roles.Select(r => r.Name).ToArray();
+            ViewBag.AllowRoles = UserManager.GetRoles(user.Id).ToArray();
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AssignRoles(string id, FormCollection formItems)
+        {
+            try
+            {
+                ApplicationUser user = 
+                    await _context.Users.FirstOrDefaultAsync(u => u.Id.Equals(id, StringComparison.CurrentCultureIgnoreCase));
+
+                if (user == null) HttpNotFound();
+                
+                // Updatethe Roles for the user
+                String[] newRoles = formItems["GrantRoles"].Split(',');
+
+                // Get the list of old roles and remove them
+                String[] oldRoles = UserManager.GetRoles(user.Id).ToArray();
+
+                foreach (var role in oldRoles)
+                {
+                    if (_context.Roles.Any(r => r.Name.Equals(role)))
+                        await UserManager.RemoveFromRoleAsync(user.Id, role);
+                }
+
+                // Check each new role is valid and apply to user
+                foreach (var role in newRoles)
+                {
+                    if (!role.Equals("") && _context.Roles.Any(r => r.Name.Equals(role))) 
+                        await UserManager.AddToRoleAsync(user.Id, role);
+                }
+
+                ViewBag.ID = id;
+                ViewBag.AllRoles = _context.Roles.Select(r => r.Name).ToArray();
+                ViewBag.AllowRoles = UserManager.GetRoles(user.Id).ToArray();
+            }
+            catch (Exception)
+            {
+                return View().WithError("Username is not valid");
+            }
+
+            return View().WithSuccess("User roles have been updated.");
         } 
     }
 } 

@@ -34,8 +34,12 @@ namespace DevTimer.Domain.Entities
         [StringLength(32)]
         public string Fax { get; set; }
 
+        public int? WorkerType { get; set; }
+
         public virtual AspNetUser AspNetUser { get; set; }
 
         public virtual State State { get; set; }
+
+        public virtual WorkerType WorkerType1 { get; set; }
     }
 }

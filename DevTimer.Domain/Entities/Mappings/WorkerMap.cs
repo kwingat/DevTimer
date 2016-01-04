@@ -9,7 +9,6 @@ namespace DevTimer.Domain.Entities.Mappings
             ToTable("Worker");
 
             HasKey(t => t.ID);
-
             
             Property(e => e.Name).IsUnicode(false);
             Property(e => e.Address1).IsUnicode(false);

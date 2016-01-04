@@ -9,6 +9,7 @@ using AutoMapper;
 using DevTimer.Core;
 using DevTimer.Domain.Abstract;
 using DevTimer.Domain.Entities;
+using DevTimer.Export_to_Excel.Salary;
 using DevTimer.Helpers;
 using DevTimer.Infrastructure.Alerts;
 using DevTimer.Models;
@@ -21,20 +22,17 @@ namespace DevTimer.Controllers
     public class TimeController : BaseController
     {
         private readonly IAspNetUserRepository _aspNetUserRepository;
-        private readonly IClientRepository _clientRepository;
         private readonly IProjectRepository _projectRepository;
         private readonly IWorkRepository _workRepository;
         private readonly IWorkTypeRepository _workTypeRepository;
 
         public TimeController(
             IAspNetUserRepository aspNetUserRepository,
-            IClientRepository clientRepository,
             IProjectRepository projectRepository,
             IWorkRepository workRepository,
             IWorkTypeRepository workTypeRepository)
         {
             _aspNetUserRepository = aspNetUserRepository;
-            _clientRepository = clientRepository;
             _projectRepository = projectRepository;
             _workRepository = workRepository;
             _workTypeRepository = workTypeRepository;
@@ -51,8 +49,7 @@ namespace DevTimer.Controllers
             var works = await _workRepository.GetAllByUserAsync(User.Identity.GetUserId());
             var projects = await _projectRepository.GetAllAsync();
 
-            var viewModel = Mapper.Map<IEnumerable<Work>, WorkListViewModel>(works)
-                .Map(projects);
+            var viewModel = Mapper.Map<IEnumerable<Work>, WorkListViewModel>(works).Map(projects);
 
             return View(viewModel);
         }
@@ -63,9 +60,7 @@ namespace DevTimer.Controllers
             var projects = _projectRepository.GetAll();
             var workTypes = _workTypeRepository.GetAll();
 
-            var viewModel = Mapper.Map<Work, WorkEditViewModel>(work)
-                .Map(projects)
-                .Map(workTypes);
+            var viewModel = Mapper.Map<Work, WorkEditViewModel>(work).Map(projects).Map(workTypes);
 
             return PartialView("_Create", viewModel);
         }
@@ -235,10 +230,9 @@ namespace DevTimer.Controllers
             return RedirectToAction("Index", "Time").WithSuccess("Time successfully Closed.");
         }
 
-        public async Task<ActionResult> ExportToExcel(DateTime to, DateTime from) //
+        public async Task<ActionResult> ExportToExcel(DateTime to, DateTime from) 
         {
-            var works =
-                (await _workRepository.GetByUserAndDatesAsync(User.Identity.GetUserId(), to, from)).ToList();
+            var works = (await _workRepository.GetByUserAndDatesAsync(User.Identity.GetUserId(), to, from)).ToList();
             var timeTrackers = CreateTimeTracker(to, from);
             timeTrackers = CountWorkEachDay(works, timeTrackers);
             var file = Guid.NewGuid() + ".xlsx";
@@ -285,7 +279,7 @@ namespace DevTimer.Controllers
             return timeTrackers;
         }
 
-        private List<TimeTracker> CreateTimeTracker(DateTime startDate, DateTime endDate)
+        private static List<TimeTracker> CreateTimeTracker(DateTime startDate, DateTime endDate)
         {
             var timeTrackers = new List<TimeTracker>();
 
@@ -342,7 +336,7 @@ namespace DevTimer.Controllers
             return p;
         }
 
-        private void CreateDisplayDataFooter(ExcelWorksheet ws, ref int rowIndex, List<TimeTracker> timeTrackers)
+        private static void CreateDisplayDataFooter(ExcelWorksheet ws, ref int rowIndex, List<TimeTracker> timeTrackers)
         {
             var colIndex = 1;
             var type = timeTrackers[1].GetType();
@@ -373,7 +367,7 @@ namespace DevTimer.Controllers
             rowIndex++;
         }
 
-        private void CreateDisplayData(ExcelWorksheet ws, ref int rowIndex, List<TimeTracker> timeTrackers)
+        private static void CreateDisplayData(ExcelWorksheet ws, ref int rowIndex, List<TimeTracker> timeTrackers)
         {
             foreach (var timeTracker in timeTrackers)
             {
@@ -393,7 +387,7 @@ namespace DevTimer.Controllers
                             cell.AutoFitColumns();
                             break;
                         case TypeCode.Double:
-                            var val = (double) (value ?? string.Empty);
+                            var val = (double)(value ?? string.Empty);
                             cell.Value = Math.Round(val, 1);
                             break;
                         case TypeCode.String:
@@ -408,7 +402,7 @@ namespace DevTimer.Controllers
             }
         }
 
-        private void CreateDisplayDataHeader(ExcelWorksheet ws, ref int rowIndex, List<TimeTracker> timeTrackers)
+        private static void CreateDisplayDataHeader(ExcelWorksheet ws, ref int rowIndex, List<TimeTracker> timeTrackers)
         {
             var colIndex = 1;
             var type = timeTrackers[1].GetType();

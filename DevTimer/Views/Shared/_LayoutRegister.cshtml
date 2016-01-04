@@ -69,15 +69,26 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label visible-ie8 visible-ie9" })
+                @Html.LabelFor(m => m.ConfirmPassword, new {@class = "control-label visible-ie8 visible-ie9"})
                 <div class="controls">
                     <div class="input-icon left">
                         <i class="fa fa-lock"></i>
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "m-wrap", placeholder = "Confirm Password" })
-                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                        @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "m-wrap", placeholder = "Confirm Password"})
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new {@class = "text-danger"})
                     </div>
                 </div>
             </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.WorkerType, new { @class = "control-label visible-ie8 visible-ie9" })
+                <div class="controls">
+                    <div class="input-icon left">
+                        @Html.DropDownListFor(m => m.WorkerType, new SelectList(ViewBag.WorkerTypes, "ID", "Type"), "Select Worker Type", new { @class = "m-wrap" })
+                        @Html.ValidationMessageFor(m => m.WorkerType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
             <div class="alert fade in login_alert"></div>
             <div class="form-actions">
                 <button type="submit" value="Register" class="btn btn-success pull-right">

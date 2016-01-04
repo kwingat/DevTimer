@@ -4,12 +4,30 @@
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
   
   <mvcSiteMapNode title="Home" controller="Home" action="Index">
+    
     <mvcSiteMapNode title="About" controller="Home" action="About" />
+    
     <mvcSiteMapNode title="Contact" controller="Home" action="Contact" />
+    
+    <mvcSiteMapNode title="Error" controller="Home" action="Error" />
     
     <mvcSiteMapNode title="Clients" controller="Client" action="Index">
       <mvcSiteMapNode title="New Client" action="Edit" id="0" />
       <mvcSiteMapNode title="Edit Client" action="Edit" preservedRouteParameters="id"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Roles" controller="Roles" action="Index">
+      <mvcSiteMapNode title="New Role" action="Create" />
+      <mvcSiteMapNode title="Edit Role" action="Edit" preservedRouteParameters="id"/>
+      <mvcSiteMapNode title="Assign Role" action="AssignRoles" preservedRouteParameters="id"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Manage" controller="Manage" action="Index">
+      <mvcSiteMapNode title="Change Password" action="ChangePassword" />
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Profile" controller="Worker" action="Index">
+      <mvcSiteMapNode title="Edit Profile" action="Edit" />
     </mvcSiteMapNode>
 
     <mvcSiteMapNode title="Projects" controller="Project" action="Index">
@@ -21,10 +39,6 @@
       <mvcSiteMapNode title="New Time" action="Edit" id="0" />
       <mvcSiteMapNode title="Edit Time" action="Edit" preservedRouteParameters="id"/>
     </mvcSiteMapNode>
-
-    <mvcSiteMapNode title="Profile" controller="Worker" action="Index">
-      <mvcSiteMapNode title="Edit Profile" action="Edit" />
-    </mvcSiteMapNode>
-    
+  
   </mvcSiteMapNode>
 </mvcSiteMap>

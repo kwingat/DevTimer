@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using DevTimer.Core;
 using DevTimer.Domain.Entities;
@@ -13,10 +12,5 @@ namespace DevTimer.Domain.Abstract
         Task<Worker> GetByIdAsync(int id);
         Task<Worker> GetByUserIdAsync(string userId);
         Task<IPagedEnumerable<Worker>> GetAllAsync(int pageSize, int pageNumber);
-    }
-
-    public interface IStateRepository : IRepository
-    {
-        Task<IEnumerable<State>> GetAllAsync();
     }
 }

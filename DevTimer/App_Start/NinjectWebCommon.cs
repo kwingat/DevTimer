@@ -76,6 +76,7 @@ namespace DevTimer
             kernel.Bind<IProjectRepository>().To<ProjectRepository>();
             kernel.Bind<IStateRepository>().To<StateRepository>();
             kernel.Bind<IWorkerRepository>().To<WorkerRepository>();
+            kernel.Bind<IWorkerTypeRepository>().To<WorkerTypeRepository>();
             kernel.Bind<IWorkRepository>().To<WorkRepository>();
             kernel.Bind<IWorkTypeRepository>().To<WorkTypeRepository>();
         }        

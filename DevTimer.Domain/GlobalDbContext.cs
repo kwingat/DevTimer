@@ -12,7 +12,8 @@ namespace DevTimer.Domain
         public DbSet<Client> Clients { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<State> States { get; set; }
-        public DbSet<Worker> Workers { get; set; } 
+        public DbSet<Worker> Workers { get; set; }
+        public DbSet<WorkerType> WorkerTypes { get; set; } 
         public DbSet<Work> Works { get; set; }
         public DbSet<WorkType> WorkTypes { get; set; }
 
@@ -30,6 +31,7 @@ namespace DevTimer.Domain
             modelBuilder.Configurations.Add(new ProjectMap());
             modelBuilder.Configurations.Add(new StateMap());
             modelBuilder.Configurations.Add(new WorkerMap());
+            modelBuilder.Configurations.Add(new WorkerTypeMap());
             modelBuilder.Configurations.Add(new WorkMap());
             modelBuilder.Configurations.Add(new WorkTypeMap());
         }

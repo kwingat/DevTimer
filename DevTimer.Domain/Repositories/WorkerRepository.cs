@@ -63,22 +63,4 @@ namespace DevTimer.Domain.Repositories
                 .OrderBy(e => e.Name);
         } 
     }
-
-    public class StateRepository:Repository<State>, IStateRepository
-    {
-        public StateRepository(DbContextBase context) : base(context)
-        {
-        }
-
-        public async Task<IEnumerable<State>> GetAllAsync()
-        {
-            return await GetAllQuery().ToListAsync();
-        }
-
-        private IQueryable<State> GetAllQuery()
-        {
-            return Set
-                .OrderBy(e => e.StateName);
-        }
-    }
 }

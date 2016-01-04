@@ -19,6 +19,11 @@ namespace DevTimer.Models
                 .ForMember(d => d.Text, opt => opt.MapFrom(s => s.Name))
                 .ForMember(d => d.Value, opt => opt.MapFrom(s => s.ID));
 
+            configuration.CreateMap<WorkerType, SelectListItem>()
+                .IgnoreAllUnmapped()
+                .ForMember(d => d.Text, opt => opt.MapFrom(s => s.Type))
+                .ForMember(d => d.Value, opt => opt.MapFrom(s => s.ID));
+
             configuration.CreateMap<WorkType, SelectListItem>()
                 .IgnoreAllUnmapped()
                 .ForMember(d => d.Text, opt => opt.MapFrom(s => s.Name))

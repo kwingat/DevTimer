@@ -1,8 +1,9 @@
-﻿using System;
+﻿ using System;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical;
+ using System.Web.UI.WebControls;
+ using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical;
 
 namespace DevTimer.Models
 {
@@ -24,8 +25,8 @@ namespace DevTimer.Models
             if (!authorized)
             {
                 var url = new UrlHelper(context.RequestContext);
-                var logonUrl = url.Action("Http", "Error", new { Id = 401, Area = "" });
-                context.Result = new RedirectResult(logonUrl);
+                var errorUrl = url.Action("Error", "Home", new { Id = 401, Area = "" });
+                context.Result = new RedirectResult(errorUrl);
 
                 // TODO: Send the user somewhere more constructive
             }
@@ -35,6 +36,11 @@ namespace DevTimer.Models
     public static class Role
     {
         public const string Administrator = "Administrator";
-        public const string CallCenter = "Call Center";
+
+        public const string CallCenter = "Dept - Call Center";
+        public const string Programmers = "Dept - Programmers";
+
+        public const string Hourly = "Time-Hourly";
+        public const string Salary = "Time-Salary";
     }
 }

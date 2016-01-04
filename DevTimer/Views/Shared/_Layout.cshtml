@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using DevTimer.Models
+<!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
     <title>DevTime</title>
@@ -40,30 +41,59 @@
                     <span class="title">Dashboard</span>
                 </a>
             </li>
-            <li class="start">
-                <a href="/Time">
-                    <i class="fa fa-clock-o"></i>
-                    <span class="title">Time</span>
-                </a>
-            </li>
-            <li class="start">
-                <a href="/Project">
-                    <i class="fa fa-plane"></i>
-                    <span class="title">Projects</span>
-                </a>
-            </li>
-            <li class="start">
-                <a href="/Client">
-                    <i class="fa fa-briefcase"></i>
-                    <span class="title">Clients</span>
-                </a>
-            </li>
-            <li class="start">
-                <a href="/Roles">
-                    <i class="fa fa-user"></i>
-                    <span class="title">Roles</span>
-                </a>
-            </li>
+
+            @if (User.IsInRole(Role.Administrator))
+            {
+                <li class="start">
+                    <a href="/Client">
+                        <i class="fa fa-briefcase"></i>
+                        <span class="title">Clients</span>
+                    </a>
+                </li>
+                <li class="start">
+                    <a href="/Project">
+                        <i class="fa fa-plane"></i>
+                        <span class="title">Projects</span>
+                    </a>
+                </li>
+                <li class="start">
+                    <a href="/Roles">
+                        <i class="fa fa-odnoklassniki"></i>
+                        <span class="title">Roles</span>
+                    </a>
+                </li>
+            }
+
+            @if (User.IsInRole(Role.Programmers))
+            {
+                <li class="start">
+                    <a href="/Time">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="title">Time</span>
+                    </a>
+                </li>
+            }
+
+            @if (User.IsInRole(Role.CallCenter))
+            {
+                <li class="start">
+                    <a href="/HourlyTime">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="title">Time</span>
+                    </a>
+                </li>
+            }
+
+
+            @if (User.IsInRole(Role.Administrator))
+            {
+                <li class="start">
+                    <a href="/Worker">
+                        <i class="fa fa-user"></i>
+                        <span class="title">Worker</span>
+                    </a>
+                </li>
+            }
         </ul>
     </div>
     <!-- END SIDEBAR -->

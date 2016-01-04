@@ -18,15 +18,17 @@ namespace DevTimer.Controllers
     public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
-        private IWorkerRepository _workerRepository;
-        //private IAspNetUserRepository _aspNetUserRepository;
+        private readonly IWorkerRepository _workerRepository;
+        private readonly IWorkerTypeRepository _workerTypeRepository;
 
         public AccountController() { }
 
-        public AccountController(IWorkerRepository workerRepository)
+        public AccountController(
+            IWorkerRepository workerRepository,
+            IWorkerTypeRepository workerTypeRepository)
         {
             _workerRepository = workerRepository;
-            //_aspNetUserRepository = aspNetUserRepository;
+            _workerTypeRepository = workerTypeRepository;
         }
 
         //public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -134,8 +136,10 @@ namespace DevTimer.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public async Task<ActionResult> Register()
         {
+            ViewBag.WorkerTypes = await _workerTypeRepository.GetAllAsync();
+
             return View("_LayoutRegister");
         }
 
@@ -161,6 +165,7 @@ namespace DevTimer.Controllers
                     };
 
                     _workerRepository.Add(worker);
+                    await _workerRepository.SaveAsync();
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -172,6 +177,8 @@ namespace DevTimer.Controllers
                 }
                 AddErrors(result);
             }
+
+            ViewBag.WorkerTypes = await _workerTypeRepository.GetAllAsync();
 
             // If we got this far, something failed, redisplay form
             return View("_LayoutRegister",model);

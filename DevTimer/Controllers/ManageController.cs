@@ -8,9 +8,12 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DevTimer.Models;
 
+/* TODO
+ * SET UP Recover Email 
+ */
+
 namespace DevTimer.Controllers
 {
-    [AuthorizeRoles(Role.Administrator)]
     public class ManageController : BaseController
     {
         private ApplicationSignInManager _signInManager;

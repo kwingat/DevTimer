@@ -43,7 +43,12 @@ namespace DevTimer.Models
         [StringLength(32)]
         public string Fax { get; set; }
 
+        [Display(Name = "Worker Type")]
+        public int? WorkerType { get; set; }
+
         public IEnumerable<SelectListItem> States { get; set; }
+
+        public IEnumerable<SelectListItem> WorkerTypes { get; set; } 
 
         public void CreateMapping(IConfiguration configuration)
         {
@@ -59,11 +64,16 @@ namespace DevTimer.Models
                 .ForMember(d => d.StateID, opt => opt.MapFrom(s => s.StateID))
                 .ForMember(d => d.Zip, opt => opt.MapFrom(s => s.Zip))
                 .ForMember(d => d.Phone, opt => opt.MapFrom(s => s.Phone))
-                .ForMember(d => d.Fax, opt => opt.MapFrom(s => s.Fax));
+                .ForMember(d => d.Fax, opt => opt.MapFrom(s => s.Fax))
+                .ForMember(d => d.WorkerType, opt => opt.MapFrom(s => s.WorkerType)); ;
 
             configuration.CreateMap<IEnumerable<State>, WorkerEditViewModel>()
                 .IgnoreAllUnmapped()
                 .ForMember(d => d.States, opt => opt.MapFrom(d => d));
+
+            configuration.CreateMap<IEnumerable<WorkerType>, WorkerEditViewModel>()
+                .IgnoreAllUnmapped()
+                .ForMember(d => d.WorkerTypes, opt => opt.MapFrom(d => d));
 
             configuration.CreateMap<WorkerEditViewModel, Worker>()
                 .IgnoreAllUnmapped()
@@ -75,7 +85,8 @@ namespace DevTimer.Models
                 .ForMember(d => d.StateID, opt => opt.MapFrom(s => s.StateID))
                 .ForMember(d => d.Zip, opt => opt.MapFrom(s => s.Zip))
                 .ForMember(d => d.Phone, opt => opt.MapFrom(s => s.Phone))
-                .ForMember(d => d.Fax, opt => opt.MapFrom(s => s.Fax));
+                .ForMember(d => d.Fax, opt => opt.MapFrom(s => s.Fax))
+                .ForMember(d => d.WorkerType, opt => opt.MapFrom(s => s.WorkerType));
                 
         }
     }

@@ -33,5 +33,11 @@ namespace DevTimer.Controllers
 
             return View();
         }
+
+        public ActionResult Error(int? id = null)
+        {
+            ViewBag.ID = id;
+            return View("_AccessDenied");
+        }
     }
 }
