@@ -507,7 +507,6 @@
     <None Include="Views\Roles\Index.cshtml" />
     <None Include="Views\Roles\ManageUserRoles.cshtml" />
     <Content Include="Views\Shared\_AccessDenied.cshtml" />
-    <None Include="Views\Worker\AssignRoles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Plugins\" />
