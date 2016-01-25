@@ -1,0 +1,102 @@
+﻿@model DevTimer.Models.WorkerEditViewModel
+
+@{
+    ViewBag.Title = "Edit Worker";
+}
+
+
+<div class="col-md-4">
+    @using (Html.BeginForm("Edit", "Worker", FormMethod.Post, new {@class = "form-horizontal"}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.ID)
+        @Html.HiddenFor(m => m.UserID)
+        <fieldset>
+            <legend>Profile</legend>
+            @* TODO: Make WorkerType only editable by Administrators *@
+            <div class="form-group">
+                @Html.LabelFor(m => m.WorkerType, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-9">
+                    @Html.DropDownListFor(m => m.WorkerType, Model.WorkerTypes, "Please choose", new { type = "text", @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Name, new {@class = "col-sm-3 control-label"})
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Phone, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new {@class = "col-sm-3 control-label"})
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.Email, new {@class = "form-control"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Address1, new {@class = "col-sm-3 control-label"})
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.Address1, new {@class = "form-control"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Address2, new {@class = "col-sm-3 control-label"})
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.Address2, new {@class = "form-control"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.City, new {@class = "col-sm-3 control-label"})
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.City, new {@class = "form-control"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.States, new {@class = "col-sm-3 control-label"})
+                <div class="col-sm-4">
+                    @Html.DropDownListFor(m => m.StateID, Model.States, "Please choose", new { type = "text", @class = "form-control" })
+                </div>
+
+                @Html.LabelFor(m => m.Zip, new {@class = "col-sm-1 control-label"})
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(m => m.Zip, new {@class = "form-control"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Password</label>
+                <div class="col-sm-9">
+                    @Html.ActionLink("Change your password", "ChangePassword", "Manage", null, new {@class = "btn btn-danger"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Roles</label>
+                <div class="col-sm-9">
+                    @Html.ActionLink("Edit User Roles", "AssignRoles", "Roles", new { id = Model.UserID }, new { @class = "btn btn-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="pull-right">
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-default"><span>Cancel</span></a>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    }
+</div>

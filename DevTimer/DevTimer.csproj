@@ -43,6 +43,10 @@
       <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EPPlus, Version=4.0.4.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.0.4\lib\net20\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
       <Private>True</Private>
@@ -83,6 +87,8 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -216,11 +222,18 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\ClientsApiController.cs" />
     <Compile Include="Controllers\API\ProjectsApiController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HourlyTimeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\TimeController.cs" />
+    <Compile Include="Controllers\WorkerController.cs" />
+    <Compile Include="Export to Excel\Salary\Developers.cs" />
+    <Compile Include="Helpers\DownloadFileActionResult.cs" />
+    <Compile Include="Helpers\TimeHelper.cs" />
     <Compile Include="Filters\ValidationHttpFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -231,6 +244,7 @@
     <Compile Include="Infrastructure\Alerts\AlertExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetUserViewModel.cs" />
+    <Compile Include="Models\AuthorizeRoleAttribute.cs" />
     <Compile Include="Models\ClientEditViewModel.cs" />
     <Compile Include="Models\ClientListViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -239,7 +253,10 @@
     <Compile Include="Models\ProjectEditViewModel.cs" />
     <Compile Include="Models\ProjectListViewModel.cs" />
     <Compile Include="Models\SelectListItem.cs" />
+    <Compile Include="Models\TimeTracker.cs" />
     <Compile Include="Models\WorkEditViewModel.cs" />
+    <Compile Include="Models\WorkerEditViewModel.cs" />
+    <Compile Include="Models\WorkerListViewModel.cs" />
     <Compile Include="Models\WorkListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Mobile.Master.cs">
@@ -259,47 +276,79 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\DevTimer.mdf" />
-    <Content Include="App_Data\DevTimer_log.ldf">
+    <None Include="App_Data\DevTimer.mdf" />
+    <None Include="App_Data\DevTimer_log.ldf">
       <DependentUpon>DevTimer.mdf</DependentUpon>
-    </Content>
+    </None>
+    <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap-datepicker3.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap-table.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\CSS\bootstrap-datepicker.css" />
-    <Content Include="Content\CSS\bootstrap-datepicker3.css" />
-    <Content Include="Content\CSS\bootstrap-responsive.min.css" />
-    <Content Include="Content\CSS\bootstrap-table.css" />
-    <Content Include="Content\CSS\bootstrap-theme.min.css" />
-    <Content Include="Content\CSS\bootstrap.css" />
-    <Content Include="Content\CSS\bootstrap.min.css" />
-    <Content Include="Content\CSS\clockface.css" />
-    <Content Include="Content\CSS\font-awesome.css" />
-    <Content Include="Content\CSS\font-awesome.min.css" />
-    <Content Include="Content\CSS\light.css" />
-    <Content Include="Content\CSS\Login-soft.css" />
+    <Content Include="Content\clockface.css" />
+    <Content Include="Content\CSS\bootstrap2-3-2.css" />
+    <Content Include="Content\CSS\Bootstrap2-3-1.min.css" />
     <Content Include="Content\CSS\Site.css" />
-    <Content Include="Content\CSS\style-metro.css" />
-    <Content Include="Content\CSS\style-responsive.css" />
-    <Content Include="Content\CSS\style.css" />
-    <Content Include="Content\Fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\CSS\daterangepicker-bs3.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Img\bg-white-lock.png" />
+    <Content Include="Content\Img\flower.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Img\glyphicons-halflings.png" />
     <Content Include="Content\Img\remove-icon-small.png" />
     <Content Include="Content\Img\sidebar-toggler-light.jpg" />
     <Content Include="Content\Img\syncfusion-icons-white.png" />
     <Content Include="Content\Img\syncfusion-icons.png" />
+    <Content Include="Content\light.css" />
+    <Content Include="Content\Login-soft.css" />
+    <Content Include="Content\style-metro.css" />
+    <Content Include="Content\style-responsive.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
-    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
-    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
-    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\App\alert.js" />
     <Content Include="Scripts\App\formatColumn.js" />
@@ -309,13 +358,11 @@
     <Content Include="Scripts\bootstrap-table.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\Fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\Fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\Fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\Fonts\fontawesome-webfont.woff2" />
-    <Content Include="Content\Fonts\FontAwesome.otf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\chart.js" />
     <Content Include="Scripts\clockface.js" />
+    <Content Include="Scripts\collapse.js" />
+    <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\Extensions\cookie\README.md" />
     <Content Include="Scripts\Extensions\editable\README.md" />
     <Content Include="Scripts\Extensions\export\README.md" />
@@ -331,15 +378,24 @@
     <Content Include="Scripts\Extensions\reorder-rows\README.md" />
     <Content Include="Scripts\Extensions\resizable\README.md" />
     <Content Include="Scripts\Extensions\toolbar\README.md" />
-    <Content Include="Mvc.sitemap" />
-    <Content Include="Content\CSS\bootstrap-theme.css.map" />
-    <Content Include="Content\CSS\bootstrap.css.map" />
+    <Content Include="Mvc.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="MvcSiteMapSchema.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <None Include="Properties\PublishProfiles\kdub - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\kdub - Web Deploy.pubxml" />
+    <Content Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Extensions\angular\bootstrap-table-angular.js" />
     <Content Include="Scripts\Extensions\cookie\bootstrap-table-cookie.js" />
     <Content Include="Scripts\Extensions\editable\bootstrap-table-editable.js" />
@@ -359,8 +415,11 @@
     <Content Include="Scripts\Extensions\resizable\bootstrap-table-resizable.js" />
     <Content Include="Scripts\Extensions\toolbar\bootstrap-table-toolbar.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -369,12 +428,19 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modalform.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\transition.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -411,7 +477,7 @@
     <Content Include="Site.Mobile.Master" />
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Scripts\underscore.string.js" />
-    <None Include="Views\Client\Edit.cshtml" />
+    <Content Include="Views\Client\Edit.cshtml" />
     <Content Include="Views\Shared\_AlertsPartial.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
@@ -423,15 +489,29 @@
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\BootstrapMenuHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\BootstrapSiteMapPathHelperModel.cshtml" />
-    <None Include="Views\Project\Edit.cshtml" />
-    <None Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\Project\Edit.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
-    <None Include="Views\Time\Index.cshtml" />
+    <Content Include="Views\Time\Index.cshtml" />
     <Content Include="Views\Time\_Create.cshtml" />
-    <None Include="Views\Time\_Edit.cshtml" />
+    <Content Include="Views\Time\_Edit.cshtml" />
+    <Content Include="Views\Shared\_LayoutRegister.cshtml" />
+    <Content Include="Views\Worker\Index.cshtml" />
+    <Content Include="Views\Worker\Edit.cshtml" />
+    <Content Include="Views\HourlyTime\Index.cshtml" />
+    <Content Include="Views\HourlyTime\_Create.cshtml" />
+    <Content Include="Views\HourlyTime\_Edit.cshtml" />
+    <Content Include="Views\Roles\AssignRoles.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\ManageUserRoles.cshtml" />
+    <Content Include="Views\Shared\_AccessDenied.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Plugins\" />
+    <Folder Include="Export to Excel\Hourly\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\ClientsApi\" />
   </ItemGroup>
   <ItemGroup>

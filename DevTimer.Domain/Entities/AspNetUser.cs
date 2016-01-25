@@ -9,6 +9,7 @@ namespace DevTimer.Domain.Entities
         public AspNetUser()
         {
             Works = new HashSet<Work>();
+            Workers = new HashSet<Worker>();
         }
 
         public string Id { get; set; }
@@ -39,5 +40,7 @@ namespace DevTimer.Domain.Entities
         public string UserName { get; set; }
 
         public virtual ICollection<Work> Works { get; set; }
+
+        public virtual ICollection<Worker> Workers { get; set; } 
     }
 }

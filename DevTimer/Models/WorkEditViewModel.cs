@@ -18,6 +18,7 @@ namespace DevTimer.Models
 
         public int WorkTypeID { get; set; }
 
+
         public string UserID
         {
             get { return HttpContext.Current.User.Identity.GetUserId(); }
@@ -25,10 +26,10 @@ namespace DevTimer.Models
 
         public string Comment { get; set; }
 
-        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [Required]
         public DateTime? Date { get; set; }
 
-        //[DisplayFormat(DataFormatString = "{0:HH:mm}")]
+        [Required]
         public DateTime? StartTime { get; set; }
 
         //[DisplayFormat(DataFormatString = "{0:HH:mm}")]
