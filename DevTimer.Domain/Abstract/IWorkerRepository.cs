@@ -10,7 +10,10 @@ namespace DevTimer.Domain.Abstract
         void Update(Worker worker);
 
         Task<Worker> GetByIdAsync(int id);
+
+        Worker GetByUserId(string userId);
         Task<Worker> GetByUserIdAsync(string userId);
+
         Task<IPagedEnumerable<Worker>> GetAllAsync(int pageSize, int pageNumber);
     }
 }

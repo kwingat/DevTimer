@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using AutoMapper;
@@ -15,6 +17,8 @@ using DevTimer.Infrastructure.Alerts;
 using DevTimer.Models;
 using Microsoft.AspNet.Identity;
 using OfficeOpenXml;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 using OfficeOpenXml.Style;
 
 namespace DevTimer.Controllers
@@ -24,17 +28,20 @@ namespace DevTimer.Controllers
         private readonly IAspNetUserRepository _aspNetUserRepository;
         private readonly IProjectRepository _projectRepository;
         private readonly IWorkRepository _workRepository;
+        private readonly IWorkerRepository _workerRepository;
         private readonly IWorkTypeRepository _workTypeRepository;
 
         public TimeController(
             IAspNetUserRepository aspNetUserRepository,
             IProjectRepository projectRepository,
             IWorkRepository workRepository,
+            IWorkerRepository workerRepository,
             IWorkTypeRepository workTypeRepository)
         {
             _aspNetUserRepository = aspNetUserRepository;
             _projectRepository = projectRepository;
             _workRepository = workRepository;
+            _workerRepository = workerRepository;
             _workTypeRepository = workTypeRepository;
         }
 
@@ -302,6 +309,9 @@ namespace DevTimer.Controllers
 
         private ExcelPackage GenerateReport(List<TimeTracker> timeTrackers, DateTime startDate, DateTime endDate)
         {
+            var worker = _workerRepository.GetByUserId(User.Identity.GetUserId());
+            var model = Mapper.Map<Worker, WorkerEditViewModel>(worker);
+            
             var p = new ExcelPackage();
 
             SetWorkbookProperties(p);
@@ -313,25 +323,60 @@ namespace DevTimer.Controllers
             cell.Merge = true;
             cell.Style.Font.Bold = true;
             cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            cell.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+            cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
+            var colFromHex = ColorTranslator.FromHtml("#538131");
+            cell.Style.Fill.BackgroundColor.SetColor(colFromHex);
+            cell.Style.Font.SetFromFont(new Font("Estrangelo Edessa", 16));
             var fill = cell.Style.Fill;
             fill.PatternType = ExcelFillStyle.Solid;
             fill.BackgroundColor.SetColor(Color.Green);
 
             ws.Cells[3, 1].Value = "Name:";
+            ws.Cells[3, 1].Style.Font.Bold = true;
+            ws.Cells[3, 1].Style.Font.SetFromFont(new Font("Arial Rounded MT Bold", 11));
             ws.Cells[3, 1].AutoFitColumns();
-            ws.Cells[3, 2].Value = User.Identity.Name;
-            ws.Cells[3, 2].AutoFitColumns();
 
+            ws.Cells[3, 2].Value = model.Name;
+            ws.Cells[3, 2].Style.Font.Bold = true;
+            ws.Cells[3, 2].Style.Font.SetFromFont(new Font("Arial Rounded MT Bold", 11));
+            ws.Cells[3, 2].AutoFitColumns();
+            
             ws.Cells[4, 1].Value = "Period Start:";
+            ws.Cells[4, 1].Style.Font.Bold = true;
+            ws.Cells[4, 1].Style.Font.SetFromFont(new Font("Arial Rounded MT Bold", 11));
             ws.Cells[4, 1].AutoFitColumns();
+            
             ws.Cells[4, 2].Value = startDate.ToShortDateString();
+            ws.Cells[4, 2].Style.Font.Bold = true;
+            ws.Cells[4, 2].Style.Font.SetFromFont(new Font("Arial Rounded MT Bold", 11));
             ws.Cells[4, 2].AutoFitColumns();
+
+            ws.Cells[5, 1].Value = "(*Note* WeeksStart on Saturday)";
+            ws.Cells[5, 1].Style.Font.Bold = false;
+            ws.Cells[5, 1].Style.Font.Color.SetColor(Color.Red);
+            ws.Cells[5, 1].Style.Font.SetFromFont(new Font("Calibri", 8));
+
+            cell = ws.Cells[6, 1, 6, 7];
+            cell.Style.Font.Bold = true;
+            cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
+            colFromHex = ColorTranslator.FromHtml("#A6D08E");
+            cell.Style.Fill.BackgroundColor.SetColor(colFromHex);
+            cell.Style.Border.BorderAround(ExcelBorderStyle.Thick);
+
+            cell = ws.Cells[7, 1, 8, 7];
+            cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
+            colFromHex = ColorTranslator.FromHtml("#E1EAF5");
+            cell.Style.Fill.BackgroundColor.SetColor(colFromHex);
 
             var rowIndex = 6;
 
             CreateDisplayDataHeader(ws, ref rowIndex, timeTrackers);
             CreateDisplayData(ws, ref rowIndex, timeTrackers);
             CreateDisplayDataFooter(ws, ref rowIndex, timeTrackers);
+
+            cell = ws.Cells[7, 1, 13, 7];
+            cell.Style.Border.BorderAround(ExcelBorderStyle.Thick);
 
             return p;
         }
@@ -352,6 +397,7 @@ namespace DevTimer.Controllers
                 {
                     case TypeCode.DateTime:
                         cell.Value = "Totals";
+                        cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
                         break;
 
                     case TypeCode.Double:
@@ -361,6 +407,7 @@ namespace DevTimer.Controllers
                         break;
                 }
 
+                cell.Style.Font.Bold = true;
                 colIndex++;
             }
 
@@ -395,7 +442,9 @@ namespace DevTimer.Controllers
                             break;
                     }
 
-                    //cell.Value = value != null ? value : "";
+                    cell.Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                    cell.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                    cell.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
                     colIndex++;
                 }
                 rowIndex++;
@@ -411,7 +460,7 @@ namespace DevTimer.Controllers
             foreach (var propertyInfo in properties)
             {
                 var cell = ws.Cells[rowIndex, colIndex];
-                cell.Value = propertyInfo.Name;
+                cell.Value = propertyInfo.GetCustomAttributes(typeof (DisplayNameAttribute), true).Cast<DisplayNameAttribute>().Single().DisplayName;
                 colIndex++;
             }
 

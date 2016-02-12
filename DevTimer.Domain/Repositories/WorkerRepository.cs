@@ -29,10 +29,14 @@ namespace DevTimer.Domain.Repositories
             return await Set.FindAsync(id);
         }
 
+        public Worker GetByUserId(string userId)
+        {
+            return GetByUserIdQuery(userId).FirstOrDefault();
+        }
+
         public async Task<Worker> GetByUserIdAsync(string userId)
         {
             return await GetByUserIdQuery(userId).FirstOrDefaultAsync();
-
         }
 
         public async Task<IPagedEnumerable<Worker>> GetAllAsync(int pageSize, int pageNumber)
