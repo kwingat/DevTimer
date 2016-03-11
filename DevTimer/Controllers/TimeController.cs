@@ -53,7 +53,7 @@ namespace DevTimer.Controllers
             if (aspNetUser == null)
                 return HttpNotFound();
 
-            var works = await _workRepository.GetAllByUserAsync(User.Identity.GetUserId());
+            var works = (await _workRepository.GetAllByUserAsync(User.Identity.GetUserId())).Where(w => w.StartTime != null && w.StartTime > DateTime.Now.Date.AddDays(-31));
             var projects = await _projectRepository.GetAllAsync();
 
             var viewModel = Mapper.Map<IEnumerable<Work>, WorkListViewModel>(works).Map(projects);
