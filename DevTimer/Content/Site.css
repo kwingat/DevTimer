@@ -85,3 +85,7 @@ textarea {
 form > ul.nav.navbar-nav.navbar-right.pull-right {
     margin-right: 15px;
 }
+
+#myModal .modal-dialog {
+    margin-top: 100px;
+}

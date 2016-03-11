@@ -42,7 +42,7 @@
 
                         @Html.TextBoxFor(m => m.Date, "{0:MM/dd/yyyy}", new { id = "date", @class = "form-control", @readonly = "readonly", style = "width:100px" })
 
-                        <span class="input-group-addon btn btn-success"><i class="icon-calendar"></i></span>
+                        <span class="input-group-addon btn btn-success" id="toggle-btnDate"><i class="icon-calendar"></i></span>
 
                         @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
                     </div>
@@ -83,13 +83,13 @@
 
 <script>
     $(function () {
-        $('#date').datepicker({
+        $('#toggle-btnDate').datepicker({
             autoclose: true,
             todayHighlight: true,
             format: 'mm/dd/yyyy'
         });
 
-        $('#date').datepicker("setDate", new Date());
+        //$('#date').datepicker("setDate", new Date());
 
         $('#startTime').clockface({
             format: 'HH:mm',

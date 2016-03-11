@@ -114,23 +114,12 @@
         @Scripts.Render("~/bundles/bootstrap-datepicker")
 
         <script language="javascript">
-
-            $(document).ready(function () {
-                console.log("doc ready");
-                $("#ShowAllDateEntries").on("click", function () {
-                    console.log("form sub");
-                    var showAll = $("#showAll");
-                    if (showAll) {
-                        console.log(showAll);
-                        $(".form-inline").submit();
-                    }
-                    else
-                        console.log("show all not found");
-                });
-            });
-
             $(function () {
                 $.ajaxSetup({ cache: false });
+
+                $("#ShowAllDateEntries").on("click", function () {
+                    $(".form-inline").submit();
+                });
 
                 $('#reportrange').daterangepicker({
                     "ranges": {
