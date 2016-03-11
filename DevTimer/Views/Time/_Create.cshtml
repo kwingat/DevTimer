@@ -40,7 +40,7 @@
                     Date:
                     <div class="input-group">
 
-                        @Html.TextBoxFor(m => m.Date, "{0:MM/dd/yyyy}", new { id = "date", @class = "form-control", @readonly = "readonly", style = "width:100px" })
+                        @Html.TextBoxFor(m => m.Date, "{0:MM/dd/yyyy}", new { id = "date", @class = "form-control", @readonly = "readonly", style = "width:100px; cursor:pointer" })
 
                         <span class="input-group-addon btn btn-success" id="toggle-btnDate"><i class="icon-calendar"></i></span>
 
@@ -48,7 +48,7 @@
                     </div>
                     Time:
                     <div class="input-group">
-                        @Html.TextBoxFor(m => m.StartTime, "{0:HH:mm}", new { id = "startTime", @class = "form-control", @readonly = "readonly", style = "width:100px" })
+                        @Html.TextBoxFor(m => m.StartTime, "{0:HH:mm}", new { id = "startTime", @class = "form-control", @readonly = "readonly", style = "width:100px; cursor:pointer" })
                         <span class="input-group-addon btn btn-success" type="button" id="toggle-btnStart">
                             <i class="icon-time"></i>
                         </span>
@@ -59,7 +59,7 @@
                     </b>
 
                     <div class="input-group">
-                        @Html.TextBoxFor(m => m.EndTime, "{0:HH:mm}", new { id = "endTime", @class = "form-control", @readonly = "readonly", style = "width:100px" })
+                        @Html.TextBoxFor(m => m.EndTime, "{0:HH:mm}", new { id = "endTime", @class = "form-control", @readonly = "readonly", style = "width:100px; cursor:pointer" })
                         <span class="input-group-addon btn btn-success" type="button" id="toggle-btnEnd">
                             <i class="icon-time"></i>
                         </span>
@@ -83,20 +83,24 @@
 
 <script>
     $(function () {
-        $('#toggle-btnDate').datepicker({
+        $('#date').datepicker({
             autoclose: true,
             todayHighlight: true,
             format: 'mm/dd/yyyy'
         });
 
-        //$('#date').datepicker("setDate", new Date());
+        $('#date').datepicker("setDate", new Date());
+
+        $('#toggle-btnDate').on('click', function (e) {
+            $('#date').datepicker('show')
+        });
 
         $('#startTime').clockface({
             format: 'HH:mm',
             trigger: 'manual'
         });
 
-        $('#toggle-btnStart').click(function (e) {
+        $('#toggle-btnStart, #startTime').click(function (e) {
             e.stopPropagation();
             $('#startTime').clockface('toggle');
         });
@@ -106,7 +110,7 @@
             trigger: 'manual'
         });
 
-        $('#toggle-btnEnd').click(function (e) {
+        $('#toggle-btnEnd , #endTime').click(function (e) {
             e.stopPropagation();
             $('#endTime').clockface('toggle');
         });
