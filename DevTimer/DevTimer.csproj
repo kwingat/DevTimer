@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -352,6 +353,7 @@
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\App\alert.js" />
     <Content Include="Scripts\App\formatColumn.js" />
+    <Content Include="Scripts\App\login.js" />
     <Content Include="Scripts\App\_mixins.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
