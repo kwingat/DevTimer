@@ -23,6 +23,7 @@ using OfficeOpenXml.Style;
 
 namespace DevTimer.Controllers
 {
+    [Authorize]
     public class TimeController : BaseController
     {
         private readonly IAspNetUserRepository _aspNetUserRepository;
@@ -48,12 +49,18 @@ namespace DevTimer.Controllers
         // GET: Work
         public async Task<ActionResult> Index()
         {
+            return await Index(new WorkListViewModel { ShowAllDateEntries = false });
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Index(WorkListViewModel vm, bool ShowAllDateEntries = false)
+        {
             var aspNetUser = await _aspNetUserRepository.GetByIdAsync(User.Identity.GetUserId());
 
             if (aspNetUser == null)
                 return HttpNotFound();
 
-            var works = (await _workRepository.GetAllByUserAsync(User.Identity.GetUserId())).Where(w => w.StartTime != null && w.StartTime > DateTime.Now.Date.AddDays(-31));
+            var works = (await _workRepository.GetAllByUserAsync(User.Identity.GetUserId())).Where(w => vm.ShowAllDateEntries || (w.StartTime != null && w.StartTime > DateTime.Now.Date.AddDays(-31)));
             var projects = await _projectRepository.GetAllAsync();
 
             var viewModel = Mapper.Map<IEnumerable<Work>, WorkListViewModel>(works).Map(projects);

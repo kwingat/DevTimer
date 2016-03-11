@@ -10,8 +10,14 @@
 }
 
 <div class="caption">
-    <i class="fa fa-clock-o"></i>
-    Time
+    
+    @using (Html.BeginForm("Index", "Time", FormMethod.Post, new { id = "showAll ", @class="form-inline" }))
+    {
+        <div class="checkbox">
+            <i class="fa fa-clock-o"></i> Time
+            <label style="margin-left: 15px;">@Html.CheckBoxFor(m => m.ShowAllDateEntries) Show All Time Entries </label>
+        </div>
+    }
 </div>
 
 <div class="btn-group"></div>
@@ -27,6 +33,7 @@
             <input type="hidden" name="from" id="from" value="">
         </div>
     }
+   
     <div>
         @foreach (var workday in Model.Works.GroupBy(item => item.StartTime.Value.ToString("MM/dd/yyyy")))
         {
@@ -87,7 +94,7 @@
                     </tbody>
                 </table>
             </div>
-        }
+            }
     </div>
 
     <!-- modal placeholder-->
@@ -109,7 +116,17 @@
         <script language="javascript">
 
             $(document).ready(function () {
-                
+                console.log("doc ready");
+                $("#ShowAllDateEntries").on("click", function () {
+                    console.log("form sub");
+                    var showAll = $("#showAll");
+                    if (showAll) {
+                        console.log(showAll);
+                        $(".form-inline").submit();
+                    }
+                    else
+                        console.log("show all not found");
+                });
             });
 
             $(function () {
