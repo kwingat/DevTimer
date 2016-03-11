@@ -81,3 +81,7 @@ textarea {
     border-right: 1px solid #ffffff;
 }
 
+/* Form that contains a ul with a bunch of classes */
+form > ul.nav.navbar-nav.navbar-right.pull-right {
+    margin-right: 15px;
+}
