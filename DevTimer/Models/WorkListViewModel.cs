@@ -9,6 +9,9 @@ namespace DevTimer.Models
 {
     public class WorkListViewModel : IHasCustomMapping
     {
+        public bool ShowAllDateEntries { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public IEnumerable<SelectListItem> Projects { get; set; }
         public IEnumerable<Work> Works { get; set; }
 

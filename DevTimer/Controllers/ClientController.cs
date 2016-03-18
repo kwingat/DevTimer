@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using AutoMapper;
 using DevTimer.Domain.Abstract;
@@ -9,8 +8,8 @@ using DevTimer.Models;
 
 namespace DevTimer.Controllers
 {
-    [Authorize]
-    public class ClientController : Controller
+    [AuthorizeRoles(Role.Administrator)]
+    public class ClientController : BaseController
     {
         private readonly IClientRepository _clientRepository;
 

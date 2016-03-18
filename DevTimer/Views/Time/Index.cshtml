@@ -5,91 +5,163 @@
     int hours = 0;
 }
 
+@section styles {
+    @Styles.Render("~/content/daterangepicker-bs3")
+}
+
 <div class="caption">
-    <i class="fa fa-clock-o"></i>
-    Time
-</div>
-<div class="btn-group"></div>
-<div class="btn-group pull-right margin-top-bottom">
-    @Html.NoEncodeActionLink("Add New <i class='fa fa-plus'></i>", "Add New", "Create", "Time", null, new { data_modal = "", @class = "btn green" })
-    <button class="btn dropdown-toggle" data-toggle="dropdown">
-        Options
-        <i class="fa fa-angle-down"></i>
-    </button>
-    <ul class="dropdown-menu pull-right">
-        <li><a href="/Time">Export to Excel</a></li>
-    </ul>
-</div>
-<div>
-    @foreach (var workday in Model.Works.GroupBy(item => item.StartTime.Value.ToString("MM/dd/yyyy")))
+    
+    @using (Html.BeginForm("Index", "Time", FormMethod.Post, new { id = "showAll ", @class="form-inline" }))
     {
-        <div class="margin-top-bottom">
-            <table class="table table-advance table-hover">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th>@workday.First().StartTime.Value.ToString("MM/dd/yyyy ddd")</th>
-                    <th>
-                        @if (@workday.Sum(e => e.Hours) > 0)
-                        {
-                            @workday.Sum(e => e.Hours)<text> Hours</text>
-                        }
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-
-                @foreach (var work in workday)
-                {
-                    <tr>
-                        <td>
-                            @work.ID
-                        </td>
-                        <td>
-                            @work.Project.Name
-                        </td>
-                        <td>
-                            @(work.StartTime.HasValue ? work.StartTime.Value.ToShortTimeString() : "")
-                            - 
-                            @(work.EndTime.HasValue ? work.EndTime.Value.ToShortTimeString() : "")
-                        </td>
-                        <td>
-                            @work.Hours
-                        </td>
-                        <td>
-                            <div class="pull-right">
-                                @Html.NoEncodeActionLink("<span>Edit</span>", "Edit", "Edit", "Time", new { id = @work.ID }, new { data_modal = "", @class = "btn btn-default" })
-                            </div>
-                        </td>
-                    </tr>
-                } 
-
-                </tbody>
-            </table>
+        <div class="checkbox">
+            <i class="fa fa-clock-o"></i> Time
+            <label style="margin-left: 15px;">@Html.CheckBoxFor(m => m.ShowAllDateEntries) Show All Time Entries </label>
         </div>
     }
 </div>
 
-<!-- modal placeholder-->
-<div id="myModal" class='modal fade' aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div id='myModalContent'></div>
+<div class="btn-group"></div>
+    @using (Html.BeginForm("ExportToExcel", "Time", FormMethod.Post, new{id="export"}))
+    {
+        <div class="btn-group pull-right margin-top-bottom">
+            @Html.NoEncodeActionLink("Add New <i class='fa fa-plus'></i>", "Add New", "Create", "Time", null, new {data_modal = "", @class = "btn btn-info"})
+            <button id="reportrange" type="button" class="btn btn-default dropdown-toggle">
+                Export
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <input type="hidden" name="to" id="to" value="">
+            <input type="hidden" name="from" id="from" value="">
+        </div>
+    }
+   
+    <div>
+        @foreach (var workday in Model.Works.GroupBy(item => item.StartTime.Value.ToString("MM/dd/yyyy")))
+        {
+            <div class="">
+                <table class="table table-striped table-advance table-hover">
+                    <thead>
+                        <tr style="padding-top: 10px;">
+                            <th style="border-top: none; background-color:white;"></th>
+                            <th style="font-weight: bold; border-top: none; background-color: white; font-size:18px;">@workday.First().StartTime.Value.ToString("MM/dd/yyyy ddd")</th>
+                            <th style="border-top: none; background-color: white; font-size: 15px">@workday.Sum(e => e.Hours).Value.ToString("N") <text> Hours</text></th>
+                            <th style="border-top: none; background-color: white; font-size: 15px"></th>
+                            <th style="border-top:none; background-color:white;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var work in workday)
+                        {
+                            <tr style="border-right: #ddd 1px solid; border-left: #ddd 1px solid; border-bottom: #ddd 1px solid">
+                                <td class="span3">
+                                    <b>@work.Project.Name</b> (@work.WorkType.Name)
+                                </td>
+                                <td class="span8">
+                                    <div style="overflow: hidden; -moz-text-overflow: ellipsis; text-overflow: ellipsis; white-space: nowrap; max-width: 400px">
+                                        <span>@work.Description</span>
+                                    </div>
+                                </td>
+                                <td class="span3">
+                                    @(work.StartTime.HasValue ? work.StartTime.Value.ToShortTimeString() : "")
+                                    -
+                                    @if (work.EndTime.HasValue)
+                                    {
+                                        @work.EndTime.Value.ToShortTimeString()<text> </text>
+                                    }
+                                    else
+                                    {
+                                        @Html.NoEncodeActionLink("<span class='fa fa-clock-o' > Close</span>", "Close", "Close", "Time", new { id = work.ID }, new { @class = "btn btn-warning" })
+                                    }
+                                </td>
+                                <td class="span2">
+                                    @if (work.EndTime.HasValue)
+                                    {
+                                        @Html.NoEncodeActionLink("<span class='fa fa-clock-o' > Continue</span>", "Continue", "Continue", "Time", new { id = work.ID }, new { data_modal = "", @class = "btn btn-success" })
+                                    }
+                                </td>
+                                <td class="span4">
+                                    <div class="pull-right">
+                                        @Html.NoEncodeActionLink("<span class='fa fa-edit' > Edit</span>", "Edit", "Edit", "Time", new { id = @work.ID }, new { data_modal = "", @class = "btn btn-primary" })
+                                        @Html.NoEncodeActionLink("<span class='fa fa-trash'> Delete</span>", "Delete", "Delete", "Time", new { id = @work.ID }, new { @class = "btn btn-danger" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="background-color: white; border-left: none; border-right: none">
+                                <td colspan="4" style="background-color: white; border-left: none; border-right: none"></td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            }
+    </div>
+
+    <!-- modal placeholder-->
+    <div id="myModal" class='modal fade' aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id='myModalContent'></div>
+            </div>
         </div>
     </div>
-</div>
 
-@section scripts
+    @section scripts
 {
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/bootstrap-datepicker")
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/site")
+        @Scripts.Render("~/bundles/daterangepicker")
+        @Scripts.Render("~/bundles/bootstrap-datepicker")
 
-    <script language="javascript">
-        $(document).ready(function() {
+        <script language="javascript">
             $(function () {
-
                 $.ajaxSetup({ cache: false });
+
+                $("#ShowAllDateEntries").on("click", function () {
+                    $(".form-inline").submit();
+                });
+
+                $('#reportrange').daterangepicker({
+                    "ranges": {
+                        "Today": [
+                            moment(),
+                            moment()
+                        ],
+                        "Yesterday": [
+                            moment().add(-1, 'days'),
+                            moment().add(-1, 'days')
+                        ],
+                        "Last 7 Days": [
+                            moment().add(-1, 'days'),
+                            moment().add(-8, 'days')
+                        ],
+                        "Last 30 Days": [
+                            moment().add(-1, 'days'),
+                            moment().add(-31, 'days')
+                        ],
+                        "This Month": [
+                            moment().startOf('month'),
+                            moment().endOf('month')
+                        ],
+                        "Last Month": [
+                            moment().subtract(1, 'months').startOf('month'),
+                            moment().subtract(1, 'months').endOf('month')
+                        ]
+                    },
+                    "startDate": moment(),
+                    "endDate": moment()
+                }, function (start, end, label) {
+                    //console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+                });
+
+                $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+                    var drp = $('#reportrange').data('daterangepicker');
+                    var start = drp.startDate._d.toLocaleDateString();
+                    var end = drp.endDate._d.toLocaleDateString();
+                    $('#to').val(start);
+                    $('#from').val(end);
+                    $('#export').submit();
+                });
 
                 $("a[data-modal]").on("click", function (e) {
                     // hide dropdown if any (this is used wehen invoking modal from link in bootstrap dropdown )
@@ -102,37 +174,14 @@
                         }, 'show');
 
                         bindForm(this);
-
-                        $('#date').datepicker({
-                            autoclose: true,
-                            todayHighlight: true,
-                            format: 'mm/dd/yyyy'
-                            
-                        });
-
-                        $('#startTime').clockface({
-                            format: 'HH:mm',
-                            trigger: 'manual'
-                        });
-
-                        $('#toggle-btnStart').click(function (e) {
-                            e.stopPropagation();
-                            $('#startTime').clockface('toggle');
-                        });
-
-                        $('#endTime').clockface({
-                            format: 'HH:mm',
-                            trigger: 'manual'
-                        });
-
-                        $('#toggle-btnEnd').click(function (e) {
-                            e.stopPropagation();
-                            $('#endTime').clockface('toggle');
-                        });
                     });
                     return false;
                 });
             });
+
+            function pageLoad() {
+
+            }
 
             function bindForm(dialog) {
                 $('form', dialog).submit(function () {
@@ -144,10 +193,10 @@
                             if (result.success) {
                                 $('#myModal').modal('hide');
 
-                                // TODO: This line needs to reload the page asyncronously 
+                                // TODO: This line needs to reload the page asyncronously
                                 //$('#replacetarget').load(result.url); //  Load data from the server and place the returned HTML into the matched element
 
-                                location.reload(true);
+                                window.location.replace(result.url);
                             } else {
                                 $('#myModalContent').html(result);
                                 bindForm(dialog);
@@ -158,8 +207,7 @@
                 });
             }
 
-            
-        });
-    </script>
-}
+
+        </script>
+    }
 

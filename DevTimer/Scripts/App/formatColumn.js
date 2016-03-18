@@ -44,7 +44,7 @@ DEVTIMER.formatColumn = (function () {
         editActions: function (value, row, index) {
             return [
 				"<nobr>",
-				"	<a class='action-edit btn btn-default btn-xs' href='javascript:void(0)' title='Edit'>Edit</a>",
+				"	<a class='action-edit btn btn-warning btn-xs' href='javascript:void(0)' title='Edit'><span class='fa fa-pencil-square-o'> Edit</span></a>",
 				"</nobr>"
             ].join("\n\r");
 

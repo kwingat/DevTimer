@@ -39,6 +39,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\DbContextBase.cs" />
@@ -46,6 +49,9 @@
     <Compile Include="Abstract\IClientRepository.cs" />
     <Compile Include="Abstract\IProjectRepository.cs" />
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\IStateRepository.cs" />
+    <Compile Include="Abstract\IWorkerRepository.cs" />
+    <Compile Include="Abstract\IWorkerTypeRepository.cs" />
     <Compile Include="Abstract\IWorkRepository.cs" />
     <Compile Include="Abstract\IWorkTypeRepository.cs" />
     <Compile Include="Abstract\Repository.cs" />
@@ -54,10 +60,16 @@
     <Compile Include="Entities\Mappings\AspNetUserMap.cs" />
     <Compile Include="Entities\Mappings\ClientMap.cs" />
     <Compile Include="Entities\Mappings\ProjectMap.cs" />
+    <Compile Include="Entities\Mappings\StateMap.cs" />
+    <Compile Include="Entities\Mappings\WorkerMap.cs" />
+    <Compile Include="Entities\Mappings\WorkerTypeMap.cs" />
     <Compile Include="Entities\Mappings\WorkMap.cs" />
     <Compile Include="Entities\Mappings\WorkTypeMap.cs" />
     <Compile Include="Entities\Project.cs" />
+    <Compile Include="Entities\State.cs" />
     <Compile Include="Entities\Work.cs" />
+    <Compile Include="Entities\Worker.cs" />
+    <Compile Include="Entities\WorkerType.cs" />
     <Compile Include="Entities\WorkType.cs" />
     <Compile Include="EntityChangeNotifier.cs" />
     <Compile Include="GlobalDbContext.cs" />
@@ -65,6 +77,9 @@
     <Compile Include="Repositories\AspNetUserRepository.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />
+    <Compile Include="Repositories\StateRepository.cs" />
+    <Compile Include="Repositories\WorkerRepository.cs" />
+    <Compile Include="Repositories\WorkerTypeRepository.cs" />
     <Compile Include="Repositories\WorkRepository.cs" />
     <Compile Include="Repositories\WorkTypeRepository.cs" />
   </ItemGroup>
