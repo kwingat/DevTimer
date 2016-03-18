@@ -8,10 +8,13 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DevTimer.Models;
 
+/* TODO
+ * SET UP Recover Email 
+ */
+
 namespace DevTimer.Controllers
 {
-    [Authorize]
-    public class ManageController : Controller
+    public class ManageController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -38,7 +41,7 @@ namespace DevTimer.Controllers
             }
         }
 
-        public ApplicationUserManager UserManager
+        public new ApplicationUserManager UserManager
         {
             get
             {

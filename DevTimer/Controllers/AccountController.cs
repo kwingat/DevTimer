@@ -15,22 +15,27 @@ using DevTimer.Models;
 namespace DevTimer.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
-        //private IAspNetUserRepository _aspNetUserRepository;
+        private readonly IWorkerRepository _workerRepository;
+        private readonly IWorkerTypeRepository _workerTypeRepository;
 
-        public AccountController()
+        public AccountController() { }
+
+        public AccountController(
+            IWorkerRepository workerRepository,
+            IWorkerTypeRepository workerTypeRepository)
         {
-            //_aspNetUserRepository = aspNetUserRepository;
+            _workerRepository = workerRepository;
+            _workerTypeRepository = workerTypeRepository;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
+        //public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        //{
+        //    UserManager = userManager;
+        //    SignInManager = signInManager;
+        //}
 
         public ApplicationSignInManager SignInManager
         {
@@ -41,18 +46,6 @@ namespace DevTimer.Controllers
             private set 
             { 
                 _signInManager = value; 
-            }
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
             }
         }
 
@@ -143,9 +136,11 @@ namespace DevTimer.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public async Task<ActionResult> Register()
         {
-            return View();
+            ViewBag.WorkerTypes = await _workerTypeRepository.GetAllAsync();
+
+            return View("_LayoutRegister");
         }
 
         //
@@ -162,7 +157,16 @@ namespace DevTimer.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    var userManager = await UserManager.FindByEmailAsync(model.Email);
+                    Worker worker = new Worker
+                    {
+                        Name = model.Name,
+                        UserID = userManager.Id
+                    };
+
+                    _workerRepository.Add(worker);
+                    await _workerRepository.SaveAsync();
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -174,8 +178,10 @@ namespace DevTimer.Controllers
                 AddErrors(result);
             }
 
+            ViewBag.WorkerTypes = await _workerTypeRepository.GetAllAsync();
+
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View("_LayoutRegister",model);
         }
 
         //
@@ -413,11 +419,11 @@ namespace DevTimer.Controllers
         {
             if (disposing)
             {
-                if (_userManager != null)
-                {
-                    _userManager.Dispose();
-                    _userManager = null;
-                }
+                //if (_userManager != null)
+                //{
+                //    _userManager.Dispose();
+                //    _userManager = null;
+                //}
 
                 if (_signInManager != null)
                 {

@@ -10,10 +10,13 @@ using Microsoft.AspNet.Identity.Owin;
 namespace DevTimer.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
+            int[] test = {3, 5, 6, 7, 3, 8, 9};
+            ViewBag.intArray = test;
+
             return View();
         }
 
@@ -29,6 +32,12 @@ namespace DevTimer.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult Error(int? id = null)
+        {
+            ViewBag.ID = id;
+            return View("_AccessDenied");
         }
     }
 }

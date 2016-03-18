@@ -3,39 +3,73 @@
     ViewBag.Title = "Register";
 }
 
+@*@section styles
+{
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+}*@
+
 <h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+<div class="panel panel-default">
+    <div class="panel-heading">Panel heading without title</div>
+    <div class="panel-body">
+        Panel content
+    </div>
+    <div class="panel-footer">Panel footer</div>
+</div>
+
+<div class="container">
+    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Create a new account</h3>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.Name, new {@class = "form-control", required = "required", data_value = "no-js", placeholder="Name"})
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Email, new {@class = "form-control", id = "email", placeholder="Email"})
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                @Html.PasswordFor(m => m.Password, new {id = "password", @class = "form-control", placeholder = "Password"})
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                @Html.PasswordFor(m => m.ConfirmPassword, new {id = "password_confirmation", @class = "form-control", placeholder = "Confirm Password"})
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Register" class="btn btn-info btn-block">
+                }
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            // Floating Labels
+            //==============================================================
+            $('[data-toggle="floatLabel"]').attr('data-value', $(this).val()).on('keyup change', function () {
+                $(this).attr('data-value', $(this).val());
+            });
+        });
+    </script>
 }

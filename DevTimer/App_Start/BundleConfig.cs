@@ -8,7 +8,9 @@ namespace DevTimer
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-ui-{version}.js",
+                        "~/Scripts/jquery.cookie.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -20,11 +22,16 @@ namespace DevTimer
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/transition.js",
+                      "~/Scripts/collapse.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-table").Include(
                 "~/Scripts/bootstrap-table.js",
                 "~/Scripts/App/formatColumn.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/chart").Include(
+                "~/Scripts/chart.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-datepicker").Include(
                 "~/Scripts/bootstrap-datepicker.js",
@@ -37,21 +44,31 @@ namespace DevTimer
                 "~/Scripts/underscore.js",
                 "~/Scripts/underscore.string.js",
                 "~/Scripts/App/_mixins.js",
-                "~/Scripts/App/alert.js"));
+                "~/Scripts/App/alert.js",
+                "~/Scripts/moment.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/daterangepicker").Include(
+                "~/Scripts/daterangepicker.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/CSS/bootstrap.min.css",
-                      "~/Content/CSS/bootstrap-responsive.min.css",
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/bootstrap-theme.min.css",
+                      "~/Content/bootstrap-responsive.min.css",
                       "~/Content/bootstrap-table.css",
-                      "~/Content/CSS/font-awesome.min.css",
-                      "~/Content/CSS/bootstrap-datepicker.css",
-                      "~/Content/CSS/clockface.css",
-                      //"~/Content/CSS/style-metro.css",
-                      "~/Content/CSS/style.css",
-                      "~/Content/CSS/style-responsive.css",
-                      "~/Content/CSS/light.css",
+                      "~/Content/font-awesome.min.css",
+                      "~/Content/bootstrap-datepicker.css",
+                      "~/Content/clockface.css",
+                      "~/Content/style.css",
+                      "~/Content/style-responsive.css",
+                      "~/Content/light.css",
                       "~/Content/CSS/site.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/themes/base/all.css"));
+
+            bundles.Add(new StyleBundle("~/Content/daterangepicker-bs3").Include(
+                "~/Content/CSS/bootstrap2-3-2.css",
+                "~/Content/CSS/daterangepicker-bs3.css"));
         }
     }
 }

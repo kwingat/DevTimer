@@ -1,0 +1,104 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "EditRoles";
+}
+
+@section styles {
+    @Styles.Render("~/Content/themes/base/all.css")
+
+    <style>
+        ul.listRoles {
+            width: 300px;
+            height: auto;
+            padding: 5px;
+            margin: 5px;
+            list-style-type: none;
+            border-radius: 5px;
+            min-height: 500px;
+        }
+
+        ul.listRoles li {
+            padding: 5px;
+            margin: 10px;
+            background-color: #ffff99;
+            cursor: pointer;
+            border: 1px solid Black;
+            border-radius: 5px;
+        }
+    </style>
+}
+
+<h2>Assign Roles</h2>
+
+@using (Html.BeginForm("AssignRoles", "Roles", FormMethod.Post, new { id = "formAssignRoles" }))
+{
+
+    String[] AllRoles = ViewBag.AllRoles;
+    String[] AllowRoles = ViewBag.AllowRoles;
+
+    if (AllRoles == null) { AllRoles = new String[] { }; }
+    if (AllowRoles == null) { AllowRoles = new String[] { }; }
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Drag and Drop Roles as required;</legend>
+        @Html.Hidden("Username", "Username")
+        @Html.Hidden("GrantRoles", "")
+
+        <table>
+        <tr>
+            <th style="text-align: center">
+                Deny Roles
+            </th>
+            <th style="text-align: center">
+                Allow Roles
+            </th>
+        </tr>
+        <tr>
+            <td style="vertical-align: top">
+                <ul id="listDenyRoles" class="listRoles" style="background-color: #cc0000;">
+                    @foreach (String role in AllRoles)
+                    {
+                        if (!AllowRoles.Contains(role))
+                        {
+
+                            <li>@role</li>
+                        }
+                    }
+                </ul>
+            </td>
+            <td style="vertical-align: top">
+
+                <ul id="listAllowRoles" class="listRoles" style="background-color: #00cc00;">
+                    @foreach (String hasRole in AllowRoles)
+                    {
+                        <li>@hasRole</li>
+                    }
+                </ul>
+            </td>
+        </tr>
+        </table>
+
+        <p><input type="button" class="btn btn-default" onclick="submitNewRoles()" value="Assign Roles" /></p>
+    </fieldset>
+}  
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#listDenyRoles, #listAllowRoles").sortable({
+                connectWith: ".listRoles"
+            }).disableSelection();
+        });
+
+        function submitNewRoles() {
+            //Generate List of new allow roles
+            var outputList = $("#listAllowRoles li").map(function () { return $(this).html(); }).get().join(',');
+            $("#GrantRoles").val(outputList);
+            $("#formAssignRoles").submit();
+        }
+    </script>
+}
+

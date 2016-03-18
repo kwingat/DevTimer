@@ -53,5 +53,11 @@ namespace DevTimer.Helpers
 
             return MvcHtmlString.Create(builder.ToString());
         }
+
+        public static MvcHtmlString If(this MvcHtmlString value, bool evaluation)
+        {
+            return evaluation ? value : MvcHtmlString.Empty;
+            //@Html.ActionLink("Create New", "Create").If(User.IsInRole("Administrators"))
+        }
     }
 }

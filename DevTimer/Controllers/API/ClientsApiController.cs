@@ -35,4 +35,30 @@ namespace DevTimer.Controllers.API
 
         }
     }
+
+    [RoutePrefix("api/workers")]
+    public class WorkersApiController : ApiController
+    {
+        private readonly IWorkerRepository _workerRepository;
+
+        public WorkersApiController(IWorkerRepository workerRepository)
+        {
+            _workerRepository = workerRepository;
+        }
+
+        [Route("")]
+        public async Task<IHttpActionResult> GetWorkers(int pageSize, int pageNumber, string sortOrder = null)
+        {
+            try
+            {
+                var workers = await _workerRepository.GetAllAsync(pageSize, pageNumber);
+                var dto = workers.ToPageResult<Worker, WorkerListViewModel>();
+                return Ok(dto);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        } 
+    }
 }

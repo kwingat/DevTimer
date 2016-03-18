@@ -27,6 +27,10 @@ namespace DevTimer.Domain.Entities.Mappings
                 .HasForeignKey(e => e.UserID)
                 .WillCascadeOnDelete(false);
 
+            HasMany(e => e.Workers)
+                .WithRequired(e => e.AspNetUser)
+                .HasForeignKey(e => e.UserID)
+                .WillCascadeOnDelete(false);
         }
     }
 }
